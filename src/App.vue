@@ -1,24 +1,89 @@
+<template>
+	<div class="MainMenu"  v-if="showUI.value">
+		<MenuTopBar v-on:menu-button-pressed="screenState.value = $event" />
+		<img
+			src="/images/DiscordLogo.png"
+			class="discord_icon get-closer"
+			onclick="ENGINE_openLink('https://discord.gg/j6qhUUH')"
+		/>
+
+		<div id="screens_container">
+			<PlayScreen v-if="menuState === 'Play'" />
+			<RoomInfoScreen v-if="menuState === 'RoomInfo'" />
+		</div>
+	</div>
+</template>
+
+<script>
+window.screenState = { value: "Play" };
+window.showUI = { value: true };
+
+
+window.setMenuState = function (menuState) {
+	window.showUI.value = menuState;
+}
+
+
+import PlayScreen from "./components/PlayScreen.vue";
+import RoomInfoScreen from "./components/RoomInfoScreen.vue";
+import MenuTopBar from "./components/MenuTopBar.vue";
+
+export default {
+	name: "app",
+	components: {
+		PlayScreen,
+		RoomInfoScreen,
+		MenuTopBar
+	},
+
+	data() {
+		return {
+			screenState: window.screenState,
+			showUI: window.showUI
+		};
+	},
+
+	computed: {
+		menuState: function() {
+			// `this` points to the vm instance
+			return this.screenState.value;
+		}
+	}
+};
+</script>
+
+<style>
+#app {
+	font-family: "Avenir", Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+	margin-top: 60px;
+}
+
+
 @font-face {
     font-family: "MyFont Sans";
-    src: url("../fonts/fontbold.ttf");
+    src: url("assets/fonts/fontbold.ttf");
     
 }
 
 @font-face {
     font-family: "agencyfb-bold";
-    src: url("../fonts/agencyfb-bold.ttf");
+    src: url("assets/fonts/agencyfb-bold.ttf");
     
 }
 
 @font-face {
     font-family: "veneer";
-    src: url("../fonts/veneer_fixed.ttf");
+    src: url("assets/fonts/veneer_fixed.ttf");
     
 }
 
 @font-face {
     font-family: "veneer-italic";
-    src: url("../fonts/veneer_italic.ttf");
+    src: url("assets/fonts/veneer_italic.ttf");
     
 }
 
@@ -35,8 +100,6 @@ body, html {
 	font-family: 'veneer', sans-serif, sans;
     /*critical*/
     overflow: hidden;
-
-    background: black;
 }
 
 
@@ -63,7 +126,7 @@ body, html {
 
 #main_menu{   
     height: 100%;
-    background: white url("../images/MainMenuBackgroundImage.png") center center no-repeat;
+    background: white url("assets/images/MainMenuBackgroundImage.png") center center no-repeat;
     background-size: auto 100%;
     background-color: #262626;
 }
@@ -702,3 +765,6 @@ input[type='range']::-webkit-slider-thumb {
   .hidden{
       display: none;
   }
+
+
+</style>
