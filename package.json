@@ -12,6 +12,8 @@
     "core-js": "^3.3.2",
     "jshint": "^2.10.3",
     "vue": "^2.6.10",
+    "vue-number-input-spinner": "^2.2.0",
+    "vue-numeric-input": "^1.0.5",
     "vue-slider-component": "^3.0.43"
   },
   "devDependencies": {

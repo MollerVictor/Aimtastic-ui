@@ -7,15 +7,18 @@
 			onclick="ENGINE_openLink('https://discord.gg/j6qhUUH')"
 		/>
 
-		<div id="screens_container">
-			<PlayScreen v-if="menuState === 'Play'" />
-			<RoomInfoScreen v-if="menuState === 'RoomInfo'" />
+		<div>
+			<keep-alive>
+			<PlayScreen v-show="screenState.value === 'Play'" />
+			</keep-alive>
+			<RoomInfoScreen v-if="screenState.value === 'RoomInfo'" />
+			<SettingsScreen v-if="screenState.value === 'Settings'" />
 		</div>
 	</div>
 </template>
 
 <script>
-window.screenState = { value: "Play" };
+window.screenState = { value: "" };
 window.showUI = { value: true };
 
 
@@ -26,6 +29,7 @@ window.setMenuState = function (menuState) {
 
 import PlayScreen from "./components/PlayScreen.vue";
 import RoomInfoScreen from "./components/RoomInfoScreen.vue";
+import SettingsScreen from "./components/SettingsScreen.vue";
 import MenuTopBar from "./components/MenuTopBar.vue";
 
 export default {
@@ -33,6 +37,7 @@ export default {
 	components: {
 		PlayScreen,
 		RoomInfoScreen,
+		SettingsScreen,
 		MenuTopBar
 	},
 
@@ -62,6 +67,7 @@ export default {
 	margin-top: 60px;
 }
 
+* { transition: none !important }
 
 @font-face {
     font-family: "MyFont Sans";
@@ -124,7 +130,7 @@ body, html {
     display: none;
 }
 
-#main_menu{   
+.MainMenu{   
     height: 100%;
     background: white url("assets/images/MainMenuBackgroundImage.png") center center no-repeat;
     background-size: auto 100%;

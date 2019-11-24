@@ -30,15 +30,19 @@
 					</div>
 
 					<span class="preset_dropdown">
-						<select class="column" id="presetList"></select>
+						<select class="column" id="presetList" v-model="selectedPreset.value" @change="onPresetChange($event)">
+							<option  v-for="item of presets.value" v-bind:key="item.id">
+								{{ item.Name }}
+							</option>
+						</select>
 					</span>
 					<div id="roomSettings">
-						<div v-for="item of roomSettings" v-bind:key="item.id">
-						<div>
-							{{ item.displayName }}
-						</div>
-						<vue-slider v-model="item.value" :min="item.minValue" :max="item.maxValue" :interval="item.stepSize"></vue-slider>
-
+						<div v-for="item of roomSettings.value" v-bind:key="item.id">
+							<div>
+								{{ item.displayName }}
+							</div>
+							<vue-slider  :disabled="!isLocked.value" :silent="true" :adsorb="true" :min="item.minValue" :max="item.maxValue" :interval="item.stepSize" v-model="item.value"></vue-slider>
+							<!-- We make slider silent because of this https://github.com/NightCatSama/vue-slider-component/issues/343 -->
 						</div>
 					</div>
 				</div>
@@ -93,32 +97,46 @@ import "vue-slider-component/theme/default.css";
 window.onRequestRoomSettings = function (jsonString) {
 	var parsedData = JSON.parse(jsonString);
 
-	console.log(parsedData);
-
 	var CurrentSettings = parsedData._settingsDefault;
 
-	var defaultPreset =
-		parsedData.Presets[parsedData.DefaultSettingsIndex].Settings;
+	if(parsedData.Presets.length > 0){
+		var defaultPreset =
+			parsedData.Presets[parsedData.DefaultSettingsIndex].Settings;
 
-	Object.keys(defaultPreset).forEach(key => {
-		//console.log(`${key} : ${defaultPreset[key]}`);
+		Object.keys(defaultPreset).forEach(key => {
+			//console.log(`${key} : ${defaultPreset[key]}`);
 
-		var result = CurrentSettings.find(obj => {
-			return obj.bindedName === key;
+			var result = CurrentSettings.find(obj => {
+				return obj.bindedName === key;
+			});
+
+			result["value"] = defaultPreset[key];
 		});
+	}
 
-		result["value"] = defaultPreset[key];
-
-	});
-
-	window.roomSettings = CurrentSettings;
+	window.roomSettings.value = [];	//We clear it incase we have a room with no settings
+	window.presets.value = parsedData.Presets;
+	window.roomSettings.value = CurrentSettings;
 	window.roomName.value = parsedData.DisplayName;
-	window.roomDescription = { value: parsedData.DisplayInformation };
-	window.SceneName = parsedData.SceneName;
-	window.LevelIndex = parsedData.LevelIndex;
+	window.roomDescription.value = parsedData.DisplayInformation;
+	window.SceneName.value = parsedData.SceneName;
+	window.LevelIndex.value = parsedData.LevelIndex;
+
+	window.selectedPreset.value = parsedData.Presets[parsedData.DefaultSettingsIndex].Name;
+
+	window.isLocked.value = parsedData.Presets[parsedData.DefaultSettingsIndex].AllowChangingValues;
 };
 
-window.roomName = { value: "nasds" };
+window.presets = { value: []};
+window.roomSettings = { value: []};	//Handling sliders name, min,max, current value.
+window.roomName = { value: "" };
+window.roomDescription = { value: "" };
+window.SceneName = { value: ""};
+window.LevelIndex = { value: ""};
+
+window.selectedPreset = { value: ""};
+window.isLocked = { value: ""};
+
 
 export default {
 	name: "RoomInfoScreen",
@@ -126,7 +144,10 @@ export default {
 		return {
 			roomSettings: window.roomSettings,
 			roomName: window.roomName,
-			roomDescription: window.roomDescription
+			roomDescription: window.roomDescription,
+			presets: window.presets,
+			selectedPreset: window.selectedPreset,
+			isLocked: window.isLocked,
 		};
 	},
 	components: {
@@ -134,14 +155,35 @@ export default {
 	},
 	methods: {
 		EnterRoom: function() {
-			var returnData = [window.SceneName, window.LevelIndex, this.roomSettings]
+			var returnData = [window.SceneName.value, window.LevelIndex.value, this.roomSettings.value]
 
 			console.log(returnData);
 			
 			ENGINE_roomButtonClicked(returnData);
 
-		}
-	}
+		},
+		onPresetChange(event) {
+
+			for(var i = 0; i < this.presets.value.length; i++){				
+				if(this.presets.value[i].Name === event.target.value){									
+					Object.keys(this.presets.value[i].Settings).forEach(key => {
+						var result = this.roomSettings.value.find(obj => {
+							return obj.bindedName === key;
+						});
+
+						result["value"] = this.presets.value[i].Settings[key];					
+
+						console.log();
+						window.isLocked.value = this.presets.value[i].AllowChangingValues;
+
+					});
+
+					break;
+				}
+			}
+        }
+	},
+	
 };
 </script>
 

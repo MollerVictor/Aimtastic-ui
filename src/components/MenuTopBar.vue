@@ -8,7 +8,7 @@
 			</div>
 
 			<div style="float: right ">
-				<div id="mm_options" class="button get-closer menu-medium-button menu_button">OPTIONS</div>
+				<div id="mm_options" class="button get-closer menu-medium-button menu_button"  v-on:click="$emit('menu-button-pressed', 'Settings')">OPTIONS</div>
 				<div
 					id="mm_stats"
 					class="button get-closer menu-light-button menu-disabled-button menu_button"
