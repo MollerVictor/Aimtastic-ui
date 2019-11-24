@@ -29,6 +29,8 @@ export default {
 		};
 	},
 
+
+
 	components: {
 		VueSlider,
 		VueNumericInput
