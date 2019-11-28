@@ -1,151 +1,55 @@
 <template>
 	<div class="center_area fullscreen_window">
 		<div>
-			<div data-settings-tab="#game_settings" class="button get-closer settings-tab-button">Game</div>
-			<div
+			<div v-on:click="screenState = 'game'" data-settings-tab="#game_settings" class="button get-closer settings-tab-button">Game</div>
+			<div v-on:click="screenState = 'keybinds'"
 				data-settings-tab="#keybindings_settings"
 				class="button get-closer settings-tab-button"
 			>Keybindings</div>
-			<div
+			<div v-on:click="screenState = 'graphics'"
 				data-settings-tab="#graphics_settings"
 				class="button get-closer settings-tab-button"
 			>Graphics</div>
-			<div data-settings-tab="#ui_settings" class="button get-closer settings-tab-button">UI</div>
-			<div data-settings-tab="#audio_settings" class="button get-closer settings-tab-button">Audio</div>
+			<div v-on:click="screenState = 'ui'" data-settings-tab="#ui_settings" class="button get-closer settings-tab-button">UI</div>
+			<div v-on:click="screenState = 'audio'" data-settings-tab="#audio_settings" class="button get-closer settings-tab-button">Audio</div>
 			<!--<div data-settings-tab='#movement_settings' class='button get-closer settings-tab-button'>Movement</div>-->
 		</div>
-		<div id="game_settings" class="settings_tab">
-			<div>
-				
+		<div id="game_settings" class="settings_tab"  v-if="screenState==='game'">
+			<div>				
 				<h2>Sensitivity</h2>
-				<SettingInput title="CSGO/Quake/Source Sensitivity" :min="0" :max="30" :step="0.001" bindedSetting="PlayerSettings.Sensitivity"/>
-				<div class="half_select_setting">
-					<span class="select_label">CSGO/Quake/Source Sensitivity</span>
-					<input class="rangeSlider" id="sensitivity_input" type="range" min="0" max="30" step="0.001" />
-					<input
-						class="spinner floatSetting"
-						id="sensitivity_spinner"
-						binded-setting="PlayerSettings.Sensitivity"
-					/>
-				</div>
 
-				<div class="half_select_setting">
-					<span class="select_label">Overwatch Sensitivity</span>
-					<span></span>
-					<input
-						class="sens_spinner"
-						id="sensitivity_overwatch"
-						min="0"
-						max="100"
-						step="0.01"
-						sens_type="ow"
-					/>
-				</div>
-				<div class="half_select_setting">
-					<span class="select_label">Fortnite Sensitivity</span>
-					<span></span>
-					<input
-						class="sens_spinner"
-						id="sensitivity_fortnite"
-						min="0"
-						max="10"
-						step="0.01"
-						sens_type="fortnite"
-					/>
-				</div>
-
-				<div class="half_select_setting">
-					<span class="select_label">X Multiplier</span>
-					<input class="rangeSlider" type="range" min="0" max="5" step="0.01" />
-					<input class="spinner floatSetting" binded-setting="PlayerSettings.XMultiplier" />
-				</div>
-
-				<div class="half_select_setting">
-					<span class="select_label">Y Multiplier</span>
-					<input class="rangeSlider" type="range" min="0" max="5" step="0.01" />
-					<input class="spinner floatSetting" binded-setting="PlayerSettings.YMultiplier" />
-				</div>
-
-				<!--<div class="half_select_setting">
-                            <span class="select_label">DPI</span>
-                            <input class="rangeSlider" id="sensitivity_input" type="range" min="0" max="30000" step="10">
-                            <input class="spinner intSetting"  id="dpi_spinner"  binded-setting="PlayerSettings.DPI">                            
-                        </div>
-                        
-                        <div class="half_select_setting">
-                            <span class="select_label">CM/360</span>
-                            <label id="cm360_label"></label>                             
-                        </div>
-				-->
+				<FloatSettingInput title="CSGO/Quake/Source Sensitivity" :value="settings.value.PlayerSettings.Sensitivity" :min="0" :max="30" :step="0.001" bindedSetting="PlayerSettings.Sensitivity"/>
+				<FloatSettingInput title="X Multiplier" :value="settings.value.PlayerSettings.XMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.XMultiplier"/>
+				<FloatSettingInput title="Y Multiplier" :value="settings.value.PlayerSettings.YMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.YMultiplier"/>
+						
 				<br />
-				<div class="half_select_setting">
-					<span class="select_label">Use Relative Zoom Sensitivity</span>
-					<label class="switch">
-						<input
-							type="checkbox"
-							class="boolSetting"
-							binded-setting="PlayerSettings.UseRelativeZoomSensitivity"
-						/>
-						<span class="slider"></span>
-					</label>
-				</div>
 
-				<div class="half_select_setting">
-					<span class="select_label">Zoom Sensitivity</span>
-					<input class="rangeSlider" type="range" min="0" max="30" step="0.01" />
-					<input class="spinner floatSetting" binded-setting="PlayerSettings.ZoomSensitivity" />
-				</div>
+				<BoolSettingInput title="Use Relative Zoom Sensitivity" :value="settings.value.PlayerSettings.UseRelativeZoomSensitivity" bindedSetting="PlayerSettings.UseRelativeZoomSensitivity"/>
+				<FloatSettingInput title="Zoom Sensitivity" :value="settings.value.PlayerSettings.ZoomSensitivity" :min="0" :max="30" :step="0.01" bindedSetting="PlayerSettings.ZoomSensitivity"/>
+				<FloatSettingInput title="Relative Zoom Sensitivity" :value="settings.value.PlayerSettings.RelativeZoomSensitivity" :min="0" :max="100" :step="1" bindedSetting="PlayerSettings.RelativeZoomSensitivity"/>
 
-				<div class="half_select_setting">
-					<span class="select_label">Relative Zoom Sensitivity</span>
-					<input class="rangeSlider" type="range" min="0" max="100" step="1" />
-					<input class="spinner floatSetting" binded-setting="PlayerSettings.RelativeZoomSensitivity" />
-				</div>
+				<BoolSettingInput title="Inverted Horizontal" :value="settings.value.PlayerSettings.InvertedHorizontal" bindedSetting="PlayerSettings.InvertedHorizontal"/>
+				<BoolSettingInput title="Inverted Vertical" :value="settings.value.PlayerSettings.InvertedVertical" bindedSetting="PlayerSettings.InvertedVertical"/>
 
-				<div class="half_select_setting">
-					<span class="select_label">Inverted Horizontal</span>
-					<label class="switch">
-						<input type="checkbox" class="boolSetting" binded-setting="PlayerSettings.InvertedHorizontal" />
-						<span class="slider"></span>
-					</label>
-				</div>
-
-				<div class="half_select_setting">
-					<span class="select_label">Inverted Vertical</span>
-					<label class="switch">
-						<input type="checkbox" class="boolSetting" binded-setting="PlayerSettings.InvertedVertical" />
-						<span class="slider"></span>
-					</label>
-				</div>
+	
 			</div>
 			<div>
 				<h2>FOV</h2>
-				<div class="half_select_setting">
-					<span class="select_label">Vertical FOV</span>
-					<input class="rangeSlider" id="vertical_fov" type="range" min="10" max="150" step="1" />
-					<input class="spinner floatSetting" id="vertical_spinner" binded-setting="PlayerSettings.FOV" />
-				</div>
+
+				<FloatSettingInput title="Vertical FOV" :value="settings.value.PlayerSettings.FOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.FOV"/>
+				<FloatSettingInput title="Zoom Vertical FOV" :value="settings.value.PlayerSettings.ZoomFOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.ZoomFOV"/>
+				<FloatSettingInput title="Countdown Duration" :value="settings.value.PlayerSettings.CountdownDuration" :min="0" :max="5" :step="0.1" bindedSetting="PlayerSettings.CountdownDuration"/>
+
 				<div class="half_select_setting">
 					<span class="select_label">Horizontal FOV</span>
 					<span></span>
 					<input class="hor" id="horizontal_fov" min="10" max="200" step="0.01" fov_type="horizontal" />
 				</div>
 
-				<div class="half_select_setting">
-					<span class="select_label">Zoom Vertical FOV</span>
-					<input class="rangeSlider" type="range" min="10" max="150" step="1" />
-					<input class="spinner floatSetting" binded-setting="PlayerSettings.ZoomFOV" />
-				</div>
-
-				<div class="half_select_setting">
-					<span class="select_label">Countdown Duration</span>
-					<input class="rangeSlider" type="range" min="0" max="5" step="0.1" />
-					<input class="spinner floatSetting" binded-setting="PlayerSettings.CountdownDuration" />
-				</div>
 			</div>
 		</div>
 
-		<div id="keybindings_settings" class="settings_tab" style="display: none;">
+		<div id="keybindings_settings" class="settings_tab"  v-if="screenState==='keybinds'">
 			<div>
 				<div class="settings_group">
 					<h2>Movement</h2>
@@ -189,7 +93,7 @@
 			</div>
 		</div>
 
-		<div id="graphics_settings" class="settings_tab" style="display: none;">
+		<div id="graphics_settings" class="settings_tab" v-if="screenState==='graphics'">
 			<div>
 				<div class="settings_group">
 					<h2>Resolution</h2>
@@ -212,11 +116,8 @@
 				<div class="settings_group">
 					<h2>Graphics</h2>
 
-					<div class="half_select_setting">
-						<span class="select_label">Max FPS</span>
-						<input class="rangeSlider" type="range" min="15" max="500" step="1" />
-						<input class="spinner intSetting" binded-setting="GraphicsSettings.MaxFPS" />
-					</div>
+					<IntSettingInput title="Max FPS" :value="settings.value.GraphicsSettings.MaxFPS" :min="15" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxFPS"/>
+
 
 					<div class="half_select_setting">
 						<span class="select_label">Render Gun</span>
@@ -301,24 +202,15 @@
 			</div>
 		</div>
 
-		<div id="ui_settings" class="settings_tab" style="display: none;">
+		<div id="ui_settings" class="settings_tab" v-if="screenState==='ui'">
 			<div>
 				<div class="settings_group">
 					<h2>UI</h2>
-					<div class="half_select_setting">
-						<span class="select_label">Show Popup Score</span>
-						<label class="switch">
-							<input type="checkbox" class="boolSetting" binded-setting="UISettings.ShowPopupScore" />
-							<span class="slider"></span>
-						</label>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Use Hitmarkers</span>
-						<label class="switch">
-							<input type="checkbox" class="boolSetting" binded-setting="CrosshairSettings.UseHitMarkers" />
-							<span class="slider"></span>
-						</label>
-					</div>
+
+					<BoolSettingInput title="Show Popup Score" :value="settings.value.UiSettings.ShowPopupScore" bindedSetting="UiSettings.ShowPopupScore"/>
+					<BoolSettingInput title="Use Hitmarkers" :value="settings.value.CrosshairSettings.UseHitMarkers" bindedSetting="CrosshairSettings.UseHitMarkers"/>
+
+					
 					<div class="half_select_setting">
 						<span class="select_label">Hitmarker</span>
 						<select
@@ -331,22 +223,11 @@
 						<span class="select_label">Hitmarker Color</span>
 						<input class="colorSetting" type="text" binded-setting="CrosshairSettings.HitMarkerColor" />
 					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Hitmarker Alive Duration</span>
-						<input class="rangeSlider" type="range" min="0.1" max="1.5" step="0.05" />
-						<input
-							class="spinner floatSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.HitMarkerAliveTime"
-						/>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Hitmarker Scale</span>
-						<input class="rangeSlider" type="range" min="0.1" max="1.5" step="0.05" />
-						<input
-							class="spinner floatSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.HitMarkerScale"
-						/>
-					</div>
+					
+					<FloatSettingInput title="Hitmarker Alive Duration" :value="settings.value.CrosshairSettings.HitMarkerAliveTime" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerAliveTime"/>
+					<FloatSettingInput title="Hitmarker Scale" :value="settings.value.CrosshairSettings.HitMarkerScale" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerScale"/>
+					
+
 					<div>
 						<img id="crosshairPreview" />
 					</div>
@@ -355,15 +236,9 @@
 			<div class="far_right">
 				<div class="settings_group">
 					<h2>Crosshair</h2>
-					<div class="half_select_setting">
-						<span class="select_label">Crosshair Type</span>
-						<input class="rangeSlider" type="range" min="1" max="2" step="1" />
-						<input
-							class="spinner intSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.CrosshairType"
-							id="crosshair_type_spinner"
-						/>
-					</div>
+
+					<IntSettingInput title="Crosshair Type" :value="settings.value.CrosshairSettings.CrosshairType" :min="1" :max="2" :step="1" bindedSetting="CrosshairSettings.CrosshairType"/>
+					
 				</div>
 				<div class="settings_group" id="crosshair_type1">
 					<h2>Crosshair Type 1</h2>
@@ -383,14 +258,9 @@
 							binded-setting="CrosshairSettings.CrosshairImageColor"
 						/>
 					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Crosshair Scale</span>
-						<input class="rangeSlider" type="range" min="0.1" max="3" step="0.05" />
-						<input
-							class="spinner floatSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.CrosshairScale"
-						/>
-					</div>
+
+					<FloatSettingInput title="Hitmarker Scale" :value="settings.value.CrosshairSettings.CrosshairScale" :min="0.1" :max="3" :step="0.05" bindedSetting="CrosshairSettings.CrosshairScale"/>
+				
 				</div>
 				<div class="settings_group" id="crosshair_type2">
 					<h2>Crosshair Type 2</h2>
@@ -408,58 +278,15 @@
 						/>
 					</div>
 
-					<div class="half_select_setting">
-						<span class="select_label">Crosshair Length</span>
-						<input class="rangeSlider" type="range" min="0" max="100" step="1" />
-						<input
-							class="spinner intSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.CrosshairLength"
-						/>
-					</div>
+					<IntSettingInput title="Crosshair Length" :value="settings.value.CrosshairSettings.CrosshairLength" :min="0" :max="100" :step="1" bindedSetting="CrosshairSettings.CrosshairLength"/>
+					<IntSettingInput title="Crosshair Thickness" :value="settings.value.CrosshairSettings.CrosshairThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairThickness"/>
+					<IntSettingInput title="Crosshair Outline Thickness" :value="settings.value.CrosshairSettings.CrosshairOutlineThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairOutlineThickness"/>
+					<IntSettingInput title="Crosshair Gap" :value="settings.value.CrosshairSettings.CrosshairGap" :min="-5" :max="40" :step="1" bindedSetting="CrosshairSettings.CrosshairGap"/>
+					<IntSettingInput title="Dot Size" :value="settings.value.CrosshairSettings.DotSize" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotSize"/>
+					<IntSettingInput title="Dot Outline Thickness" :value="settings.value.CrosshairSettings.DotOutlineThickness" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotOutlineThickness"/>
 
-					<div class="half_select_setting">
-						<span class="select_label">Crosshair Thickness</span>
-						<input class="rangeSlider" type="range" min="0" max="8" step="1" />
-						<input
-							class="spinner intSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.CrosshairThickness"
-						/>
-					</div>
+			
 
-					<div class="half_select_setting">
-						<span class="select_label">Crosshair Outline Thickness</span>
-						<input class="rangeSlider" type="range" min="0" max="8" step="1" />
-						<input
-							class="spinner intSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.CrosshairOutlineThickness"
-						/>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Crosshair Gap</span>
-						<input class="rangeSlider" type="range" min="-5" max="40" step="1" />
-						<input
-							class="spinner intSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.CrosshairGap"
-						/>
-					</div>
-
-					<div class="half_select_setting">
-						<span class="select_label">Dot Size</span>
-						<input class="rangeSlider" type="range" min="0" max="15" step="1" />
-						<input
-							class="spinner intSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.DotSize"
-						/>
-					</div>
-
-					<div class="half_select_setting">
-						<span class="select_label">Dot Outline Thickness</span>
-						<input class="rangeSlider" type="range" min="0" max="15" step="1" />
-						<input
-							class="spinner intSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.DotOutlineThickness"
-						/>
-					</div>
 
 					<div class="half_select_setting">
 						<span class="select_label">Dot Color</span>
@@ -471,89 +298,27 @@
 						<input class="colorSetting" type="text" binded-setting="CrosshairSettings.DotOutlineColor" />
 					</div>
 
-					<div class="half_select_setting">
-						<span class="select_label">Render Top</span>
-						<label class="switch">
-							<input
-								type="checkbox"
-								class="boolSetting"
-								binded-setting="CrosshairSettings.RenderCrosshairTop"
-							/>
-							<span class="slider"></span>
-						</label>
-					</div>
 
-					<div class="half_select_setting">
-						<span class="select_label">Render Bottom</span>
-						<label class="switch">
-							<input
-								type="checkbox"
-								class="boolSetting"
-								binded-setting="CrosshairSettings.RenderCrosshairBottom"
-							/>
-							<span class="slider"></span>
-						</label>
-					</div>
-
-					<div class="half_select_setting">
-						<span class="select_label">Render Right</span>
-						<label class="switch">
-							<input
-								type="checkbox"
-								class="boolSetting"
-								binded-setting="CrosshairSettings.RenderCrosshairRight"
-							/>
-							<span class="slider"></span>
-						</label>
-					</div>
-
-					<div class="half_select_setting">
-						<span class="select_label">Render Left</span>
-						<label class="switch">
-							<input
-								type="checkbox"
-								class="boolSetting"
-								binded-setting="CrosshairSettings.RenderCrosshairLeft"
-							/>
-							<span class="slider"></span>
-						</label>
-					</div>
+					<BoolSettingInput title="Render Top" :value="settings.value.CrosshairSettings.RenderCrosshairTop" bindedSetting="CrosshairSettings.RenderCrosshairTop"/>
+					<BoolSettingInput title="Render Bottom" :value="settings.value.CrosshairSettings.RenderCrosshairBottom" bindedSetting="CrosshairSettings.RenderCrosshairBottom"/>
+					<BoolSettingInput title="Render Right" :value="settings.value.CrosshairSettings.RenderCrosshairRight" bindedSetting="CrosshairSettings.RenderCrosshairRight"/>
+					<BoolSettingInput title="Render Left" :value="settings.value.CrosshairSettings.RenderCrosshairLeft" bindedSetting="CrosshairSettings.RenderCrosshairLeft"/>
+					
 				</div>
 			</div>
 		</div>
-		<div id="audio_settings" class="settings_tab" style="display: none;">
+		<div id="audio_settings" class="settings_tab" v-if="screenState==='audio'">
 			<div>
 				<div class="settings_group">
 					<h2>Volume</h2>
-					<div class="half_select_setting">
-						<span class="select_label">Master Volume</span>
-						<input class="rangeSlider" type="range" min="0" max="100" step="1" />
-						<input class="spinner floatSetting" binded-setting="AudioSettings.MasterVolume" />
-					</div>
 
-					<div class="half_select_setting">
-						<span class="select_label">Gameplay Volume</span>
-						<input class="rangeSlider" type="range" min="0" max="100" step="1" />
-						<input class="spinner floatSetting" binded-setting="AudioSettings.GamePlayVolume" />
-					</div>
 
-					<div class="half_select_setting">
-						<span class="select_label">Music Volume</span>
-						<input class="rangeSlider" type="range" min="0" max="100" step="1" />
-						<input class="spinner floatSetting" binded-setting="AudioSettings.MusicVolume" />
-					</div>
+					<FloatSettingInput title="Master Volume" :value="settings.value.AudioSettings.MasterVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MasterVolume"/>
+					<FloatSettingInput title="Gameplay Volume" :value="settings.value.AudioSettings.GamePlayVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.GamePlayVolume"/>
+					<FloatSettingInput title="Music Volume" :value="settings.value.AudioSettings.MusicVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MusicVolume"/>
+					<FloatSettingInput title="Ambient Volume" :value="settings.value.AudioSettings.AmbientVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.AmbientVolume"/>
+					<FloatSettingInput title="UI Volume" :value="settings.value.AudioSettings.UIVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.UIVolume"/>
 
-					<div class="half_select_setting">
-						<span class="select_label">Ambient Volume</span>
-						<input class="rangeSlider" type="range" min="0" max="100" step="1" />
-						<input class="spinner floatSetting" binded-setting="AudioSettings.AmbientVolume" />
-					</div>
-
-					<div class="half_select_setting">
-						<span class="select_label">UI Volume</span>
-						<input class="rangeSlider" type="range" min="0" max="100" step="1" />
-						<input class="spinner floatSetting" binded-setting="AudioSettings.UIVolume" />
-					</div>
 				</div>
 			</div>
 			<div class="far_right">
@@ -588,11 +353,34 @@
 
 <script>
 
-import SettingInput from "./SettingInput.vue";
+window.onGettingSettings = function (jsonString) {
+	var parsedData = JSON.parse(jsonString);
+
+	console.log(parsedData);
+
+	window.settings.value = parsedData;
+};
+
+window.settings = { value: ""};
+
+
+import IntSettingInput from "./IntSettingInput.vue";
+import FloatSettingInput from "./FloatSettingInput.vue";
+import BoolSettingInput from "./BoolSettingInput.vue";
 
 export default {
 	name: "SettingsScreen",
-	components: {SettingInput}
+	components: {
+		IntSettingInput,
+		FloatSettingInput, 
+		BoolSettingInput},
+
+	data() {
+		return {
+			settings: window.settings,
+			screenState: "game",
+		};
+	},
 };
 </script>
 

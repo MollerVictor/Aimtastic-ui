@@ -13,23 +13,21 @@
 </template>
 
 <script>
-/* global ENGINE_requstRoomSettings */
+/* global ENGINE_settingsChanged */
 
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
 import VueNumericInput from "vue-numeric-input";
 
 export default {
-	name: "SettingInput",
-	props: ["title", "min", "max", "step", "bindedSetting"],
+	name: "FloatSettingInput",
+	props: ["title", "min", "max", "step", "bindedSetting", "value"],
 
-	data() {
-		return {
-			value: 1
-		};
+	watch: {
+		value: function (val) {			
+			ENGINE_settingsChanged(this.bindedSetting, val, "float");
+		},
 	},
-
-
 
 	components: {
 		VueSlider,
@@ -39,13 +37,11 @@ export default {
 </script>
 
 <style scoped>
-
-.half_select_setting{
-	background-color:
-	rgba(255, 255, 255, 0.1);
+.half_select_setting {
+	background-color: rgba(255, 255, 255, 0.1);
 	margin-top: 0.5vh;
 	padding: 0.6vh;
-		padding-left: 0.6vh;
+	padding-left: 0.6vh;
 	padding-left: 1.25vh;
 	display: flex;
 	height: 6vh;
