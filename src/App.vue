@@ -410,16 +410,24 @@ body, html {
     background-size: 100% 100%;
 }
 
+.settings_container {
+  height: 100%;
+  width: 100%;
+  margin-left: 5px;
+  display: flex;
+}
 
+.info_box {
+  height: 100%;
+  width: calc(40%-5px);
+  margin-left: 5px;
+}
 
 .settings_tab{
-    height: 80%;
+    height: 100%;
+    width: 60%;
     overflow: scroll;
     overflow-x:hidden;
-    margin: 5px;
-    display:grid;
-    
-    grid-template-columns: 1fr 1fr;
 }
 
 .setting_row {
@@ -446,9 +454,13 @@ body, html {
     margin-top: 0.5vh;
     padding: 0.6vh;
     padding-left: 1.25vh;
-
     display: table;
 }
+
+.half_select_setting:hover {
+    background-color: rgba(20, 20, 20, 0.1);
+}
+
 
 
 

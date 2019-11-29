@@ -14,6 +14,7 @@
 			<div v-on:click="screenState = 'audio'" data-settings-tab="#audio_settings" class="button get-closer settings-tab-button">Audio</div>
 			<!--<div data-settings-tab='#movement_settings' class='button get-closer settings-tab-button'>Movement</div>-->
 		</div>
+		<div class="settings_container">
 		<div id="game_settings" class="settings_tab"  v-if="screenState==='game'">
 			<div>				
 				<h2>Sensitivity</h2>
@@ -24,7 +25,7 @@
 						
 				<br />
 
-				<BoolSettingInput title="Use Relative Zoom Sensitivity" :value="settings.value.PlayerSettings.UseRelativeZoomSensitivity" bindedSetting="PlayerSettings.UseRelativeZoomSensitivity"/>
+				<BoolSettingInput title="Use Relative Zoom Sensitivity" :value="settings.value.PlayerSettings.UseRelativeZoomSensitivity" bindedSetting="PlayerSettings.UseRelativeZoomSensitivity" info="asdhakhsdkja"/>
 				<FloatSettingInput title="Zoom Sensitivity" :value="settings.value.PlayerSettings.ZoomSensitivity" :min="0" :max="30" :step="0.01" bindedSetting="PlayerSettings.ZoomSensitivity"/>
 				<FloatSettingInput title="Relative Zoom Sensitivity" :value="settings.value.PlayerSettings.RelativeZoomSensitivity" :min="0" :max="100" :step="1" bindedSetting="PlayerSettings.RelativeZoomSensitivity"/>
 
@@ -317,8 +318,10 @@
 				</div>
 			</div>
 		</div>
-
 		<div id="movement_settings" class="settings_tab" style="display: none;"></div>
+		<div id="infoBox" class="info_box">Test Test Test</div>
+	</div>
+
 	</div>
 </template>
 
@@ -358,4 +361,3 @@ export default {
 	},
 };
 </script>
-

@@ -1,5 +1,5 @@
 <template>
-	<div class="half_select_setting">
+	<div class="half_select_setting" @mouseover="setInfo">
 		<span class="select_label">{{ title }}</span>
 		<label class="check_container">
 			<input type="checkbox" v-model="value" />
@@ -16,7 +16,7 @@
 
 export default {
 	name: "BoolSettingInput",
-	props: ["title", "bindedSetting", "value"],
+	props: ["title", "bindedSetting", "value", "info"],
 
 	watch: {
 		value: function(val) {
@@ -24,7 +24,14 @@ export default {
 		}
 	},
 
-	components: {}
+	methods: {
+		setInfo: function() {
+			if(this.info)
+			document.getElementById("infoBox").innerHTML = this.info+""
+			else
+			document.getElementById("infoBox").innerHTML = "No info available"
+		},
+	}
 };
 </script>
 
