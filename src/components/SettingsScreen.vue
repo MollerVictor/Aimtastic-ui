@@ -211,14 +211,8 @@
 					<BoolSettingInput title="Use Hitmarkers" :value="settings.value.CrosshairSettings.UseHitMarkers" bindedSetting="CrosshairSettings.UseHitMarkers"/>
 
 					
-					<div class="half_select_setting">
-						<span class="select_label">Hitmarker</span>
-						<select
-							class="column listSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.HitMarkerName"
-							id="hitmarkerList"
-						></select>
-					</div>
+					<ListSettingInput title="Hitmarker" :options=settings.value.HitMarkers  bindedSetting="CrosshairSettings.HitMarkerName"/>
+					
 					<div class="half_select_setting">
 						<span class="select_label">Hitmarker Color</span>
 						<input class="colorSetting" type="text" binded-setting="CrosshairSettings.HitMarkerColor" />
@@ -242,14 +236,8 @@
 				</div>
 				<div class="settings_group" id="crosshair_type1">
 					<h2>Crosshair Type 1</h2>
-					<div class="half_select_setting">
-						<span class="select_label">Crosshair</span>
-						<select
-							class="column listSetting crosshairLiveUpdate"
-							binded-setting="CrosshairSettings.CrosshairName"
-							id="crosshairList"
-						></select>
-					</div>
+					<ListSettingInput title="Crosshair" :options=settings.value.Crosshairs  bindedSetting="CrosshairSettings.CrosshairName"/>
+				
 					<div class="half_select_setting">
 						<span class="select_label">Crosshair Color</span>
 						<input
@@ -324,30 +312,13 @@
 			<div class="far_right">
 				<div class="settings_group">
 					<h2>Sounds</h2>
-					<div class="half_select_setting">
-						<span class="select_label">Shot Sound</span>
-						<select
-							class="column listSetting"
-							binded-setting="AudioSettings.ShotSoundName"
-							id="shotSoundList"
-						></select>
-					</div>
-
-					<div class="half_select_setting">
-						<span class="select_label">Hit Sound</span>
-						<select
-							class="column listSetting"
-							binded-setting="AudioSettings.TargetHitSoundName"
-							id="hitSoundList"
-						></select>
-					</div>
+					<ListSettingInput title="Shot Sound" :options=settings.value.ShotSounds  bindedSetting="AudioSettings.ShotSoundName"/>
+					<ListSettingInput title="Hit Sound" :options=settings.value.HitSounds  bindedSetting="AudioSettings.HitSoundName"/>
 				</div>
 			</div>
 		</div>
 
 		<div id="movement_settings" class="settings_tab" style="display: none;"></div>
-		<button class="ui button secondary" onclick="switch_screens(null)">Close</button>
-		<button class="ui button primary" onclick="settingsApplyed()" id="settingsApplyButton">Apply</button>
 	</div>
 </template>
 
@@ -367,13 +338,17 @@ window.settings = { value: ""};
 import IntSettingInput from "./IntSettingInput.vue";
 import FloatSettingInput from "./FloatSettingInput.vue";
 import BoolSettingInput from "./BoolSettingInput.vue";
+import ListSettingInput from "./ListSettingInput.vue";
 
 export default {
 	name: "SettingsScreen",
 	components: {
 		IntSettingInput,
 		FloatSettingInput, 
-		BoolSettingInput},
+		BoolSettingInput,
+		ListSettingInput,
+		},
+		
 
 	data() {
 		return {
