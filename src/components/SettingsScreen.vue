@@ -24,7 +24,7 @@
 						
 				<br />
 
-				<BoolSettingInput title="Use Relative Zoom Sensitivity" :value="settings.value.PlayerSettings.UseRelativeZoomSensitivity" bindedSetting="PlayerSettings.UseRelativeZoomSensitivity"/>
+				<BoolSettingInput title="Use Relative Zoom Sensitivity" :value="settings.value.PlayerSettings.UseRelativeZoomSensitivity" bindedSetting="PlayerSettings.UseRelativeZoomSensitivity" info="asdhakhsdkja"/>
 				<FloatSettingInput title="Zoom Sensitivity" :value="settings.value.PlayerSettings.ZoomSensitivity" :min="0" :max="30" :step="0.01" bindedSetting="PlayerSettings.ZoomSensitivity"/>
 				<FloatSettingInput title="Relative Zoom Sensitivity" :value="settings.value.PlayerSettings.RelativeZoomSensitivity" :min="0" :max="100" :step="1" bindedSetting="PlayerSettings.RelativeZoomSensitivity"/>
 
