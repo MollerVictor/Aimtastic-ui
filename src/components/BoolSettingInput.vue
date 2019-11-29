@@ -2,7 +2,7 @@
 	<div class="half_select_setting">
 		<span class="select_label">{{ title }}</span>
 		<label class="check_container">
-			<input type="checkbox" v-model="value">
+			<input type="checkbox" v-model="value" />
 			<span class="check"></span>
 		</label>
 	</div>
@@ -43,7 +43,7 @@ export default {
 	display: block;
 	position: relative;
 	cursor: pointer;
-	user-select: none; 
+	user-select: none;
 }
 .check_container input {
 	position: absolute;
@@ -58,10 +58,10 @@ export default {
 	left: 0;
 	height: 25px;
 	width: 25px;
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 }
 .check_container:hover input ~ .check {
-	 background-color: #ccc;
+	background-color: #ccc;
 }
 .check:after {
 	content: "";
