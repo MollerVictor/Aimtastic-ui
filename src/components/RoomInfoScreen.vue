@@ -49,35 +49,7 @@
 				<button class="ui button primary" v-on:click="EnterRoom" >Play</button>
 			</div>
 			<div>
-				<div>
-					<table id="global_leaderboard_table" class="leaderboard_table">
-						<thead>
-							<tr>
-								<td>Rank</td>
-								<td>Name</td>
-								<td>Score</td>
-								<td>Hits</td>
-								<td>Misses</td>
-								<td>Hit %</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="dont_remove">
-								<td id="select_room_my_rank">Rank</td>
-								<td id="select_room_my_name">Name</td>
-								<td id="select_room_my_score">Score</td>
-								<td id="select_room_my_hits">Hits</td>
-								<td id="select_room_my_misses">Misses</td>
-								<td id="select_room_my_hitprocent">%</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div>
-					<table class="leaderboard_table">
-						<tbody></tbody>
-					</table>
-				</div>
+				<RoomInfoLeaderboard/>				
 			</div>
 		</div>
 
@@ -93,6 +65,7 @@
 
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
+import RoomInfoLeaderboard from "./RoomInfoLeaderboard.vue";
 
 window.onRequestRoomSettings = function (jsonString) {
 	var parsedData = JSON.parse(jsonString);
@@ -151,7 +124,8 @@ export default {
 		};
 	},
 	components: {
-		VueSlider
+		VueSlider,
+		RoomInfoLeaderboard
 	},
 	methods: {
 		EnterRoom: function() {
