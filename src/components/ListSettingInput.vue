@@ -1,5 +1,5 @@
 <template>
-	<div class="half_select_setting">
+	<div class="half_select_setting"  @mouseover="setInfo">
 		<span class="select_label">{{ title }}</span>
 		<select class="column listSetting">
 			<option v-for="item in options"  v-bind:key="item.Name">  {{ item.Name }}</option>
@@ -15,12 +15,20 @@
 
 export default {
 	name: "ListSettingInput",
-	props: ["title", "bindedSetting", "value", "options"],
+	props: ["title", "bindedSetting", "value", "options", "info"],
 
 	watch: {
 		value: function(val) {
 			ENGINE_settingsChanged(this.bindedSetting, val, "bool");
 		}
+	},	
+	methods: {
+		setInfo: function() {
+			if(this.info)
+				document.getElementById("infoBox").innerHTML = this.info+""
+			else
+				document.getElementById("infoBox").innerHTML = "No info available"
+		},
 	},
 
 	components: {}

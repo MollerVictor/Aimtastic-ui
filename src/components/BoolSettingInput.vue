@@ -27,9 +27,9 @@ export default {
 	methods: {
 		setInfo: function() {
 			if(this.info)
-			document.getElementById("infoBox").innerHTML = this.info+""
+				document.getElementById("infoBox").innerHTML = this.info+""
 			else
-			document.getElementById("infoBox").innerHTML = "No info available"
+				document.getElementById("infoBox").innerHTML = "No info available"
 		},
 	}
 };

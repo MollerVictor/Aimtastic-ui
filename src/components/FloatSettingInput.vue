@@ -1,5 +1,5 @@
 <template>
-	<div class="half_select_setting">
+	<div class="half_select_setting" @mouseover="setInfo">
 		<span class="select_label">{{ title }}</span>
 
 		<div class="rangeSliderHolder">
@@ -21,11 +21,19 @@ import VueNumericInput from "vue-numeric-input";
 
 export default {
 	name: "FloatSettingInput",
-	props: ["title", "min", "max", "step", "bindedSetting", "value"],
+	props: ["title", "min", "max", "step", "bindedSetting", "value", "info"],
 
 	watch: {
 		value: function (val) {			
 			ENGINE_settingsChanged(this.bindedSetting, val, "float");
+		},
+	},
+	methods: {
+		setInfo: function() {
+			if(this.info)
+				document.getElementById("infoBox").innerHTML = this.info+""
+			else
+				document.getElementById("infoBox").innerHTML = "No info available"
 		},
 	},
 
