@@ -41,8 +41,6 @@
 window.onLeaderboardLoaded = function (jsonString) {
 	var parsedData = JSON.parse(jsonString);
 
-	console.log(parsedData);
-
 	window.leaderboard.value = parsedData;
 };
 
