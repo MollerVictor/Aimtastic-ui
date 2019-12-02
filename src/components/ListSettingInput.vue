@@ -19,7 +19,8 @@ export default {
 
 	watch: {
 		value: function(val) {
-			ENGINE_settingsChanged(this.bindedSetting, val, "bool");
+			ENGINE_settingsChanged(this.bindedSetting, val, "list");
+			this.$emit('input', val);
 		}
 	},	
 	methods: {

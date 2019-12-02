@@ -26,6 +26,7 @@ export default {
 	watch: {
 		value: function (val) {			
 			ENGINE_settingsChanged(this.bindedSetting, val, "float");
+			this.$emit('input', val);
 		},
 	},
 	methods: {

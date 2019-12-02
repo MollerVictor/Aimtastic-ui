@@ -19,27 +19,27 @@
 			<div>				
 				<h2>Sensitivity</h2>
 
-				<FloatSettingInput title="CSGO/Quake/Source Sensitivity" :value="settings.value.PlayerSettings.Sensitivity" :min="0" :max="30" :step="0.001" bindedSetting="PlayerSettings.Sensitivity"/>
-				<FloatSettingInput title="X Multiplier" :value="settings.value.PlayerSettings.XMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.XMultiplier"/>
-				<FloatSettingInput title="Y Multiplier" :value="settings.value.PlayerSettings.YMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.YMultiplier"/>
+				<FloatSettingInput title="CSGO/Quake/Source Sensitivity" v-model="settings.value.PlayerSettings.Sensitivity" :min="0" :max="30" :step="0.001" bindedSetting="PlayerSettings.Sensitivity"/>
+				<FloatSettingInput title="X Multiplier" v-model="settings.value.PlayerSettings.XMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.XMultiplier"/>
+				<FloatSettingInput title="Y Multiplier" v-model="settings.value.PlayerSettings.YMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.YMultiplier"/>
 						
 				<br />
 
-				<BoolSettingInput title="Use Relative Zoom Sensitivity" :value="settings.value.PlayerSettings.UseRelativeZoomSensitivity" bindedSetting="PlayerSettings.UseRelativeZoomSensitivity" info="asdhakhsdkja"/>
-				<FloatSettingInput title="Zoom Sensitivity" :value="settings.value.PlayerSettings.ZoomSensitivity" :min="0" :max="30" :step="0.01" bindedSetting="PlayerSettings.ZoomSensitivity"/>
-				<FloatSettingInput title="Relative Zoom Sensitivity" :value="settings.value.PlayerSettings.RelativeZoomSensitivity" :min="0" :max="100" :step="1" bindedSetting="PlayerSettings.RelativeZoomSensitivity"/>
+				<BoolSettingInput title="Use Relative Zoom Sensitivity" v-model="settings.value.PlayerSettings.UseRelativeZoomSensitivity" bindedSetting="PlayerSettings.UseRelativeZoomSensitivity" info="asdhakhsdkja"/>
+				<FloatSettingInput title="Zoom Sensitivity" v-model="settings.value.PlayerSettings.ZoomSensitivity" :min="0" :max="30" :step="0.01" bindedSetting="PlayerSettings.ZoomSensitivity"/>
+				<FloatSettingInput title="Relative Zoom Sensitivity" v-model="settings.value.PlayerSettings.RelativeZoomSensitivity" :min="0" :max="100" :step="1" bindedSetting="PlayerSettings.RelativeZoomSensitivity"/>
 
-				<BoolSettingInput title="Inverted Horizontal" :value="settings.value.PlayerSettings.InvertedHorizontal" bindedSetting="PlayerSettings.InvertedHorizontal"/>
-				<BoolSettingInput title="Inverted Vertical" :value="settings.value.PlayerSettings.InvertedVertical" bindedSetting="PlayerSettings.InvertedVertical"/>
+				<BoolSettingInput title="Inverted Horizontal" v-model="settings.value.PlayerSettings.InvertedHorizontal" bindedSetting="PlayerSettings.InvertedHorizontal"/>
+				<BoolSettingInput title="Inverted Vertical" v-model="settings.value.PlayerSettings.InvertedVertical" bindedSetting="PlayerSettings.InvertedVertical"/>
 
 	
 			</div>
 			<div>
 				<h2>FOV</h2>
 
-				<FloatSettingInput title="Vertical FOV" :value="settings.value.PlayerSettings.FOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.FOV"/>
-				<FloatSettingInput title="Zoom Vertical FOV" :value="settings.value.PlayerSettings.ZoomFOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.ZoomFOV"/>
-				<FloatSettingInput title="Countdown Duration" :value="settings.value.PlayerSettings.CountdownDuration" :min="0" :max="5" :step="0.1" bindedSetting="PlayerSettings.CountdownDuration"/>
+				<FloatSettingInput title="Vertical FOV" v-model="settings.value.PlayerSettings.FOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.FOV"/>
+				<FloatSettingInput title="Zoom Vertical FOV" v-model="settings.value.PlayerSettings.ZoomFOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.ZoomFOV"/>
+				<FloatSettingInput title="Countdown Duration" v-model="settings.value.PlayerSettings.CountdownDuration" :min="0" :max="5" :step="0.1" bindedSetting="PlayerSettings.CountdownDuration"/>
 
 				<div class="half_select_setting">
 					<span class="select_label">Horizontal FOV</span>
@@ -117,7 +117,7 @@
 				<div class="settings_group">
 					<h2>Graphics</h2>
 
-					<IntSettingInput title="Max FPS" :value="settings.value.GraphicsSettings.MaxFPS" :min="15" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxFPS"/>
+					<IntSettingInput title="Max FPS" v-model="settings.value.GraphicsSettings.MaxFPS" :min="15" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxFPS"/>
 
 
 					<div class="half_select_setting">
@@ -208,19 +208,21 @@
 				<div class="settings_group">
 					<h2>UI</h2>
 
-					<BoolSettingInput title="Show Popup Score" :value="settings.value.UiSettings.ShowPopupScore" bindedSetting="UiSettings.ShowPopupScore"/>
-					<BoolSettingInput title="Use Hitmarkers" :value="settings.value.CrosshairSettings.UseHitMarkers" bindedSetting="CrosshairSettings.UseHitMarkers"/>
+					<BoolSettingInput title="Show Popup Score" v-model="settings.value.UiSettings.ShowPopupScore" bindedSetting="UiSettings.ShowPopupScore"/>
+					<BoolSettingInput title="Use Hitmarkers" v-model="settings.value.CrosshairSettings.UseHitMarkers" bindedSetting="CrosshairSettings.UseHitMarkers"/>
 
 					
 					<ListSettingInput title="Hitmarker" :options=settings.value.HitMarkers  bindedSetting="CrosshairSettings.HitMarkerName"/>
 					
+					<ColorSettingInput title="Hitmarker Color" color="#FF0000" bindedSetting="CrosshairSettings.HitMarkerColor"/>
+
 					<div class="half_select_setting">
 						<span class="select_label">Hitmarker Color</span>
 						<input class="colorSetting" type="text" binded-setting="CrosshairSettings.HitMarkerColor" />
 					</div>
 					
-					<FloatSettingInput title="Hitmarker Alive Duration" :value="settings.value.CrosshairSettings.HitMarkerAliveTime" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerAliveTime"/>
-					<FloatSettingInput title="Hitmarker Scale" :value="settings.value.CrosshairSettings.HitMarkerScale" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerScale"/>
+					<FloatSettingInput title="Hitmarker Alive Duration" v-model="settings.value.CrosshairSettings.HitMarkerAliveTime" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerAliveTime"/>
+					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.HitMarkerScale" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerScale"/>
 					
 
 					<div>
@@ -232,7 +234,7 @@
 				<div class="settings_group">
 					<h2>Crosshair</h2>
 
-					<IntSettingInput title="Crosshair Type" :value="settings.value.CrosshairSettings.CrosshairType" :min="1" :max="2" :step="1" bindedSetting="CrosshairSettings.CrosshairType"/>
+					<IntSettingInput title="Crosshair Type" v-model="settings.value.CrosshairSettings.CrosshairType" :min="1" :max="2" :step="1" bindedSetting="CrosshairSettings.CrosshairType"/>
 					
 				</div>
 				<div class="settings_group" id="crosshair_type1">
@@ -248,7 +250,7 @@
 						/>
 					</div>
 
-					<FloatSettingInput title="Hitmarker Scale" :value="settings.value.CrosshairSettings.CrosshairScale" :min="0.1" :max="3" :step="0.05" bindedSetting="CrosshairSettings.CrosshairScale"/>
+					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.CrosshairScale" :min="0.1" :max="3" :step="0.05" bindedSetting="CrosshairSettings.CrosshairScale"/>
 				
 				</div>
 				<div class="settings_group" id="crosshair_type2">
@@ -267,12 +269,12 @@
 						/>
 					</div>
 
-					<IntSettingInput title="Crosshair Length" :value="settings.value.CrosshairSettings.CrosshairLength" :min="0" :max="100" :step="1" bindedSetting="CrosshairSettings.CrosshairLength"/>
-					<IntSettingInput title="Crosshair Thickness" :value="settings.value.CrosshairSettings.CrosshairThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairThickness"/>
-					<IntSettingInput title="Crosshair Outline Thickness" :value="settings.value.CrosshairSettings.CrosshairOutlineThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairOutlineThickness"/>
-					<IntSettingInput title="Crosshair Gap" :value="settings.value.CrosshairSettings.CrosshairGap" :min="-5" :max="40" :step="1" bindedSetting="CrosshairSettings.CrosshairGap"/>
-					<IntSettingInput title="Dot Size" :value="settings.value.CrosshairSettings.DotSize" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotSize"/>
-					<IntSettingInput title="Dot Outline Thickness" :value="settings.value.CrosshairSettings.DotOutlineThickness" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotOutlineThickness"/>
+					<IntSettingInput title="Crosshair Length" v-model="settings.value.CrosshairSettings.CrosshairLength" :min="0" :max="100" :step="1" bindedSetting="CrosshairSettings.CrosshairLength"/>
+					<IntSettingInput title="Crosshair Thickness" v-model="settings.value.CrosshairSettings.CrosshairThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairThickness"/>
+					<IntSettingInput title="Crosshair Outline Thickness" v-model="settings.value.CrosshairSettings.CrosshairOutlineThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairOutlineThickness"/>
+					<IntSettingInput title="Crosshair Gap" v-model="settings.value.CrosshairSettings.CrosshairGap" :min="-5" :max="40" :step="1" bindedSetting="CrosshairSettings.CrosshairGap"/>
+					<IntSettingInput title="Dot Size" v-model="settings.value.CrosshairSettings.DotSize" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotSize"/>
+					<IntSettingInput title="Dot Outline Thickness" v-model="settings.value.CrosshairSettings.DotOutlineThickness" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotOutlineThickness"/>
 
 			
 
@@ -288,10 +290,10 @@
 					</div>
 
 
-					<BoolSettingInput title="Render Top" :value="settings.value.CrosshairSettings.RenderCrosshairTop" bindedSetting="CrosshairSettings.RenderCrosshairTop"/>
-					<BoolSettingInput title="Render Bottom" :value="settings.value.CrosshairSettings.RenderCrosshairBottom" bindedSetting="CrosshairSettings.RenderCrosshairBottom"/>
-					<BoolSettingInput title="Render Right" :value="settings.value.CrosshairSettings.RenderCrosshairRight" bindedSetting="CrosshairSettings.RenderCrosshairRight"/>
-					<BoolSettingInput title="Render Left" :value="settings.value.CrosshairSettings.RenderCrosshairLeft" bindedSetting="CrosshairSettings.RenderCrosshairLeft"/>
+					<BoolSettingInput title="Render Top" v-model="settings.value.CrosshairSettings.RenderCrosshairTop" bindedSetting="CrosshairSettings.RenderCrosshairTop"/>
+					<BoolSettingInput title="Render Bottom" v-model="settings.value.CrosshairSettings.RenderCrosshairBottom" bindedSetting="CrosshairSettings.RenderCrosshairBottom"/>
+					<BoolSettingInput title="Render Right" v-model="settings.value.CrosshairSettings.RenderCrosshairRight" bindedSetting="CrosshairSettings.RenderCrosshairRight"/>
+					<BoolSettingInput title="Render Left" v-model="settings.value.CrosshairSettings.RenderCrosshairLeft" bindedSetting="CrosshairSettings.RenderCrosshairLeft"/>
 					
 				</div>
 			</div>
@@ -302,11 +304,11 @@
 					<h2>Volume</h2>
 
 
-					<FloatSettingInput title="Master Volume" :value="settings.value.AudioSettings.MasterVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MasterVolume"/>
-					<FloatSettingInput title="Gameplay Volume" :value="settings.value.AudioSettings.GamePlayVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.GamePlayVolume"/>
-					<FloatSettingInput title="Music Volume" :value="settings.value.AudioSettings.MusicVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MusicVolume"/>
-					<FloatSettingInput title="Ambient Volume" :value="settings.value.AudioSettings.AmbientVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.AmbientVolume"/>
-					<FloatSettingInput title="UI Volume" :value="settings.value.AudioSettings.UIVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.UIVolume"/>
+					<FloatSettingInput title="Master Volume" v-model="settings.value.AudioSettings.MasterVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MasterVolume"/>
+					<FloatSettingInput title="Gameplay Volume" v-model="settings.value.AudioSettings.GamePlayVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.GamePlayVolume"/>
+					<FloatSettingInput title="Music Volume" v-model="settings.value.AudioSettings.MusicVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MusicVolume"/>
+					<FloatSettingInput title="Ambient Volume" v-model="settings.value.AudioSettings.AmbientVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.AmbientVolume"/>
+					<FloatSettingInput title="UI Volume" v-model="settings.value.AudioSettings.UIVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.UIVolume"/>
 
 				</div>
 			</div>
@@ -342,6 +344,7 @@ import IntSettingInput from "./IntSettingInput.vue";
 import FloatSettingInput from "./FloatSettingInput.vue";
 import BoolSettingInput from "./BoolSettingInput.vue";
 import ListSettingInput from "./ListSettingInput.vue";
+import ColorSettingInput from "./ColorSettingInput.vue";
 
 export default {
 	name: "SettingsScreen",
@@ -350,6 +353,7 @@ export default {
 		FloatSettingInput, 
 		BoolSettingInput,
 		ListSettingInput,
+		ColorSettingInput
 		},
 		
 

@@ -21,6 +21,7 @@ export default {
 	watch: {
 		value: function(val) {
 			ENGINE_settingsChanged(this.bindedSetting, val, "bool");
+			this.$emit('input', val);
 		}
 	},
 
