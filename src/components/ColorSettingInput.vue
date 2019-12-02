@@ -4,7 +4,13 @@
 
 		<div>
 			<div class="input-group color-picker" ref="colorpicker">
-				<input type="text" class="form-control" v-model="colorValue" @focus="showPicker()" @input="updateFromInput" />
+				<input
+					type="text"
+					class="form-control"
+					v-model="colorValue"
+					@focus="showPicker()"
+					@input="updateFromInput"
+				/>
 				<span class="input-group-addon color-picker-container">
 					<span class="current-color" :style="'background-color: ' + colorValue" @click="togglePicker()"></span>
 					<chrome-picker :value="colors" @input="updateFromPicker" v-if="displayPicker" />
@@ -20,10 +26,9 @@
 var tinycolor = require("tinycolor2");
 import { Chrome } from "vue-color";
 
-
 export default {
 	name: "ColorSettingInput",
-	props: ["title", "bindedSetting", "value", "info", "color",],
+	props: ["title", "bindedSetting", "value", "info", "color", "startColor"],
 
 	components: {
 		"chrome-picker": Chrome
@@ -32,14 +37,27 @@ export default {
 	data() {
 		return {
 			colors: {
-				hex: '#000000',
+				hex: "#000000"
 			},
-			colorValue: '',
-			displayPicker: false,
-		}
+			colorValue: "",
+			displayPicker: false
+		};
 	},
 	mounted() {
-		this.setColor(this.color || "#000000");
+		
+		
+		if (
+			typeof this.startColor === "string" || this.startColor instanceof String) {
+			this.setColor(this.startColor);
+		} else {
+			this.startColor["r"] = this.startColor["r"] * 255;
+			this.startColor["g"] = this.startColor["g"] * 255;
+			this.startColor["b"] = this.startColor["b"] * 255;
+
+			var c = tinycolor(this.startColor);
+
+			this.setColor("#" + c.toHex());
+		}
 	},
 	methods: {
 		setInfo: function() {
@@ -124,11 +142,9 @@ export default {
 
 				var color = tinycolor(val);
 
-				console.log(color.toRgb());
 				ENGINE_settingsChanged(this.bindedSetting, color, "color");
 			}
 		}
-		
 	}
 };
 </script>

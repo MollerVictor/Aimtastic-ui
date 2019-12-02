@@ -214,13 +214,8 @@
 					
 					<ListSettingInput title="Hitmarker" :options=settings.value.HitMarkers  bindedSetting="CrosshairSettings.HitMarkerName"/>
 					
-					<ColorSettingInput title="Hitmarker Color" color="#FF0000" bindedSetting="CrosshairSettings.HitMarkerColor"/>
+					<ColorSettingInput title="Hitmarker Color" :startColor="settings.value.CrosshairSettings.HitMarkerColor" v-on:input="settings.value.CrosshairSettings.HitMarkerColor = arguments[0]" bindedSetting="CrosshairSettings.HitMarkerColor"/>
 
-					<div class="half_select_setting">
-						<span class="select_label">Hitmarker Color</span>
-						<input class="colorSetting" type="text" binded-setting="CrosshairSettings.HitMarkerColor" />
-					</div>
-					
 					<FloatSettingInput title="Hitmarker Alive Duration" v-model="settings.value.CrosshairSettings.HitMarkerAliveTime" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerAliveTime"/>
 					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.HitMarkerScale" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerScale"/>
 					
@@ -241,33 +236,16 @@
 					<h2>Crosshair Type 1</h2>
 					<ListSettingInput title="Crosshair" :options=settings.value.Crosshairs  bindedSetting="CrosshairSettings.CrosshairName"/>
 				
-					<div class="half_select_setting">
-						<span class="select_label">Crosshair Color</span>
-						<input
-							class="colorSetting"
-							type="text"
-							binded-setting="CrosshairSettings.CrosshairImageColor"
-						/>
-					</div>
+					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor"/>
 
 					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.CrosshairScale" :min="0.1" :max="3" :step="0.05" bindedSetting="CrosshairSettings.CrosshairScale"/>
 				
 				</div>
 				<div class="settings_group" id="crosshair_type2">
 					<h2>Crosshair Type 2</h2>
-					<div class="half_select_setting">
-						<span class="select_label">Crosshair Color</span>
-						<input class="colorSetting" type="text" binded-setting="CrosshairSettings.CrosshairColor" />
-					</div>
 
-					<div class="half_select_setting">
-						<span class="select_label">Crosshair Outline Color</span>
-						<input
-							class="colorSetting"
-							type="text"
-							binded-setting="CrosshairSettings.CrosshairOutlineColor"
-						/>
-					</div>
+					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor"/>
+					<ColorSettingInput title="Crosshair Outline Color" :startColor="settings.value.CrosshairSettings.CrosshairOutlineColor" v-on:input="settings.value.CrosshairSettings.CrosshairOutlineColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairOutlineColor"/>
 
 					<IntSettingInput title="Crosshair Length" v-model="settings.value.CrosshairSettings.CrosshairLength" :min="0" :max="100" :step="1" bindedSetting="CrosshairSettings.CrosshairLength"/>
 					<IntSettingInput title="Crosshair Thickness" v-model="settings.value.CrosshairSettings.CrosshairThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairThickness"/>
@@ -277,18 +255,8 @@
 					<IntSettingInput title="Dot Outline Thickness" v-model="settings.value.CrosshairSettings.DotOutlineThickness" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotOutlineThickness"/>
 
 			
-
-
-					<div class="half_select_setting">
-						<span class="select_label">Dot Color</span>
-						<input class="colorSetting" type="text" binded-setting="CrosshairSettings.DotColor" />
-					</div>
-
-					<div class="half_select_setting">
-						<span class="select_label">Dot Outline Color</span>
-						<input class="colorSetting" type="text" binded-setting="CrosshairSettings.DotOutlineColor" />
-					</div>
-
+					<ColorSettingInput title="Dot Color" :startColor="settings.value.CrosshairSettings.DotColor" v-on:input="settings.value.CrosshairSettings.DotColor = arguments[0]" bindedSetting="CrosshairSettings.DotColor"/>
+					<ColorSettingInput title="Dot Outline Color" :startColor="settings.value.CrosshairSettings.DotOutlineColor" v-on:input="settings.value.CrosshairSettings.DotOutlineColor = arguments[0]" bindedSetting="CrosshairSettings.DotOutlineColor"/>
 
 					<BoolSettingInput title="Render Top" v-model="settings.value.CrosshairSettings.RenderCrosshairTop" bindedSetting="CrosshairSettings.RenderCrosshairTop"/>
 					<BoolSettingInput title="Render Bottom" v-model="settings.value.CrosshairSettings.RenderCrosshairBottom" bindedSetting="CrosshairSettings.RenderCrosshairBottom"/>
