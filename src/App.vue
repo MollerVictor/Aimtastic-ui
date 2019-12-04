@@ -421,6 +421,7 @@ body, html {
   height: 100%;
   width: calc(40%-5px);
   margin-left: 5px;
+  font-size: 28px;
 }
 
 .settings_tab{

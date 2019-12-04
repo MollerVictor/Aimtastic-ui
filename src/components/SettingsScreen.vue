@@ -19,34 +19,31 @@
 			<div>				
 				<h2>Sensitivity</h2>
 
-				<FloatSettingInput title="CSGO/Quake/Source Sensitivity" v-model="settings.value.PlayerSettings.Sensitivity" :min="0" :max="30" :step="0.001" bindedSetting="PlayerSettings.Sensitivity"/>
-				<FloatSettingInput title="X Multiplier" v-model="settings.value.PlayerSettings.XMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.XMultiplier"/>
-				<FloatSettingInput title="Y Multiplier" v-model="settings.value.PlayerSettings.YMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.YMultiplier"/>
+				<FloatSettingInput title="CSGO/Quake/Source Sensitivity" v-model="settings.value.PlayerSettings.Sensitivity" :min="0" :max="30" :step="0.001" bindedSetting="PlayerSettings.Sensitivity" info="Input the mouse sensitivity you used in any Source engine game."/>
+				<FloatSettingInput title="X Multiplier" v-model="settings.value.PlayerSettings.XMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.XMultiplier" info="Adjusting this slider will change the speed your camera moves horizontally on your screen."/>
+				<FloatSettingInput title="Y Multiplier" v-model="settings.value.PlayerSettings.YMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.YMultiplier" info="Adjusting this slider will change the speed your camera moves vertically on your screen."/>
 						
-				<br />
+				<br/>
 
-				<BoolSettingInput title="Use Relative Zoom Sensitivity" v-model="settings.value.PlayerSettings.UseRelativeZoomSensitivity" bindedSetting="PlayerSettings.UseRelativeZoomSensitivity" info="asdhakhsdkja"/>
-				<FloatSettingInput title="Zoom Sensitivity" v-model="settings.value.PlayerSettings.ZoomSensitivity" :min="0" :max="30" :step="0.01" bindedSetting="PlayerSettings.ZoomSensitivity"/>
-				<FloatSettingInput title="Relative Zoom Sensitivity" v-model="settings.value.PlayerSettings.RelativeZoomSensitivity" :min="0" :max="100" :step="1" bindedSetting="PlayerSettings.RelativeZoomSensitivity"/>
+				<BoolSettingInput title="Use Relative Zoom Sensitivity" v-model="settings.value.PlayerSettings.UseRelativeZoomSensitivity" bindedSetting="PlayerSettings.UseRelativeZoomSensitivity" info="This setting will make the zoom sensitivity relative to the normal sensitivity."/>
+				<FloatSettingInput title="Zoom Sensitivity" v-model="settings.value.PlayerSettings.ZoomSensitivity" :min="0" :max="30" :step="0.01" bindedSetting="PlayerSettings.ZoomSensitivity" info="Changing this will adjust the sensitivity your camera will move at when scoped into a weapon"/>
+				<FloatSettingInput title="Relative Zoom Sensitivity" v-model="settings.value.PlayerSettings.RelativeZoomSensitivity" :min="0" :max="100" :step="1" bindedSetting="playerSettings.RelativeZoomSensitivity" info="Sensitivity to use with relative zoom sensitivity activated."/>
 
-				<BoolSettingInput title="Inverted Horizontal" v-model="settings.value.PlayerSettings.InvertedHorizontal" bindedSetting="PlayerSettings.InvertedHorizontal"/>
-				<BoolSettingInput title="Inverted Vertical" v-model="settings.value.PlayerSettings.InvertedVertical" bindedSetting="PlayerSettings.InvertedVertical"/>
-
-	
+				<BoolSettingInput title="Inverted Horizontal" v-model="settings.value.PlayerSettings.InvertedHorizontal" bindedSetting="PlayerSettings.InvertedHorizontal" info="Inverts the horizontal movement of your camera"/>
+				<BoolSettingInput title="Inverted Vertical" v-model="settings.value.PlayerSettings.InvertedVertical" bindedSetting="PlayerSettings.InvertedVertical" info="Inverts the vertical movement of your camera"/>
 			</div>
 			<div>
 				<h2>FOV</h2>
 
-				<FloatSettingInput title="Vertical FOV" v-model="settings.value.PlayerSettings.FOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.FOV"/>
-				<FloatSettingInput title="Zoom Vertical FOV" v-model="settings.value.PlayerSettings.ZoomFOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.ZoomFOV"/>
-				<FloatSettingInput title="Countdown Duration" v-model="settings.value.PlayerSettings.CountdownDuration" :min="0" :max="5" :step="0.1" bindedSetting="PlayerSettings.CountdownDuration"/>
+				<FloatSettingInput title="Vertical FOV" v-model="settings.value.PlayerSettings.FOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.FOV" info="Changes your vertical field of view"/>
+				<FloatSettingInput title="Zoom Vertical FOV" v-model="settings.value.PlayerSettings.ZoomFOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.ZoomFOV" info="Changes your vertical field of view when scoped into a weapon"/>
+				<FloatSettingInput title="Countdown Duration" v-model="settings.value.PlayerSettings.CountdownDuration" :min="0" :max="5" :step="0.1" bindedSetting="PlayerSettings.CountdownDuration" info="Controls length of countdown after you start a round."/>
 
 				<div class="half_select_setting">
 					<span class="select_label">Horizontal FOV</span>
 					<span></span>
 					<input class="hor" id="horizontal_fov" min="10" max="200" step="0.01" fov_type="horizontal" />
 				</div>
-
 			</div>
 		</div>
 
@@ -117,35 +114,15 @@
 				<div class="settings_group">
 					<h2>Graphics</h2>
 
-					<IntSettingInput title="Max FPS" v-model="settings.value.GraphicsSettings.MaxFPS" :min="15" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxFPS"/>
+					<IntSettingInput title="Max FPS" v-model="settings.value.GraphicsSettings.MaxFPS" :min="15" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxFPS" info="Changing this will set a cap for your frame rate"/>
 
+					<BoolSettingInput title="Render Gun" v-model="settings.value.GraphicsSettings.RenderGunModel" bindedSetting="GraphicsSettings.RenderGunModel" info="This checkbox will determine whether you have a gun rendered onscreen for the aim practices."/>
 
-					<div class="half_select_setting">
-						<span class="select_label">Render Gun</span>
-						<label class="switch">
-							<input type="checkbox" class="boolSetting" binded-setting="GraphicsSettings.RenderGunModel" />
-							<span class="slider"></span>
-						</label>
-					</div>
+					<FloatSettingInput title="Max Bullet Decals" v-model="settings.value.GraphicsSettings.MaxBulletDecals" :min="0" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxBulletDecals" info="What even is this"/>
 
-					<div class="half_select_setting">
-						<span class="select_label">Max Bullet Decals</span>
-						<input class="rangeSlider" type="range" min="0" max="500" step="1" />
-						<input class="spinner intSetting" binded-setting="GraphicsSettings.MaxBulletDecals" />
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Show Hit Particles</span>
-						<label class="switch">
-							<input type="checkbox" class="boolSetting" binded-setting="GraphicsSettings.UseHitParticles" />
-							<span class="slider"></span>
-						</label>
-					</div>
+					<BoolSettingInput title="Show Hit Particles" v-model="settings.value.GraphicsSettings.UseHitParticles" bindedSetting="GraphicsSettings.UseHitParticles" info="This checkbox will determine whether bullet holes will exist in the world after firing."/>
 
-					<div class="half_select_setting">
-						<span class="select_label">Brightness</span>
-						<input class="rangeSlider" type="range" min="-5" max="3" step="0.2" />
-						<input class="spinner floatSetting" binded-setting="GraphicsSettings.Brightness" />
-					</div>
+					<FloatSettingInput title="Brightness" v-model="settings.value.GraphicsSettings.Brightness" :min="-5" :max="3" :step="0.2" bindedSetting="GraphicsSettings.Brightness" info="Adjusting this will change the gamma value of the game making it brighter or dimmer."/>
 				</div>
 			</div>
 
@@ -208,17 +185,15 @@
 				<div class="settings_group">
 					<h2>UI</h2>
 
-					<BoolSettingInput title="Show Popup Score" v-model="settings.value.UiSettings.ShowPopupScore" bindedSetting="UiSettings.ShowPopupScore"/>
-					<BoolSettingInput title="Use Hitmarkers" v-model="settings.value.CrosshairSettings.UseHitMarkers" bindedSetting="CrosshairSettings.UseHitMarkers"/>
+					<BoolSettingInput title="Show Popup Score" v-model="settings.value.UiSettings.ShowPopupScore" bindedSetting="UiSettings.ShowPopupScore" info="This checkbox determines whether a popup scoreboard will appear after a round."/>
+					<BoolSettingInput title="Use Hitmarkers" v-model="settings.value.CrosshairSettings.UseHitMarkers" bindedSetting="CrosshairSettings.UseHitMarkers" info="This checkbox will determine if you there will be hitmarkers on a succesful hit."/>
 
+					<ListSettingInput title="Hitmarker" :options=settings.value.HitMarkers  bindedSetting="CrosshairSettings.HitMarkerName" info="Select your hitmarker from the default list or any you have imported."/>
 					
-					<ListSettingInput title="Hitmarker" :options=settings.value.HitMarkers  bindedSetting="CrosshairSettings.HitMarkerName"/>
-					
-					<ColorSettingInput title="Hitmarker Color" :startColor="settings.value.CrosshairSettings.HitMarkerColor" v-on:input="settings.value.CrosshairSettings.HitMarkerColor = arguments[0]" bindedSetting="CrosshairSettings.HitMarkerColor"/>
+					<ColorSettingInput title="Hitmarker Color" :startColor="settings.value.CrosshairSettings.HitMarkerColor" v-on:input="settings.value.CrosshairSettings.HitMarkerColor = arguments[0]" bindedSetting="CrosshairSettings.HitMarkerColor" info="Select the color of your hitmarker by entering an hex color value."/>
 
-					<FloatSettingInput title="Hitmarker Alive Duration" v-model="settings.value.CrosshairSettings.HitMarkerAliveTime" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerAliveTime"/>
-					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.HitMarkerScale" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerScale"/>
-					
+					<FloatSettingInput title="Hitmarker Alive Duration" v-model="settings.value.CrosshairSettings.HitMarkerAliveTime" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerAliveTime" info="How long hitmakers stay alive"/>
+					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.HitMarkerScale" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerScale" info="Changes scale of hitmarkers"/>
 
 					<div>
 						<img id="crosshairPreview" />
@@ -229,39 +204,39 @@
 				<div class="settings_group">
 					<h2>Crosshair</h2>
 
-					<IntSettingInput title="Crosshair Type" v-model="settings.value.CrosshairSettings.CrosshairType" :min="1" :max="2" :step="1" bindedSetting="CrosshairSettings.CrosshairType"/>
-					
+					<IntSettingInput title="Crosshair Type" v-model="settings.value.CrosshairSettings.CrosshairType" :min="1" :max="2" :step="1" bindedSetting="CrosshairSettings.CrosshairType" info="Choose between crosshair preset 1 or 2"/>
+
 				</div>
 				<div class="settings_group" id="crosshair_type1">
 					<h2>Crosshair Type 1</h2>
-					<ListSettingInput title="Crosshair" :options=settings.value.Crosshairs  bindedSetting="CrosshairSettings.CrosshairName"/>
+					<ListSettingInput title="Crosshair" :options=settings.value.Crosshairs  bindedSetting="CrosshairSettings.CrosshairName" info="Select your crosshair from the default list or any you have imported."/>
 				
-					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor"/>
+					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor" info="Select the color of your hitmarker by entering an hex color value."/>
 
-					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.CrosshairScale" :min="0.1" :max="3" :step="0.05" bindedSetting="CrosshairSettings.CrosshairScale"/>
+					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.CrosshairScale" :min="0.1" :max="3" :step="0.05" bindedSetting="CrosshairSettings.CrosshairScale" info="Hitmarker Scale."/>
 				
 				</div>
 				<div class="settings_group" id="crosshair_type2">
 					<h2>Crosshair Type 2</h2>
 
-					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor"/>
-					<ColorSettingInput title="Crosshair Outline Color" :startColor="settings.value.CrosshairSettings.CrosshairOutlineColor" v-on:input="settings.value.CrosshairSettings.CrosshairOutlineColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairOutlineColor"/>
+					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor" info="Change the color of the internal crosshair by entering a hex color code."/>
+					<ColorSettingInput title="Crosshair Outline Color" :startColor="settings.value.CrosshairSettings.CrosshairOutlineColor" v-on:input="settings.value.CrosshairSettings.CrosshairOutlineColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairOutlineColor" info="Change the color of the outline of the crosshair by entering a hex color code."/>
 
-					<IntSettingInput title="Crosshair Length" v-model="settings.value.CrosshairSettings.CrosshairLength" :min="0" :max="100" :step="1" bindedSetting="CrosshairSettings.CrosshairLength"/>
-					<IntSettingInput title="Crosshair Thickness" v-model="settings.value.CrosshairSettings.CrosshairThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairThickness"/>
-					<IntSettingInput title="Crosshair Outline Thickness" v-model="settings.value.CrosshairSettings.CrosshairOutlineThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairOutlineThickness"/>
-					<IntSettingInput title="Crosshair Gap" v-model="settings.value.CrosshairSettings.CrosshairGap" :min="-5" :max="40" :step="1" bindedSetting="CrosshairSettings.CrosshairGap"/>
-					<IntSettingInput title="Dot Size" v-model="settings.value.CrosshairSettings.DotSize" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotSize"/>
-					<IntSettingInput title="Dot Outline Thickness" v-model="settings.value.CrosshairSettings.DotOutlineThickness" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotOutlineThickness"/>
+					<IntSettingInput title="Crosshair Length" v-model="settings.value.CrosshairSettings.CrosshairLength" :min="0" :max="100" :step="1" bindedSetting="CrosshairSettings.CrosshairLength" info="Adjust the length of the arms of your crosshair."/>
+					<IntSettingInput title="Crosshair Thickness" v-model="settings.value.CrosshairSettings.CrosshairThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairThickness" info="Adjust the thickness of the arms of your crosshair."/>
+					<IntSettingInput title="Crosshair Outline Thickness" v-model="settings.value.CrosshairSettings.CrosshairOutlineThickness" :min="0" :max="8" :step="1" bindedSetting="CrosshairSettings.CrosshairOutlineThickness" info="Adjust the thickness of the outline of your crosshair."/>
+					<IntSettingInput title="Crosshair Gap" v-model="settings.value.CrosshairSettings.CrosshairGap" :min="-5" :max="40" :step="1" bindedSetting="CrosshairSettings.CrosshairGap" info="Adjust the space in the middle of the crosshair."/>
+					<IntSettingInput title="Dot Size" v-model="settings.value.CrosshairSettings.DotSize" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotSize" info="Adjust the size of the dot in the middle of the crosshair."/>
+					<IntSettingInput title="Dot Outline Thickness" v-model="settings.value.CrosshairSettings.DotOutlineThickness" :min="0" :max="15" :step="1" bindedSetting="CrosshairSettings.DotOutlineThickness" info="Adjust the thickness of the outline of the dot in the middle of your crosshair."/>
 
 			
-					<ColorSettingInput title="Dot Color" :startColor="settings.value.CrosshairSettings.DotColor" v-on:input="settings.value.CrosshairSettings.DotColor = arguments[0]" bindedSetting="CrosshairSettings.DotColor"/>
-					<ColorSettingInput title="Dot Outline Color" :startColor="settings.value.CrosshairSettings.DotOutlineColor" v-on:input="settings.value.CrosshairSettings.DotOutlineColor = arguments[0]" bindedSetting="CrosshairSettings.DotOutlineColor"/>
+					<ColorSettingInput title="Dot Color" :startColor="settings.value.CrosshairSettings.DotColor" v-on:input="settings.value.CrosshairSettings.DotColor = arguments[0]" bindedSetting="CrosshairSettings.DotColor" info="Change the color of the dot in your crosshair by entering in a hex color code."/>
+					<ColorSettingInput title="Dot Outline Color" :startColor="settings.value.CrosshairSettings.DotOutlineColor" v-on:input="settings.value.CrosshairSettings.DotOutlineColor = arguments[0]" bindedSetting="CrosshairSettings.DotOutlineColor" info="Adjust the color of the outline of the dot in your crosshair by entering a hex color code."/>
 
-					<BoolSettingInput title="Render Top" v-model="settings.value.CrosshairSettings.RenderCrosshairTop" bindedSetting="CrosshairSettings.RenderCrosshairTop"/>
-					<BoolSettingInput title="Render Bottom" v-model="settings.value.CrosshairSettings.RenderCrosshairBottom" bindedSetting="CrosshairSettings.RenderCrosshairBottom"/>
-					<BoolSettingInput title="Render Right" v-model="settings.value.CrosshairSettings.RenderCrosshairRight" bindedSetting="CrosshairSettings.RenderCrosshairRight"/>
-					<BoolSettingInput title="Render Left" v-model="settings.value.CrosshairSettings.RenderCrosshairLeft" bindedSetting="CrosshairSettings.RenderCrosshairLeft"/>
+					<BoolSettingInput title="Render Top" v-model="settings.value.CrosshairSettings.RenderCrosshairTop" bindedSetting="CrosshairSettings.RenderCrosshairTop" info="This checkbox will determine if this side of the crosshair is rendered."/>
+					<BoolSettingInput title="Render Bottom" v-model="settings.value.CrosshairSettings.RenderCrosshairBottom" bindedSetting="CrosshairSettings.RenderCrosshairBottom" info="This checkbox will determine if this side of the crosshair is rendered."/>
+					<BoolSettingInput title="Render Right" v-model="settings.value.CrosshairSettings.RenderCrosshairRight" bindedSetting="CrosshairSettings.RenderCrosshairRight" info="This checkbox will determine if this side of the crosshair is rendered."/>
+					<BoolSettingInput title="Render Left" v-model="settings.value.CrosshairSettings.RenderCrosshairLeft" bindedSetting="CrosshairSettings.RenderCrosshairLeft" info="This checkbox will determine if this side of the crosshair is rendered."/>
 					
 				</div>
 			</div>
@@ -272,19 +247,19 @@
 					<h2>Volume</h2>
 
 
-					<FloatSettingInput title="Master Volume" v-model="settings.value.AudioSettings.MasterVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MasterVolume"/>
-					<FloatSettingInput title="Gameplay Volume" v-model="settings.value.AudioSettings.GamePlayVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.GamePlayVolume"/>
-					<FloatSettingInput title="Music Volume" v-model="settings.value.AudioSettings.MusicVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MusicVolume"/>
-					<FloatSettingInput title="Ambient Volume" v-model="settings.value.AudioSettings.AmbientVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.AmbientVolume"/>
-					<FloatSettingInput title="UI Volume" v-model="settings.value.AudioSettings.UIVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.UIVolume"/>
+					<FloatSettingInput title="Master Volume" v-model="settings.value.AudioSettings.MasterVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MasterVolume" info="This slider will control every sound produced by the game."/>
+					<FloatSettingInput title="Gameplay Volume" v-model="settings.value.AudioSettings.GamePlayVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.GamePlayVolume" info="This slider will control gameplay sounds produced by the game. (Gunshots, hitmarkers, movement)"/>
+					<FloatSettingInput title="Music Volume" v-model="settings.value.AudioSettings.MusicVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MusicVolume" info="This slider will control music produced by the game."/>
+					<FloatSettingInput title="Ambient Volume" v-model="settings.value.AudioSettings.AmbientVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.AmbientVolume" info="This slider will control ambient sounds produced by the game. (Enter examples here)"/>
+					<FloatSettingInput title="UI Volume" v-model="settings.value.AudioSettings.UIVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.UIVolume" info="This slider will control sound produced by interacting with the UI."/>
 
 				</div>
 			</div>
 			<div class="far_right">
 				<div class="settings_group">
 					<h2>Sounds</h2>
-					<ListSettingInput title="Shot Sound" :options=settings.value.ShotSounds  bindedSetting="AudioSettings.ShotSoundName"/>
-					<ListSettingInput title="Hit Sound" :options=settings.value.HitSounds  bindedSetting="AudioSettings.HitSoundName"/>
+					<ListSettingInput title="Shot Sound" :options=settings.value.ShotSounds  bindedSetting="AudioSettings.ShotSoundName" info="Select your custom sound for shots from the default list or anything you have imported."/>
+					<ListSettingInput title="Hit Sound" :options=settings.value.HitSounds  bindedSetting="AudioSettings.HitSoundName" info="Select your custom sound for hits from the default list or anything you have imported."/>
 				</div>
 			</div>
 		</div>
