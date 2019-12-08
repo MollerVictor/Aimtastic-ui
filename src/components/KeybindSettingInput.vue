@@ -10,6 +10,11 @@
 
 window.keybindPressed = function (key, val) {
 	window.settings.value.Keybinds[key] = val;
+	let arr = document.getElementsByClassName('keybindSetting');
+	let aL = arr.length;
+	for(let i=0;i<aL;i++) {
+			arr[i].style.backgroundColor = '#DDDDDD'
+	}
 };
 
 
@@ -27,8 +32,17 @@ export default {
 		},
 
 		changeKeybind: function(){
-			ENGINE_captureKeybind(this.bindedSetting)
-		}
+			let arr = document.getElementsByClassName('keybindSetting');
+			let aL = arr.length;
+			for(let i=0;i<aL;i++) {
+				if(arr[i].innerHTML==this.value) {
+					arr[i].style.backgroundColor = '#3498db'
+				}
+			}
+			ENGINE_captureKeybind(this.bindedSetting);
+		},
+
+
 	}
 };
 </script>

@@ -241,7 +241,7 @@
 			</div>
 		</div>
 		<div id="movement_settings" class="settings_tab" style="display: none;"></div>
-		<div id="infoBox" class="info_box">Test Test Test</div>
+		<div id="infoBox" class="info_box">This is the info box, hover over a option to see info.</div>
 	</div>
 
 	</div>

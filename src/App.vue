@@ -587,6 +587,13 @@ input[type='range']::-webkit-slider-thumb {
 
 .keybindSetting{
     float:right;
+    width: 200px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+}
+
+.keybindSetting:hover {
+    background-color: #3498db;
 }
 
 .switch{
