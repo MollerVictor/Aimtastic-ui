@@ -182,7 +182,7 @@
 					<IntSettingInput title="Crosshair Type" v-model="settings.value.CrosshairSettings.CrosshairType" :min="1" :max="2" :step="1" bindedSetting="CrosshairSettings.CrosshairType" info="Choose between crosshair preset 1 or 2"/>
 
 				</div>
-				<div class="settings_group" id="crosshair_type1">
+				<div class="settings_group" id="crosshair_type1" v-if="settings.value.CrosshairSettings.CrosshairType == 1">
 					<h2>Crosshair Type 1</h2>
 					<ListSettingInput title="Crosshair" :options=settings.value.Crosshairs  bindedSetting="CrosshairSettings.CrosshairName" info="Select your crosshair from the default list or any you have imported."/>
 				
@@ -191,7 +191,7 @@
 					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.CrosshairScale" :min="0.1" :max="3" :step="0.05" bindedSetting="CrosshairSettings.CrosshairScale" info="Hitmarker Scale."/>
 				
 				</div>
-				<div class="settings_group" id="crosshair_type2">
+				<div class="settings_group" id="crosshair_type2" v-if="settings.value.CrosshairSettings.CrosshairType == 2">
 					<h2>Crosshair Type 2</h2>
 
 					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor" info="Change the color of the internal crosshair by entering a hex color code."/>
