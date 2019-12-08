@@ -93,9 +93,9 @@
 
 					<BoolSettingInput title="Render Gun" v-model="settings.value.GraphicsSettings.RenderGunModel" bindedSetting="GraphicsSettings.RenderGunModel" info="This checkbox will determine whether you have a gun rendered onscreen for the aim practices."/>
 
-					<FloatSettingInput title="Max Bullet Decals" v-model="settings.value.GraphicsSettings.MaxBulletDecals" :min="0" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxBulletDecals" info="What even is this"/>
+					<FloatSettingInput title="Max Bullet Decals" v-model="settings.value.GraphicsSettings.MaxBulletDecals" :min="0" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxBulletDecals" info="Max amount of bullet decals in the world."/>
 
-					<BoolSettingInput title="Show Hit Particles" v-model="settings.value.GraphicsSettings.UseHitParticles" bindedSetting="GraphicsSettings.UseHitParticles" info="This checkbox will determine whether bullet holes will exist in the world after firing."/>
+					<BoolSettingInput title="Show Hit Particles" v-model="settings.value.GraphicsSettings.UseHitParticles" bindedSetting="GraphicsSettings.UseHitParticles" info="If it should render particles when hiting things, like small wall debris."/>
 
 					<FloatSettingInput title="Brightness" v-model="settings.value.GraphicsSettings.Brightness" :min="-5" :max="3" :step="0.2" bindedSetting="GraphicsSettings.Brightness" info="Adjusting this will change the gamma value of the game making it brighter or dimmer."/>
 				</div>
