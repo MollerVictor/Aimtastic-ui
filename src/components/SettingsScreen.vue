@@ -26,8 +26,8 @@
 				<br/>
 
 				<BoolSettingInput title="Use Relative Zoom Sensitivity" v-model="settings.value.PlayerSettings.UseRelativeZoomSensitivity" bindedSetting="PlayerSettings.UseRelativeZoomSensitivity" info="This setting will make the zoom sensitivity relative to the normal sensitivity."/>
-				<FloatSettingInput title="Zoom Sensitivity" v-model="settings.value.PlayerSettings.ZoomSensitivity" :min="0" :max="30" :step="0.01" bindedSetting="PlayerSettings.ZoomSensitivity" info="Changing this will adjust the sensitivity your camera will move at when scoped into a weapon"/>
-				<FloatSettingInput title="Relative Zoom Sensitivity" v-model="settings.value.PlayerSettings.RelativeZoomSensitivity" :min="0" :max="100" :step="1" bindedSetting="playerSettings.RelativeZoomSensitivity" info="Sensitivity to use with relative zoom sensitivity activated."/>
+				<FloatSettingInput v-if="!settings.value.PlayerSettings.UseRelativeZoomSensitivity" title="Zoom Sensitivity" v-model="settings.value.PlayerSettings.ZoomSensitivity" :min="0" :max="30" :step="0.01" bindedSetting="PlayerSettings.ZoomSensitivity" info="Changing this will adjust the sensitivity your camera will move at when scoped into a weapon"/>
+				<FloatSettingInput v-if="settings.value.PlayerSettings.UseRelativeZoomSensitivity"  title="Relative Zoom Sensitivity" v-model="settings.value.PlayerSettings.RelativeZoomSensitivity" :min="0" :max="100" :step="1" bindedSetting="playerSettings.RelativeZoomSensitivity" info="Sensitivity to use with relative zoom sensitivity activated."/>
 
 				<BoolSettingInput title="Inverted Horizontal" v-model="settings.value.PlayerSettings.InvertedHorizontal" bindedSetting="PlayerSettings.InvertedHorizontal" info="Inverts the horizontal movement of your camera"/>
 				<BoolSettingInput title="Inverted Vertical" v-model="settings.value.PlayerSettings.InvertedVertical" bindedSetting="PlayerSettings.InvertedVertical" info="Inverts the vertical movement of your camera"/>
@@ -161,14 +161,6 @@
 					<h2>UI</h2>
 
 					<BoolSettingInput title="Show Popup Score" v-model="settings.value.UiSettings.ShowPopupScore" bindedSetting="UiSettings.ShowPopupScore" info="This checkbox determines whether a popup scoreboard will appear after a round."/>
-					<BoolSettingInput title="Use Hitmarkers" v-model="settings.value.CrosshairSettings.UseHitMarkers" bindedSetting="CrosshairSettings.UseHitMarkers" info="This checkbox will determine if you there will be hitmarkers on a succesful hit."/>
-
-					<ListSettingInput title="Hitmarker" :options=settings.value.HitMarkers v-model="settings.value.CrosshairSettings.HitMarkerName"  bindedSetting="CrosshairSettings.HitMarkerName" info="Select your hitmarker from the default list or any you have imported."/>
-					
-					<ColorSettingInput title="Hitmarker Color" :startColor="settings.value.CrosshairSettings.HitMarkerColor" v-on:input="settings.value.CrosshairSettings.HitMarkerColor = arguments[0]" bindedSetting="CrosshairSettings.HitMarkerColor" info="Select the color of your hitmarker by entering an hex color value."/>
-
-					<FloatSettingInput title="Hitmarker Alive Duration" v-model="settings.value.CrosshairSettings.HitMarkerAliveTime" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerAliveTime" info="How long hitmakers stay alive"/>
-					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.HitMarkerScale" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerScale" info="Changes scale of hitmarkers"/>
 
 					<div>
 						<img id="crosshairPreview" />
@@ -188,7 +180,7 @@
 				
 					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor" info="Select the color of your hitmarker by entering an hex color value."/>
 
-					<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.CrosshairScale" :min="0.1" :max="3" :step="0.05" bindedSetting="CrosshairSettings.CrosshairScale" info="Hitmarker Scale."/>
+					<FloatSettingInput title="Crosshair Scale" v-model="settings.value.CrosshairSettings.CrosshairScale" :min="0.1" :max="3" :step="0.05" bindedSetting="CrosshairSettings.CrosshairScale" info="Hitmarker Scale."/>
 				
 				</div>
 				<div class="settings_group" id="crosshair_type2" v-if="settings.value.CrosshairSettings.CrosshairType == 2">
@@ -214,6 +206,16 @@
 					<BoolSettingInput title="Render Left" v-model="settings.value.CrosshairSettings.RenderCrosshairLeft" bindedSetting="CrosshairSettings.RenderCrosshairLeft" info="This checkbox will determine if this side of the crosshair is rendered."/>
 					
 				</div>
+
+				<BoolSettingInput title="Use Hitmarkers" v-model="settings.value.CrosshairSettings.UseHitMarkers" bindedSetting="CrosshairSettings.UseHitMarkers" info="This checkbox will determine if you there will be hitmarkers on a succesful hit."/>
+
+				<ListSettingInput title="Hitmarker" :options=settings.value.HitMarkers v-model="settings.value.CrosshairSettings.HitMarkerName"  bindedSetting="CrosshairSettings.HitMarkerName" info="Select your hitmarker from the default list or any you have imported."/>
+				
+				<ColorSettingInput title="Hitmarker Color" :startColor="settings.value.CrosshairSettings.HitMarkerColor" v-on:input="settings.value.CrosshairSettings.HitMarkerColor = arguments[0]" bindedSetting="CrosshairSettings.HitMarkerColor" info="Select the color of your hitmarker by entering an hex color value."/>
+
+				<FloatSettingInput title="Hitmarker Alive Duration" v-model="settings.value.CrosshairSettings.HitMarkerAliveTime" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerAliveTime" info="How long hitmakers stay alive"/>
+				<FloatSettingInput title="Hitmarker Scale" v-model="settings.value.CrosshairSettings.HitMarkerScale" :min="0.1" :max="1.5" :step="0.05" bindedSetting="CrosshairSettings.HitMarkerScale" info="Changes scale of hitmarkers"/>
+
 			</div>
 		</div>
 		<div id="audio_settings" class="settings_tab" v-if="screenState==='audio'">
@@ -257,6 +259,7 @@ window.onGettingSettings = function (jsonString) {
 
 window.settings = { value: ""};
 
+/* global ENGINE_showCrosshairPreview */
 
 import IntSettingInput from "./IntSettingInput.vue";
 import FloatSettingInput from "./FloatSettingInput.vue";
@@ -284,5 +287,14 @@ export default {
 			screenState: "game",
 		};
 	},
+
+	watch: {
+		screenState: function(val) {
+			if(val === "ui")
+				ENGINE_showCrosshairPreview(true);
+			else
+				ENGINE_showCrosshairPreview(false);
+		}
+	}
 };
 </script>
