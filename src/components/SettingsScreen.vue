@@ -51,42 +51,17 @@
 			<div>
 				<div class="settings_group">
 					<h2>Movement</h2>
-					<div class="half_select_setting">
-						<span class="select_label">Forward</span>
-						<button class="keybindSetting" binded-action="Forward"></button>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Backward</span>
-						<button class="keybindSetting" binded-action="Backward"></button>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Left</span>
-						<button class="keybindSetting" binded-action="Left"></button>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Right</span>
-						<button class="keybindSetting" binded-action="Right"></button>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Jump</span>
-						<button class="keybindSetting" binded-action="Jump"></button>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Primary Fire</span>
-						<button class="keybindSetting" binded-action="PrimaryFire"></button>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Zoom/ADS</span>
-						<button class="keybindSetting" binded-action="Zoom"></button>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Toggle Zoom/ADS</span>
-						<button class="keybindSetting" binded-action="ToggleZoom"></button>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Reset</span>
-						<button class="keybindSetting" binded-action="Reset"></button>
-					</div>
+					<KeybindSettingInput title="Forward" v-model="settings.value.Keybinds.Forward" bindedSetting="Forward" info="Makes you go forward, duh."/>
+					<KeybindSettingInput title="Backward" v-model="settings.value.Keybinds.Backward" bindedSetting="Backward" info="Makes you go backward, duh."/>
+					<KeybindSettingInput title="Left" v-model="settings.value.Keybinds.Left" bindedSetting="Left" info="Strafe left."/>
+					<KeybindSettingInput title="Right" v-model="settings.value.Keybinds.Right" bindedSetting="Right" info="Strafe right."/>
+
+					<KeybindSettingInput title="Jump" v-model="settings.value.Keybinds.Jump" bindedSetting="Jump"/>
+					<KeybindSettingInput title="Primary Fire" v-model="settings.value.Keybinds.PrimaryFire" bindedSetting="PrimaryFire"/>
+					<KeybindSettingInput title="Zoom/ADS" v-model="settings.value.Keybinds.Zoom" bindedSetting="Zoom"/>
+					<KeybindSettingInput title="Toggle Zoom/ADS" v-model="settings.value.Keybinds.ToggleZoom" bindedSetting="ToggleZoom"/>
+					
+					<KeybindSettingInput title="Reset" v-model="settings.value.Keybinds.Reset" bindedSetting="Reset"/>
 				</div>
 			</div>
 		</div>
@@ -288,6 +263,8 @@ import FloatSettingInput from "./FloatSettingInput.vue";
 import BoolSettingInput from "./BoolSettingInput.vue";
 import ListSettingInput from "./ListSettingInput.vue";
 import ColorSettingInput from "./ColorSettingInput.vue";
+import KeybindSettingInput from "./KeybindSettingInput.vue";
+
 
 export default {
 	name: "SettingsScreen",
@@ -296,7 +273,8 @@ export default {
 		FloatSettingInput, 
 		BoolSettingInput,
 		ListSettingInput,
-		ColorSettingInput
+		ColorSettingInput,
+		KeybindSettingInput
 		},
 		
 
