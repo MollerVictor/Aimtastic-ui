@@ -163,7 +163,7 @@
 					<BoolSettingInput title="Show Popup Score" v-model="settings.value.UiSettings.ShowPopupScore" bindedSetting="UiSettings.ShowPopupScore" info="This checkbox determines whether a popup scoreboard will appear after a round."/>
 					<BoolSettingInput title="Use Hitmarkers" v-model="settings.value.CrosshairSettings.UseHitMarkers" bindedSetting="CrosshairSettings.UseHitMarkers" info="This checkbox will determine if you there will be hitmarkers on a succesful hit."/>
 
-					<ListSettingInput title="Hitmarker" :options=settings.value.HitMarkers  bindedSetting="CrosshairSettings.HitMarkerName" info="Select your hitmarker from the default list or any you have imported."/>
+					<ListSettingInput title="Hitmarker" :options=settings.value.HitMarkers v-model="settings.value.CrosshairSettings.HitMarkerName"  bindedSetting="CrosshairSettings.HitMarkerName" info="Select your hitmarker from the default list or any you have imported."/>
 					
 					<ColorSettingInput title="Hitmarker Color" :startColor="settings.value.CrosshairSettings.HitMarkerColor" v-on:input="settings.value.CrosshairSettings.HitMarkerColor = arguments[0]" bindedSetting="CrosshairSettings.HitMarkerColor" info="Select the color of your hitmarker by entering an hex color value."/>
 
@@ -184,7 +184,7 @@
 				</div>
 				<div class="settings_group" id="crosshair_type1" v-if="settings.value.CrosshairSettings.CrosshairType == 1">
 					<h2>Crosshair Type 1</h2>
-					<ListSettingInput title="Crosshair" :options=settings.value.Crosshairs  bindedSetting="CrosshairSettings.CrosshairName" info="Select your crosshair from the default list or any you have imported."/>
+					<ListSettingInput title="Crosshair" :options=settings.value.Crosshairs v-model="settings.value.CrosshairSettings.CrosshairName"  bindedSetting="CrosshairSettings.CrosshairName" info="Select your crosshair from the default list or any you have imported."/>
 				
 					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor" info="Select the color of your hitmarker by entering an hex color value."/>
 
@@ -233,8 +233,8 @@
 			<div class="far_right">
 				<div class="settings_group">
 					<h2>Sounds</h2>
-					<ListSettingInput title="Shot Sound" :options=settings.value.ShotSounds  bindedSetting="AudioSettings.ShotSoundName" info="Select your custom sound for shots from the default list or anything you have imported."/>
-					<ListSettingInput title="Hit Sound" :options=settings.value.HitSounds  bindedSetting="AudioSettings.HitSoundName" info="Select your custom sound for hits from the default list or anything you have imported."/>
+					<ListSettingInput title="Shot Sound" :options=settings.value.ShotSounds v-model="settings.value.AudioSettings.ShotSoundName"   bindedSetting="AudioSettings.ShotSoundName" info="Select your custom sound for shots from the default list or anything you have imported."/>
+					<ListSettingInput title="Hit Sound" :options=settings.value.HitSounds v-model="settings.value.AudioSettings.TargetHitSoundName"   bindedSetting="AudioSettings.HitSoundName" info="Select your custom sound for hits from the default list or anything you have imported."/>
 				</div>
 			</div>
 		</div>

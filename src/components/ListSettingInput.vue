@@ -1,7 +1,7 @@
 <template>
 	<div class="half_select_setting"  @mouseover="setInfo">
 		<span class="select_label">{{ title }}</span>
-		<select class="column listSetting">
+		<select @change="onChange($event)" v-model="value"  class="column listSetting">
 			<option v-for="item in options"  v-bind:key="item.Name">  {{ item.Name }}</option>
 		</select>
 	</div>
@@ -19,8 +19,7 @@ export default {
 
 	watch: {
 		value: function(val) {
-			ENGINE_settingsChanged(this.bindedSetting, val, "list");
-			this.$emit('input', val);
+			
 		}
 	},	
 	methods: {
@@ -30,6 +29,10 @@ export default {
 			else
 				document.getElementById("infoBox").innerHTML = "No info available"
 		},
+		onChange(event) {
+            ENGINE_settingsChanged(this.bindedSetting, event.target.value, "list");
+			this.$emit('input', event.target.value);
+        }
 	},
 
 	components: {}
