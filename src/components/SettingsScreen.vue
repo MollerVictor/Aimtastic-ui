@@ -93,7 +93,7 @@
 
 					<BoolSettingInput title="Render Gun" v-model="settings.value.GraphicsSettings.RenderGunModel" bindedSetting="GraphicsSettings.RenderGunModel" info="This checkbox will determine whether you have a gun rendered onscreen for the aim practices."/>
 
-					<FloatSettingInput title="Max Bullet Decals" v-model="settings.value.GraphicsSettings.MaxBulletDecals" :min="0" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxBulletDecals" info="Max amount of bullet decals in the world."/>
+					<IntSettingInput title="Max Bullet Decals" v-model="settings.value.GraphicsSettings.MaxBulletDecals" :min="0" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxBulletDecals" info="Max amount of bullet decals in the world."/>
 
 					<BoolSettingInput title="Show Hit Particles" v-model="settings.value.GraphicsSettings.UseHitParticles" bindedSetting="GraphicsSettings.UseHitParticles" info="If it should render particles when hiting things, like small wall debris."/>
 
@@ -298,3 +298,50 @@ export default {
 	}
 };
 </script>
+
+
+<style>
+.half_select_setting {
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-top: 0.5vh;
+    padding: 0.6vh;
+    padding-left: 1.25vh;
+    display: table;
+}
+
+.half_select_setting:hover {
+    background-color: rgba(20, 20, 20, 0.1);
+}
+
+
+
+
+.half_select_setting > span.select_label {
+
+    display: table-cell;
+    vertical-align: middle;
+
+    width: 50vh;
+    font-size: 2.2vh;
+}
+
+.half_select_setting > span.sensitivity_label {
+    display: table-cell;
+    vertical-align: middle;
+
+    width: 7.5vh;
+    font-size: 2.2vh;
+}
+
+.half_select_setting > input[type="range"] {
+    display: table-cell;
+    width: 90%;
+    margin-left: 0px;
+    vertical-align: middle;
+}
+
+.half_select_setting > .ui-spinner{
+    display: table-cell;
+    vertical-align: middle;
+}
+</style>

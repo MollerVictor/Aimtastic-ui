@@ -450,49 +450,7 @@ body, html {
 }
 
 
-.half_select_setting {
-    background-color: rgba(255, 255, 255, 0.1);
-    margin-top: 0.5vh;
-    padding: 0.6vh;
-    padding-left: 1.25vh;
-    display: table;
-}
 
-.half_select_setting:hover {
-    background-color: rgba(20, 20, 20, 0.1);
-}
-
-
-
-
-.half_select_setting > span.select_label {
-
-    display: table-cell;
-    vertical-align: middle;
-
-    width: 23vh;
-    font-size: 2.2vh;
-}
-
-.half_select_setting > span.sensitivity_label {
-    display: table-cell;
-    vertical-align: middle;
-
-    width: 7.5vh;
-    font-size: 2.2vh;
-}
-
-.half_select_setting > input[type="range"] {
-    display: table-cell;
-    width: 90%;
-    margin-left: 0px;
-    vertical-align: middle;
-}
-
-.half_select_setting > .ui-spinner{
-    display: table-cell;
-    vertical-align: middle;
-}
 
 .spinner {
 
