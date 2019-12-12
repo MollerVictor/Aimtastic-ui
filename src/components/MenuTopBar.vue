@@ -18,7 +18,7 @@
 					id="mm_credits"
 					class="button get-closer menu-light-button menu-disabled-button menu_button"
 				>CREDITS</div>
-				<div onclick="exit_game()" class="button get-closer menu-light-button menu_button">EXIT</div>
+				<div onclick="ENGINE_exitGame()" class="button get-closer menu-light-button menu_button">EXIT</div>
 			</div>
 		</div>
 	</div>
