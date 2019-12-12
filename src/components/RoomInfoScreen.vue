@@ -10,27 +10,13 @@
 					<!--<img src="resources/images/rooms/360.png" style="width: 30vh; height: auto; display:none"/> -->
 				</div>
 				<div id="presetInfo">
-					<button class="ui button primary" onclick="createNewRoomPreset()">Add Preset</button>
-					<button
-						class="ui button primary"
-						onclick="deleteRoomPreset()"
-						id="deletePresetButton"
-					>Delete Preset</button>
-					<button
-						class="ui button primary"
-						onclick="openRenamePresetWindow()"
-						id="renamePresetButton"
-					>Rename Preset</button>
-					<div class="rename_preset_window" style="display:none;">
-						<h3>Rename</h3>
-						<input type="text" id="rename_preset_input" />
-						<br />
-						<button class="ui button secondary bottom_left" onclick="hideRenamePresetWindow()">Cancel</button>
-						<button class="ui button primary bottom_right" onclick="applyRenamePresetWindow()">Apply</button>
-					</div>
+					<button class="ui button primary" @click="addPreset">Add New Preset</button>
+					<button class="ui button primary" :disabled="!isLocked.value" @click="deletePreset" >Delete Preset</button>
+	
+					<button class="ui button primary" :disabled="!isLocked.value" @click="showEditWindow = true">Edit Preset</button>
 
 					<span class="preset_dropdown">
-						<select class="column" id="presetList" v-model="selectedPreset.value" @change="onPresetChange($event)">
+						<select class="column" v-model="selectedPreset"  @input="onPresetChange($event, $event.target.selectedIndex)">
 							<option  v-for="item of presets.value" v-bind:key="item.id">
 								{{ item.Name }}
 							</option>
@@ -41,7 +27,7 @@
 							<div>
 								{{ item.displayName }}
 							</div>
-							<vue-slider  :disabled="!isLocked.value" :silent="true" :adsorb="true" :min="item.minValue" :max="item.maxValue" :interval="item.stepSize" v-model="item.value"></vue-slider>
+							<vue-slider  :disabled="true" :silent="true" :adsorb="true" :min="item.minValue" :max="item.maxValue" :interval="item.stepSize" v-model="item.value"></vue-slider>
 							<!-- We make slider silent because of this https://github.com/NightCatSama/vue-slider-component/issues/343 -->
 						</div>
 					</div>
@@ -57,15 +43,26 @@
 		<div>
 			<button class="ui button secondary" onclick="switch_screens('#play_screen')">Back</button>
 		</div>
+
+		<RoomInfoSettingsPopup :settings="roomSettings.value" 
+			:presetName="presets.value[selectedPresetIndex.value].Name"  
+			:presetIndex="selectedPresetIndex.value"
+			v-if="showEditWindow" 
+			v-on:closePopupSettings="closePopupSettings" 
+			v-on:presetSettingChanged="presetSettingChanged"
+			v-on:presetNameChanged="presetNameChanged"/>
+
 	</div>
 </template>
 
 <script>
-/* global ENGINE_roomButtonClicked */
+/* global ENGINE_roomButtonClicked ENGINE_deleteRoomPreset ENGINE_createNewRoomPreset ENGINE_renameRoomPreset */
 
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
 import RoomInfoLeaderboard from "./RoomInfoLeaderboard.vue";
+import RoomInfoSettingsPopup from "./RoomInfoSettingsPopup.vue";
+
 
 window.onRequestRoomSettings = function (jsonString) {
 	var parsedData = JSON.parse(jsonString);
@@ -87,6 +84,8 @@ window.onRequestRoomSettings = function (jsonString) {
 		});
 	}
 
+	console.log("RoomInfo", parsedData);
+
 	window.roomSettings.value = [];	//We clear it incase we have a room with no settings
 	window.presets.value = parsedData.Presets;
 	window.roomSettings.value = CurrentSettings;
@@ -95,7 +94,8 @@ window.onRequestRoomSettings = function (jsonString) {
 	window.SceneName.value = parsedData.SceneName;
 	window.LevelIndex.value = parsedData.LevelIndex;
 
-	window.selectedPreset.value = parsedData.Presets[parsedData.DefaultSettingsIndex].Name;
+	//window.selectedPreset.value = parsedData.Presets[parsedData.DefaultSettingsIndex].Name;
+	window.selectedPresetIndex.value = parsedData.DefaultSettingsIndex;
 
 	window.isLocked.value = parsedData.Presets[parsedData.DefaultSettingsIndex].AllowChangingValues;
 };
@@ -108,6 +108,7 @@ window.SceneName = { value: ""};
 window.LevelIndex = { value: ""};
 
 window.selectedPreset = { value: ""};
+window.selectedPresetIndex = { value: -1};
 window.isLocked = { value: ""};
 
 
@@ -119,43 +120,111 @@ export default {
 			roomName: window.roomName,
 			roomDescription: window.roomDescription,
 			presets: window.presets,
-			selectedPreset: window.selectedPreset,
+			//selectedPreset: window.selectedPreset,
+			selectedPresetIndex: window.selectedPresetIndex,
 			isLocked: window.isLocked,
+			showEditWindow: false
 		};
+	},
+	computed:{
+		selectedPreset: function () {
+			return this.presets.value[window.selectedPresetIndex.value].Name;
+		}
 	},
 	components: {
 		VueSlider,
-		RoomInfoLeaderboard
+		RoomInfoLeaderboard,
+		RoomInfoSettingsPopup
 	},
 	methods: {
 		EnterRoom: function() {
-			var returnData = [window.SceneName.value, window.LevelIndex.value, this.roomSettings.value]
+			var returnData = [window.SceneName.value, window.LevelIndex.value, window.selectedPresetIndex.value]
 
 			console.log(returnData);
 			
 			ENGINE_roomButtonClicked(returnData);
 
 		},
-		onPresetChange(event) {
+		onPresetChange(event, index) {
 
-			for(var i = 0; i < this.presets.value.length; i++){				
-				if(this.presets.value[i].Name === event.target.value){									
-					Object.keys(this.presets.value[i].Settings).forEach(key => {
-						var result = this.roomSettings.value.find(obj => {
-							return obj.bindedName === key;
-						});
+			console.log("preset change,", event, index);
 
-						result["value"] = this.presets.value[i].Settings[key];					
+			Object.keys(this.presets.value[index].Settings).forEach(key => {
+				var result = this.roomSettings.value.find(obj => {
+					return obj.bindedName === key;
+				});
 
-						console.log();
-						window.isLocked.value = this.presets.value[i].AllowChangingValues;
+				result["value"] = this.presets.value[index].Settings[key];					
+		
+			});
 
-					});
+			this.selectedPresetIndex.value = index;						
+			window.isLocked.value = this.presets.value[index].AllowChangingValues;
+		},
+		
+		deletePreset(){
+			ENGINE_deleteRoomPreset(this.selectedPresetIndex.value);
 
-					break;
-				}
+			
+			this.presets.value.splice(this.selectedPresetIndex.value, 1);
+			
+
+			if(this.selectedPresetIndex.value >= this.presets.value.length){
+				this.selectedPresetIndex.value = this.presets.value.length - 1;
 			}
-        }
+
+			var index = this.selectedPresetIndex.value;
+
+			Object.keys(this.presets.value[index].Settings).forEach(key => {
+				var result = this.roomSettings.value.find(obj => {
+					return obj.bindedName === key;
+				});
+
+				result["value"] = this.presets.value[index].Settings[key];					
+		
+			});
+
+			//window.selectedPreset.value = this.presets.value[index].Name;
+									
+			window.isLocked.value = this.presets.value[index].AllowChangingValues;
+		},
+
+		addPreset(){
+			ENGINE_createNewRoomPreset(this.selectedPresetIndex.value);
+
+
+			var index = this.selectedPresetIndex.value;
+	
+			var newPreset = Object.assign({}, this.presets.value[index]);
+
+			var newPresetName = this.presets.value[index].Name + " Copy";
+			newPreset.Name = newPresetName;
+			newPreset.AllowChangingValues = true;
+
+			this.presets.value.push(newPreset);
+
+
+			this.selectedPresetIndex.value = this.presets.value.length - 1;
+			//this.selectedPreset.value = newPresetName;
+			this.isLocked.value = this.presets.value[this.selectedPresetIndex.value].AllowChangingValues;
+
+			console.log(newPreset);	
+		},
+
+		closePopupSettings() {
+			this.showEditWindow = false;
+		},
+		presetSettingChanged(bindedName, newValue){
+			this.presets.value[this.selectedPresetIndex.value].Settings[bindedName] = newValue;
+		},
+		presetNameChanged(newName){
+			this.presets.value[this.selectedPresetIndex.value].Name = newName;
+			//this.$forceUpdate();
+
+			console.log("name change,", newName);
+
+			ENGINE_renameRoomPreset(this.selectedPresetIndex.value, newName);
+		}
 	},
 	
 };

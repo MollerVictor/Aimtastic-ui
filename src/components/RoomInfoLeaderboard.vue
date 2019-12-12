@@ -19,7 +19,7 @@
 					<td>{{ item.Score }}</td>
 					<td>{{ item.TargetHits }}</td>
 					<td>{{ item.TargetMisses }}</td>
-					<td>{{  }}</td>
+					<td>{{ +(item.TargetHits  / (item.TargetHits + item.TargetMisses) * 100).toFixed(2) }}%</td>
 				</tr>
 
 				<tr class="dont_remove">
