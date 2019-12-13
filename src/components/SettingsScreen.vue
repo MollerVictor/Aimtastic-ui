@@ -68,23 +68,8 @@
 
 		<div id="graphics_settings" class="settings_tab" v-if="screenState==='graphics'">
 			<div>
-				<div class="settings_group">
-					<h2>Resolution</h2>
 
-					<div class="half_select_setting">
-						<span class="select_label">Resolution</span>
-						<select class="column listSetting" id="resoultions_list"></select>
-					</div>
-					<div class="half_select_setting">
-						<span class="select_label">Screen Option</span>
-						<select class="column listSetting" id="fullscreen_options_list">
-							<option>Exclusive FullScreen</option>
-							<option>Fullscreen Windowed</option>
-							<option>Windowed</option>
-						</select>
-					</div>
-					<button class="ui button primary" onclick="changeResolution()">Apply</button>
-				</div>
+				<ResolutionSettings :resolutionSettings="settings.value.ResolutionSettings"/>
 
 				<div class="settings_group">
 					<h2>Graphics</h2>
@@ -267,6 +252,8 @@ import BoolSettingInput from "./BoolSettingInput.vue";
 import ListSettingInput from "./ListSettingInput.vue";
 import ColorSettingInput from "./ColorSettingInput.vue";
 import KeybindSettingInput from "./KeybindSettingInput.vue";
+import ResolutionSettings from "./Settings/ResolutionSettings.vue";
+
 
 
 export default {
@@ -277,7 +264,8 @@ export default {
 		BoolSettingInput,
 		ListSettingInput,
 		ColorSettingInput,
-		KeybindSettingInput
+		KeybindSettingInput,
+		ResolutionSettings
 		},
 		
 
