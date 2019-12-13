@@ -252,7 +252,7 @@ import BoolSettingInput from "./BoolSettingInput.vue";
 import ListSettingInput from "./ListSettingInput.vue";
 import ColorSettingInput from "./ColorSettingInput.vue";
 import KeybindSettingInput from "./KeybindSettingInput.vue";
-import ResolutionSettings from "./Settings/ResolutionSettings.vue";
+import ResolutionSettings from "./ResolutionSettings.vue";
 
 
 

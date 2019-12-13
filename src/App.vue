@@ -29,7 +29,7 @@ window.setMenuState = function (menuState) {
 
 import PlayScreen from "./components/PlayScreen.vue";
 import RoomInfoScreen from "./components/RoomInfoScreen.vue";
-import SettingsScreen from "./components/SettingsScreen.vue";
+import SettingsScreen from "./components/settings/SettingsScreen.vue";
 import MenuTopBar from "./components/MenuTopBar.vue";
 
 export default {
