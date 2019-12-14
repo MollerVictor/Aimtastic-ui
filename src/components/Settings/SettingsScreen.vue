@@ -289,6 +289,10 @@ export default {
 
 
 <style>
+html {
+	font-family: 'veneer', sans-serif, sans;
+}
+
 .half_select_setting {
     background-color: rgba(255, 255, 255, 0.1);
     margin-top: 0.5vh;

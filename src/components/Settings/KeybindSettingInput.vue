@@ -13,7 +13,7 @@ window.keybindPressed = function (key, val) {
 	let arr = document.getElementsByClassName('keybindSetting');
 	let aL = arr.length;
 	for(let i=0;i<aL;i++) {
-			arr[i].style.backgroundColor = '#DDDDDD'
+			arr[i].style.backgroundColor = 'rgba(0,0,0,0)'
 	}
 };
 
@@ -36,7 +36,7 @@ export default {
 			let aL = arr.length;
 			for(let i=0;i<aL;i++) {
 				if(arr[i].innerHTML==this.value) {
-					arr[i].style.backgroundColor = '#3498db'
+					arr[i].style.backgroundColor = '#4AA088'
 				}
 			}
 			ENGINE_captureKeybind(this.bindedSetting);

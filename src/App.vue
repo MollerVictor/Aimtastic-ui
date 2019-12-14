@@ -119,7 +119,6 @@ body, html {
     overflow: hidden;
 }
 
-
 * {
     --accent-hover: #ffdc02;
     --accent-hover-fg: #6a461c;
@@ -221,6 +220,7 @@ body, html {
 
 .button:hover {
 	background-color: rgb(139, 139, 139);
+  border-radius: 20px;
 	color: black !important;
 	box-shadow: 0 0 10px rgba(171, 122, 18, 0.2);
 }
@@ -400,8 +400,7 @@ body, html {
     right: 0%;
     padding: 5vh;
     padding-bottom: 15vh;
-    /*background-color:#494645;*/
-    background-image: radial-gradient(#494645 60%,#333130 90%,#262525);
+    background-image: radial-gradient(#29303E,#1F212A);
     background-size: 100% 100%;
 }
 
@@ -585,10 +584,13 @@ input[type='range']::-webkit-slider-thumb {
     width: 200px;
     border: none;
     border-bottom: 2px solid #ccc;
+    border-radius: 10px;
+    font-family: 'veneer', sans-serif, sans;
+    font-size: 2.6vh;
 }
 
 .keybindSetting:hover {
-    background-color: #3498db;
+    background-color: #4AA088;
 }
 
 .switch{

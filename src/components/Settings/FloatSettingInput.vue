@@ -65,5 +65,6 @@ export default {
 .inputSpinnerHolder {
 	width: 20%;
 	margin-left: 2%;
+	font-family: 'veneer', sans-serif, sans;
 }
 </style>
