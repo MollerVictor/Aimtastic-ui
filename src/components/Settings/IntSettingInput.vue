@@ -3,7 +3,7 @@
 		<span class="select_label">{{ title }}</span>
 
 		<div class="rangeSliderHolder">
-			<vue-slider class=".vue-slider-turq" :drag-on-click="true" :silent="true" :adsorb="true" v-model="value" :min="min" :max="max" :interval="step"></vue-slider>
+			<vue-slider class="vue-slider-turq" :drag-on-click="true" :silent="true" :adsorb="true" v-model="value" :min="min" :max="max" :interval="step"></vue-slider>
 		</div>
 
 		<div class="inputSpinnerHolder">
