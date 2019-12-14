@@ -18,6 +18,9 @@
 </template>
 
 <script>
+
+/* global ENGINE_showCrosshairPreview */
+
 window.screenState = { value: "" };
 window.showUI = { value: true };
 
@@ -47,6 +50,14 @@ export default {
 			showUI: window.showUI
 		};
 	},
+
+	watch: {
+		menuState: function(newVal, oldVal) {
+			//Every value chnage means it no longer on the ui page, so we can hade the crosshair preview
+			ENGINE_showCrosshairPreview(false);
+		},
+	},
+		
 
 	computed: {
 		menuState: function() {
