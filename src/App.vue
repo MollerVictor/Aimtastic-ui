@@ -156,7 +156,7 @@ body, html {
 .top_bar{
     width: 100%;
     height: 8vh;
-    background-color: #A0291D;
+    background-color: #C2191F;
 }
 
 .main_logo{
@@ -209,8 +209,8 @@ body, html {
 }
 
 .button:hover {
-	background-color: #e20000;
-	color: #6a461c !important;
+	background-color: rgb(139, 139, 139);
+	color: black !important;
 	box-shadow: 0 0 10px rgba(171, 122, 18, 0.2);
 }
 
@@ -363,22 +363,6 @@ body, html {
     font-size: 7.5vh;
 }
 
-
-#room_settings_screen {
-    display: none;
-    
-    position: absolute;    
-    top: 10%;
-    bottom: 10%;
-    left: 30%;
-    right: 5%;
- 
-    background-color: red;
-    background-size: 100% 100%;
-}
-
-
-
 .presets_container{
     width: 70%; 
     margin: 5vh;
@@ -405,8 +389,8 @@ body, html {
     right: 0%;
     padding: 5vh;
     padding-bottom: 15vh;
-
-    background-color:#372018;
+    /*background-color:#494645;*/
+    background-image: radial-gradient(#494645 60%,#333130 90%,#262525);
     background-size: 100% 100%;
 }
 

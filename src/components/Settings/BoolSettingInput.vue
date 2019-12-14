@@ -87,6 +87,6 @@ export default {
 	display: block;
 }
 .check_container input:checked ~ .check {
-	background-color: #3498db;
+	background-color: #4AA088;
 }
 </style>
