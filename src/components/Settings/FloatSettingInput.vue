@@ -3,7 +3,7 @@
 		<span class="select_label">{{ title }}</span>
 
 		<div class="rangeSliderHolder">
-			<vue-slider :drag-on-click="true" :silent="true" :adsorb="true" v-model="value" :min="min" :max="max" :interval="step"></vue-slider>
+			<vue-slider class="vue-slider-turq" :drag-on-click="true" :silent="true" :adsorb="true" v-model="value" :min="min" :max="max" :interval="step"></vue-slider>
 		</div>
 
 		<div class="inputSpinnerHolder">
@@ -66,5 +66,10 @@ export default {
 	width: 20%;
 	margin-left: 2%;
 	font-family: 'veneer', sans-serif, sans;
+}
+</style>
+<style lang="scss">
+.vue-slider-turq .vue-slider-rail .vue-slider-process {
+	background-color: #4AA088 !important;
 }
 </style>
