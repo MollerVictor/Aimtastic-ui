@@ -81,7 +81,7 @@ select {
 	color: black;
 	cursor: pointer;
 	font-family: 'veneer', sans-serif, sans;
-	font-size:1.23vh;
+	font-size:2.2vh;
 }
 .select::after {
   content: '\25BC';
@@ -102,5 +102,6 @@ select {
 #select * {
   background-color: #4AA088;
   border-radius: 20px;
+  font-size:1.23vh;
 }
 </style>
