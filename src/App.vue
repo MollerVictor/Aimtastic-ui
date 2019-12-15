@@ -191,26 +191,23 @@ body, html {
     width: 120px;
 }
 
-.hl_button {
-    color: rgba(255, 200, 0, 1.0) !important;
-    background-color: #CE262C !important;
-}
-
-
-.hl_settings_button {
-    color: rgba(255, 200, 0, 1.0) !important;
-}
-
+/*Buttons*/
 .button {
     display: inline-block;
-    /*background-color: #608cac;*/
-    background-color: rgba(0,20,20,0.5);
+    background-color: rgba(0,0,0,0.0);
     color: #fcffff;
     font-size: 2.6vh;
     padding: 0.4vh;
-    border: 0px solid #608cac;
+    border: 0px;
     margin-right: 2vh;
     box-shadow: 0 0 10px rgba(44, 79, 104, 0.8);
+    font-family: 'veneer', sans-serif, sans;
+}
+
+.room-button:hover {
+  font-size: 2.7vh;
+  background-color: white;
+  color: black !important;
 }
 
 .menu_button{
@@ -218,8 +215,8 @@ body, html {
     box-shadow: none;
 }
 
-.button:hover {
-	background-color: rgb(139, 139, 139);
+.menu_button:hover,.settings-tab-button:hover {
+	background-color: white;
   border-radius: 20px;
 	color: black !important;
 	box-shadow: 0 0 10px rgba(171, 122, 18, 0.2);
@@ -255,6 +252,14 @@ body, html {
     background-color: transparent;
 }
 
+.preset-button{
+    min-width: 10vh;
+    max-width: 20vh;
+    max-height: 8vh;
+    overflow: hidden;
+    text-align: center;
+}
+
 .settings-tab-button {
     background-color: transparent;
     box-shadow: none;
@@ -263,7 +268,6 @@ body, html {
     top: 4vh;
     float: none;
 }
-
 .background-image{
     position: absolute; 
     height: auto; 
@@ -359,7 +363,7 @@ body, html {
 }
 
 .room-selected{
-    background-color:#e20000;
+    background-color:#C2191F;
 }
 
 .room-info{
@@ -377,14 +381,6 @@ body, html {
 .presets_container{
     width: 70%; 
     margin: 5vh;
-}
-
-.preset-button{
-    min-width: 10vh;
-    max-width: 20vh;
-    max-height: 8vh;
-    overflow: hidden;
-    text-align: center;
 }
 
 .preset_button_selected{
@@ -439,16 +435,6 @@ body, html {
     margin-top: 50px;
 }
 
-.far_right{
-   
-}
-
-
-
-
-.spinner {
-
-}
 .ui-spinner {
     width: 12.5vh;
     height: 3vh;
@@ -495,13 +481,9 @@ input[type='range']::-webkit-slider-thumb {
     border-width: 0;
 }
 
-
-
-
 #global_leaderboard{
     color: black;
 }
-
 
   .square {
     width: .7em;
@@ -587,83 +569,12 @@ input[type='range']::-webkit-slider-thumb {
     border-radius: 10px;
     font-family: 'veneer', sans-serif, sans;
     font-size: 2.6vh;
+    cursor: pointer;
 }
 
 .keybindSetting:hover {
     background-color: #4AA088;
 }
-
-.switch{
-    float:right;
-    margin-left: 32vh;
-}
-
-
- /* Customize the label (the container) */
- .switch {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  /* Hide the browser's default checkbox */
-  .switch input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  /* Create a custom checkbox */
-  .slider {
-    position: absolute;
-    top: 4px;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #eee;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .switch:hover input ~ .slider {
-    background-color: #ccc;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .switch input:checked ~ .slider {
-    background-color: #2196F3;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .slider:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .switch input:checked ~ .slider:after {
-    display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .switch .slider:after {
-    left: 6px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  } 
 
   .leaderboard_table{
       width: 100%;

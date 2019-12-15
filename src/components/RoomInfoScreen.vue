@@ -10,10 +10,10 @@
 					<!--<img src="resources/images/rooms/360.png" style="width: 30vh; height: auto; display:none"/> -->
 				</div>
 				<div id="presetInfo">
-					<button class="ui button primary" @click="addPreset">Add New Preset</button>
-					<button class="ui button primary" :disabled="!isLocked.value" @click="deletePreset" >Delete Preset</button>
+					<button class="button room-button" @click="addPreset">Add New Preset</button>
+					<button class="button room-button" :disabled="!isLocked.value" @click="deletePreset" >Delete Preset</button>
 	
-					<button class="ui button primary" :disabled="!isLocked.value" @click="showEditWindow = true">Edit Preset</button>
+					<button class="button room-button" :disabled="!isLocked.value" @click="showEditWindow = true">Edit Preset</button>
 
 					<span class="preset_dropdown">
 						<select class="column" v-model="selectedPreset"  @input="onPresetChange($event, $event.target.selectedIndex)">
@@ -32,7 +32,7 @@
 						</div>
 					</div>
 				</div>
-				<button class="ui button primary" v-on:click="EnterRoom" >Play</button>
+				<button class="button room-button" v-on:click="EnterRoom" >Play</button>
 			</div>
 			<div>
 				<RoomInfoLeaderboard/>				
@@ -41,7 +41,8 @@
 
 		<br style="clear: both;" />
 		<div>
-			<button class="ui button secondary" onclick="switch_screens('#play_screen')">Back</button>
+			<button class="button room-button
+			" onclick="switch_screens('#play_screen')">Back</button>
 		</div>
 
 		<RoomInfoSettingsPopup :settings="roomSettings.value" 
