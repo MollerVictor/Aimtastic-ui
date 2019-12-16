@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="inputSpinnerHolder">
-			<vue-numeric-input v-model="value" :min="min" :max="max" :step="step"></vue-numeric-input>
+			<VueNumberInput :step="step" :min="min" :max="max"  v-model="value" controls></VueNumberInput>
 		</div>
 	</div>
 </template>
@@ -17,7 +17,7 @@
 
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
-import VueNumericInput from "vue-numeric-input";
+import VueNumberInput from '@chenfengyuan/vue-number-input';
 
 export default {
 	name: "IntSettingInput",
@@ -40,7 +40,7 @@ export default {
 
 	components: {
 		VueSlider,
-		VueNumericInput
+		VueNumberInput
 	}
 };
 </script>
