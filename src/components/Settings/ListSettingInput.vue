@@ -2,7 +2,7 @@
 	<div class="half_select_setting"  @mouseover="setInfo">
 		<span class="select_label">{{ title }}</span>
 		<div class="select">
-			<select id="select" class="select" @change="onChange($event)" v-model="value"  class="column listSetting">
+			<select id="select" @change="onChange($event)" v-model="value"  class="select column listSetting">
 				<option v-for="item in options"  v-bind:key="item.Name">  {{ item.Name }}</option>
 			</select>
 		</div>
@@ -19,11 +19,6 @@ export default {
 	name: "ListSettingInput",
 	props: ["title", "bindedSetting", "value", "options", "info"],
 
-	watch: {
-		value: function(val) {
-			
-		}
-	},	
 	methods: {
 		setInfo: function() {
 			if(this.info)
