@@ -2,15 +2,15 @@
 	<div class="settings_group">
 		<h2>Resolution</h2>
 
-		<div class="half_select_setting">
+		<div class="half_select_setting" @mouseover="setInfo('res')">
 			<span class="select_label">Resolution</span>
 			<select v-model="resolutionSettings.SelectedResolution" class="column listSetting">
 				<option v-for="item in resolutionSettings.Resolutions"    v-bind:key="item">  {{ item }}</option>
 			</select>
 		</div>
 
-		<div class="half_select_setting">
-			<span class="select_label">Screen Option</span>
+		<div class="half_select_setting" @mouseover="setInfo('displayMode')">
+			<span class="select_label">Display Mode</span>
 
 			<select class="column listSetting" v-model="resolutionSettings.FullscreenMode">
 				<option>Exclusive FullScreen</option>
@@ -34,7 +34,13 @@ export default {
 		changeResolution: function(){
 			ENGINE_settingsChangeResolutionClicked(this.resolutionSettings.SelectedResolution, this.resolutionSettings.FullscreenMode);
 		},
-
+		
+		setInfo: function(who) {
+			if(who === "res")
+				document.getElementById("infoBox").innerHTML = "No info available"
+			else if(who === "displayMode")
+				document.getElementById("infoBox").innerHTML = "No info available"
+		},
 		
 	}
 };
