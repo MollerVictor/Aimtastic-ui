@@ -86,7 +86,6 @@ select {
   background: #4AA088;
   cursor: pointer; 
   pointer-events: none;
-  border-radius: .25em;
   -webkit-transition: .25s all ease;
   transition: .25s all ease;
 }

@@ -1,25 +1,13 @@
 <template>
 	<div class="center_area fullscreen_window">
 		<div>
-			<div v-on:click="screenState = 'game'" data-settings-tab="#game_settings" class="button get-closer settings-tab-button" onclick="selectedBut(this)">Game</div>
-			<div v-on:click="screenState = 'keybinds'" data-settings-tab="#keybindings_settings" class="button get-closer settings-tab-button" onclick="selectedBut(this)">Keybindings</div>
-			<div v-on:click="screenState = 'graphics'"
-				data-settings-tab="#graphics_settings"
-				class="button get-closer settings-tab-button" onclick="selectedBut(this)"
+			<div v-on:click="screenState = 'game'" data-settings-tab="#game_settings" class="button get-closer settings-tab-button" :class="{ 'selected' : screenState === 'game'}" >Game</div>
+			<div v-on:click="screenState = 'keybinds'" data-settings-tab="#keybindings_settings" class="button get-closer settings-tab-button" :class="{ 'selected' : screenState === 'keybinds'}" >Keybindings</div>
+			<div v-on:click="screenState = 'graphics'" data-settings-tab="#graphics_settings" class="button get-closer settings-tab-button" :class="{ 'selected' : screenState === 'graphics'}" 
 			>Graphics</div>
-			<div v-on:click="screenState = 'ui'" data-settings-tab="#ui_settings" class="button get-closer settings-tab-button" onclick="selectedBut(this)">UI</div>
-			<div v-on:click="screenState = 'audio'" data-settings-tab="#audio_settings" class="button get-closer settings-tab-button" onclick="selectedBut(this)">Audio</div>
+			<div v-on:click="screenState = 'ui'" data-settings-tab="#ui_settings" class="button get-closer settings-tab-button" :class="{ 'selected' : screenState === 'ui'}" >UI</div>
+			<div v-on:click="screenState = 'audio'" data-settings-tab="#audio_settings" class="button get-closer settings-tab-button" :class="{ 'selected' : screenState === 'audio'}" >Audio</div>
 			<!--<div data-settings-tab='#movement_settings' class='button get-closer settings-tab-button'>Movement</div>-->
-			<script>
-			function selectedBut(ele) {
-				let x = document.getElementsByClassName("settings-tab-button");
-				let xL= x.length;
-				for(let i=0;i<xL;i++) {
-					x[i].classList.remove('selected')
-				}
-				ele.classList.add("selected");
-			}
-			</script>
 		</div>
 		<div class="settings_container">
 		<div id="game_settings" class="settings_tab"  v-if="screenState==='game'">
