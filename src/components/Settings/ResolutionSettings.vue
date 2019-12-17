@@ -18,7 +18,7 @@
 				<option>Windowed</option>
 			</select>
 		</div>
-		<button class="ui button primary" @click="changeResolution">Apply</button>
+		<button class="button graphic-apply" @click="changeResolution">Apply</button>
 	</div>
 </template>
 

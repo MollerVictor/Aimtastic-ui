@@ -2,7 +2,7 @@
 	<div class="half_select_setting"  @mouseover="setInfo">
 		<span class="select_label">{{ title }}</span>
 		<div class="select">
-			<select id="select" @change="onChange($event)" v-model="value"  class="select column listSetting">
+			<select id="select" @change="onChange($event)" v-model="value"  class="column listSetting">
 				<option v-for="item in options"  v-bind:key="item.Name">  {{ item.Name }}</option>
 			</select>
 		</div>
@@ -54,7 +54,6 @@ export default {
   width: 20em;
   height: 3em;
   line-height: 3;
-  background: #2c3e50;
   overflow: hidden;
   border-radius: .25em;
 }

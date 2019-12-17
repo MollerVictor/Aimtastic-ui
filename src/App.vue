@@ -204,8 +204,18 @@ body, html {
     font-family: 'veneer', sans-serif, sans;
 }
 
-.room-button:hover {
+.graphic-apply {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%,0);
+  margin-top: 8px;
+}
+
+.room-button,.graphic-apply {
   font-size: 2.7vh;
+}
+
+.room-button:hover,.graphic-apply:hover {
   background-color: white;
   color: black !important;
 }
@@ -268,6 +278,14 @@ body, html {
     top: 4vh;
     float: none;
 }
+
+.selected {
+  background-color: white;
+  border-radius: 20px;
+  color: black !important;
+  box-shadow: 0 0 10px rgba(171, 122, 18, 0.2);
+}
+
 .background-image{
     position: absolute; 
     height: auto; 
@@ -387,6 +405,9 @@ body, html {
     background-color: green;
 }
 
+.rangeSliderHolder {
+  width: 80%;
+}
 
 .fullscreen_window{
     position: absolute;    
@@ -557,8 +578,12 @@ input[type='range']::-webkit-slider-thumb {
   }
 
 .half_select_setting{
+    position: relative;
     width: 90%;
     height: 20px;
+    left: 50%;
+    transform: translate(-50%,0);
+    align-items: center;
 }
 
 .keybindSetting{

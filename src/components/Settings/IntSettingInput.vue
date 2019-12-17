@@ -57,11 +57,6 @@ export default {
 	width: 90%;
 }
 
-.rangeSliderHolder {
-	width: 80%;
-	margin-top: 1vh;
-}
-
 .inputSpinnerHolder {
 	width: 20%;
 	margin-left: 2%;

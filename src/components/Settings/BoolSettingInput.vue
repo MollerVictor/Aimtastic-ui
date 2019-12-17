@@ -48,13 +48,13 @@ export default {
 	width: 90%;
 }
 .check_container {
-	display: block;
 	position: relative;
 	cursor: pointer;
 	user-select: none;
+	width: 25px;
+	height: 25px;
 }
 .check_container input {
-	position: absolute;
 	opacity: 0;
 	height: 0;
 	width: 0;
