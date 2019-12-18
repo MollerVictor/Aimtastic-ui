@@ -28,12 +28,13 @@
                     </div>
                     <div><h1>El goblino 3</h1>
                     	<div class="gamemode-column">
-						<GameModeButton title="Assult Course Uno" roomName="Assult Course Uno" imageUrl="assaut"/>
-						<GameModeButton title="Reaction Time" roomName="ReactionsRoom" imageUrl="reaction"/>
-						<GameModeButton title="(DLC) Clicking Moving Targets" roomName="FlicksOnMovingTargets" imageUrl="360"/>
-						<GameModeButton title="(DLC) Clicking Static Targets" roomName="FlicksOnStaticTargets" imageUrl="360"/>
-						<GameModeButton title="(DLC) Tracking On Moving Targets" roomName="TrackingOnMovingTargets" imageUrl="360"/>
-						<GameModeButton title="(DLC) Tracking On Static Targets" roomName="TrackingOnStaticTargets" imageUrl="360"/>
+							<GameModeButton title="Assault Course Uno" roomName="Assult Course Uno" imageUrl="360"/>
+							<GameModeButton title="Assault Course Duo" roomName="Assult Course Duo" imageUrl="360"/>
+							<GameModeButton title="Reaction Time" roomName="ReactionsRoom" imageUrl="reaction"/>
+							<GameModeButton title="(DLC) Clicking Moving Targets" roomName="FlicksOnMovingTargets" imageUrl="360"/>
+							<GameModeButton title="(DLC) Clicking Static Targets" roomName="FlicksOnStaticTargets" imageUrl="360"/>
+							<GameModeButton title="(DLC) Sphere Flicks (Moving)" roomName="TrackingOnMovingTargets" imageUrl="360"/>
+							<GameModeButton title="(DLC) Sphere Flicks (Static)" roomName="TrackingOnStaticTargets" imageUrl="360"/>
 						</div>
                     </div>
                 </div>
