@@ -12,7 +12,7 @@
 		<div class="settings_container">
 		<div id="game_settings" class="settings_tab"  v-if="screenState==='game'">
 			<div>				
-				<h2>Sensitivity</h2>
+				<h1>Sensitivity</h1>
 
 				<FloatSettingInput title="CSGO/Quake/Source Sensitivity" v-model="settings.value.PlayerSettings.Sensitivity" :min="0" :max="30" :step="0.001" bindedSetting="PlayerSettings.Sensitivity" info="Input the mouse sensitivity you used in any Source engine game."/>
 				<FloatSettingInput title="X Multiplier" v-model="settings.value.PlayerSettings.XMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.XMultiplier" info="Adjusting this slider will change the speed your camera moves horizontally on your screen."/>
@@ -28,7 +28,7 @@
 				<BoolSettingInput title="Inverted Vertical" v-model="settings.value.PlayerSettings.InvertedVertical" bindedSetting="PlayerSettings.InvertedVertical" info="Inverts the vertical movement of your camera"/>
 			</div>
 			<div>
-				<h2>FOV</h2>
+				<h1>FOV</h1>
 
 				<FloatSettingInput title="Vertical FOV" v-model="settings.value.PlayerSettings.FOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.FOV" info="Changes your vertical field of view"/>
 				<FloatSettingInput title="Zoom Vertical FOV" v-model="settings.value.PlayerSettings.ZoomFOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.ZoomFOV" info="Changes your vertical field of view when scoped into a weapon"/>
@@ -45,7 +45,7 @@
 		<div id="keybindings_settings" class="settings_tab"  v-if="screenState==='keybinds'">
 			<div>
 				<div class="settings_group">
-					<h2>Movement</h2>
+					<h1>Movement</h1>
 					<KeybindSettingInput title="Forward" v-model="settings.value.Keybinds.Forward" bindedSetting="Forward" info="Makes you go forward, duh."/>
 					<KeybindSettingInput title="Backward" v-model="settings.value.Keybinds.Backward" bindedSetting="Backward" info="Makes you go backward, duh."/>
 					<KeybindSettingInput title="Left" v-model="settings.value.Keybinds.Left" bindedSetting="Left" info="Strafe left."/>
@@ -67,7 +67,7 @@
 				<ResolutionSettings :resolutionSettings="settings.value.ResolutionSettings"/>
 
 				<div class="settings_group">
-					<h2>Graphics</h2>
+					<h1>Graphics</h1>
 
 					<IntSettingInput title="Max FPS" v-model="settings.value.GraphicsSettings.MaxFPS" :min="15" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxFPS" info="Changing this will set a cap for your frame rate"/>
 
@@ -83,7 +83,7 @@
 
 			<div class="far_right">
 				<div class="settings_group">
-					<!--<h2>Advanced</h2>
+					<!--<h1>Advanced</h1>
 
                             <div class="half_select_setting">
                                 <span class="select_label">Bloom</span>
@@ -138,7 +138,7 @@
 		<div id="ui_settings" class="settings_tab" v-if="screenState==='ui'">
 			<div>
 				<div class="settings_group">
-					<h2>UI</h2>
+					<h1>UI</h1>
 
 					<BoolSettingInput title="Show Popup Score" v-model="settings.value.UiSettings.ShowPopupScore" bindedSetting="UiSettings.ShowPopupScore" info="This checkbox determines whether a popup scoreboard will appear after a round."/>
 
@@ -149,13 +149,13 @@
 			</div>
 			<div class="far_right">
 				<div class="settings_group">
-					<h2>Crosshair</h2>
+					<h1>Crosshair</h1>
 
 					<IntSettingInput title="Crosshair Type" v-model="settings.value.CrosshairSettings.CrosshairType" :min="1" :max="2" :step="1" bindedSetting="CrosshairSettings.CrosshairType" info="Choose between crosshair preset 1 or 2"/>
 
 				</div>
 				<div class="settings_group" id="crosshair_type1" v-if="settings.value.CrosshairSettings.CrosshairType == 1">
-					<h2>Crosshair Type 1</h2>
+					<h1>Crosshair Type 1</h1>
 					<ListSettingInput title="Crosshair" :options=settings.value.Crosshairs v-model="settings.value.CrosshairSettings.CrosshairName"  bindedSetting="CrosshairSettings.CrosshairName" info="Select your crosshair from the default list or any you have imported."/>
 				
 					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor" info="Select the color of your hitmarker by entering an hex color value."/>
@@ -164,7 +164,7 @@
 				
 				</div>
 				<div class="settings_group" id="crosshair_type2" v-if="settings.value.CrosshairSettings.CrosshairType == 2">
-					<h2>Crosshair Type 2</h2>
+					<h1>Crosshair Type 2</h1>
 
 					<ColorSettingInput title="Crosshair Color" :startColor="settings.value.CrosshairSettings.CrosshairImageColor" v-on:input="settings.value.CrosshairSettings.CrosshairImageColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairImageColor" info="Change the color of the internal crosshair by entering a hex color code."/>
 					<ColorSettingInput title="Crosshair Outline Color" :startColor="settings.value.CrosshairSettings.CrosshairOutlineColor" v-on:input="settings.value.CrosshairSettings.CrosshairOutlineColor = arguments[0]" bindedSetting="CrosshairSettings.CrosshairOutlineColor" info="Change the color of the outline of the crosshair by entering a hex color code."/>
@@ -201,7 +201,7 @@
 		<div id="audio_settings" class="settings_tab" v-if="screenState==='audio'">
 			<div>
 				<div class="settings_group">
-					<h2>Volume</h2>
+					<h1>Volume</h1>
 
 
 					<FloatSettingInput title="Master Volume" v-model="settings.value.AudioSettings.MasterVolume" :min="0" :max="100" :step="1" bindedSetting="AudioSettings.MasterVolume" info="This slider will control every sound produced by the game."/>
@@ -214,7 +214,7 @@
 			</div>
 			<div class="far_right">
 				<div class="settings_group">
-					<h2>Sounds</h2>
+					<h1>Sounds</h1>
 					<ListSettingInput title="Shot Sound" :options=settings.value.ShotSounds v-model="settings.value.AudioSettings.ShotSoundName"   bindedSetting="AudioSettings.ShotSoundName" info="Select your custom sound for shots from the default list or anything you have imported."/>
 					<ListSettingInput title="Hit Sound" :options=settings.value.HitSounds v-model="settings.value.AudioSettings.TargetHitSoundName"   bindedSetting="AudioSettings.HitSoundName" info="Select your custom sound for hits from the default list or anything you have imported."/>
 				</div>

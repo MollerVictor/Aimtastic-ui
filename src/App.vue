@@ -211,13 +211,16 @@ body, html {
   margin-top: 8px;
 }
 
-.room-button,.graphic-apply {
-  font-size: 2.7vh;
+.room-button:hover,.graphic-apply:hover {
+  background-color: rgba(0,0,0,0.0);
+  color: #fcffff;
+  box-shadow: 0 0 10px rgba(44, 79, 104, 0.8);
 }
 
-.room-button:hover,.graphic-apply:hover {
+.room-button,.graphic-apply {
   background-color: white;
-  color: black !important;
+  color: black;
+  font-size: 2.7vh;
 }
 
 .menu_button{
@@ -338,17 +341,6 @@ body, html {
 
 .get-closer:hover {
     transform: scale(1.1) rotateX(0deg) !important;
-}
-
-
-
-.gamemode_container{
-    display: grid;    
-    grid-template-columns: auto;
-    grid-column-gap: 5vh;
-    grid-row-gap: 1vh;
-    margin: 2vh;
-    float: left;
 }
 
 #roomSettings{
