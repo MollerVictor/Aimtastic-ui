@@ -9,7 +9,7 @@
 					</p>
 					<!--<img src="resources/images/rooms/360.png" style="width: 30vh; height: auto; display:none"/> -->
 				</div>
-				<div id="presetInfo">
+				<div id="presetInfo" v-if="this.presets.value.length > 0">
 					<button class="button room-button" @click="addPreset">Add New Preset</button>
 					<button class="button room-button" :disabled="!isLocked.value" @click="deletePreset" >Delete Preset</button>
 	
@@ -129,7 +129,9 @@ export default {
 	},
 	computed:{
 		selectedPreset: function () {
-			return this.presets.value[window.selectedPresetIndex.value].Name;
+			if(this.presets.value.length > 0)
+				return this.presets.value[window.selectedPresetIndex.value].Name;
+			return "";
 		}
 	},
 	components: {
