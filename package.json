@@ -38,7 +38,7 @@
       "es6": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/recommended",
       "eslint:recommended"
     ],
     "rules": {
