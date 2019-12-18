@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<table id="global_leaderboard_table" class="leaderboard_table">
+		<div v-if="leaderboardLoading.value">
+			Loading...
+		</div>
+		<table v-if="!leaderboardLoading.value" id="global_leaderboard_table" class="leaderboard_table">
 			<thead>
 				<tr>
 					<td>Rank</td>
@@ -42,15 +45,18 @@ window.onLeaderboardLoaded = function (jsonString) {
 	var parsedData = JSON.parse(jsonString);
 
 	window.leaderboard.value = parsedData;
+	window.leaderboardLoading.value = false;
 };
 
 window.leaderboard = { value: []};
+window.leaderboardLoading = { value: true};
 
 export default {
 	name: "RoomInfoLeaderboard",
 	data() {
 		return {
 			leaderboard: window.leaderboard,
+			leaderboardLoading: window.leaderboardLoading,
 		};
 	},
 };

@@ -14,7 +14,7 @@ export default {
 
 	methods: {
 		ShowRoomSettings: function() {
-			window.screenState.value = "RoomInfo";
+			
 			ENGINE_requstRoomSettings(this.roomName);
 		}
 	}

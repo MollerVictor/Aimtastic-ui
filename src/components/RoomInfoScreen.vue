@@ -28,14 +28,14 @@
 								{{ item.displayName }}
 							</div>
 							<vue-slider  :disabled="true" :silent="true" :adsorb="true" :min="item.minValue" :max="item.maxValue" :interval="item.stepSize" v-model="item.value"></vue-slider>
-							<!-- We make slider silent because of this https://github.com/NightCatSama/vue-slider-component/issues/343 -->
+							<!--We make slider silent because of this https://github.com/NightCatSama/vue-slider-component/issues/343 -->
 						</div>
 					</div>
 				</div>
 				<button class="button room-button" v-on:click="EnterRoom" >Play</button>
 			</div>
 			<div>
-				<RoomInfoLeaderboard/>				
+				<RoomInfoLeaderboard/>
 			</div>
 		</div>
 
@@ -45,10 +45,10 @@
 			" onclick="switch_screens('#play_screen')">Back</button>
 		</div>
 
-		<RoomInfoSettingsPopup :settings="roomSettings.value" 
+		<RoomInfoSettingsPopup v-if="showEditWindow" 
+			:settings="roomSettings.value" 
 			:presetName="presets.value[selectedPresetIndex.value].Name"  
-			:presetIndex="selectedPresetIndex.value"
-			v-if="showEditWindow" 
+			:presetIndex="selectedPresetIndex.value"			
 			v-on:closePopupSettings="closePopupSettings" 
 			v-on:presetSettingChanged="presetSettingChanged"
 			v-on:presetNameChanged="presetNameChanged"/>
@@ -66,6 +66,8 @@ import RoomInfoSettingsPopup from "./RoomInfoSettingsPopup.vue";
 
 
 window.onRequestRoomSettings = function (jsonString) {
+	window.leaderboardLoading.value = true;
+
 	var parsedData = JSON.parse(jsonString);
 
 	var CurrentSettings = parsedData._settingsDefault;
@@ -87,18 +89,26 @@ window.onRequestRoomSettings = function (jsonString) {
 
 	console.log("RoomInfo", parsedData);
 
-	window.roomSettings.value = [];	//We clear it incase we have a room with no settings
 	window.presets.value = parsedData.Presets;
-	window.roomSettings.value = CurrentSettings;
+	window.roomSettings.value = [];	//We clear it incase we have a room with no settings	
+	window.roomSettings.value = CurrentSettings;	
 	window.roomName.value = parsedData.DisplayName;
-	window.roomDescription.value = parsedData.DisplayInformation;
-	window.SceneName.value = parsedData.SceneName;
+	window.roomDescription.value = parsedData.DisplayInformation;	
+	window.SceneName.value = parsedData.SceneName;	
 	window.LevelIndex.value = parsedData.LevelIndex;
+	
+	if(parsedData.Presets.length > 0){
+		window.selectedPreset.value = parsedData.Presets[parsedData.DefaultSettingsIndex].Name;
+		window.selectedPresetIndex.value = parsedData.DefaultSettingsIndex;
+		window.isLocked.value = parsedData.Presets[parsedData.DefaultSettingsIndex].AllowChangingValues;
+	}
+	else
+	{
+		window.selectedPresetIndex.value = 0;
+		window.isLocked.value = false;
+	}
 
-	//window.selectedPreset.value = parsedData.Presets[parsedData.DefaultSettingsIndex].Name;
-	window.selectedPresetIndex.value = parsedData.DefaultSettingsIndex;
-
-	window.isLocked.value = parsedData.Presets[parsedData.DefaultSettingsIndex].AllowChangingValues;
+	window.screenState.value = "RoomInfo";
 };
 
 window.presets = { value: []};
@@ -115,6 +125,11 @@ window.isLocked = { value: ""};
 
 export default {
 	name: "RoomInfoScreen",
+	components: {
+		VueSlider,
+		RoomInfoLeaderboard,
+		RoomInfoSettingsPopup
+	},
 	data() {
 		return {
 			roomSettings: window.roomSettings,
@@ -131,14 +146,10 @@ export default {
 		selectedPreset: function () {
 			if(this.presets.value.length > 0)
 				return this.presets.value[window.selectedPresetIndex.value].Name;
+			
 			return "";
 		}
-	},
-	components: {
-		VueSlider,
-		RoomInfoLeaderboard,
-		RoomInfoSettingsPopup
-	},
+	},	
 	methods: {
 		EnterRoom: function() {
 			var returnData = [window.SceneName.value, window.LevelIndex.value, window.selectedPresetIndex.value]
