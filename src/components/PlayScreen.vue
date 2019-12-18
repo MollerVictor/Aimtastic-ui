@@ -2,19 +2,19 @@
 
 <diV  class="center_area fullscreen_window">
          <div class="gamemode_container">         	
-                    <div><h1>El goblino</h1>
-                    	<div class="gamemode-column">
-                        <GameModeButton title="Bigger Then Smaller" roomName="BiggerThenSmallerRoom" imageUrl="bigger"/>
-						<GameModeButton title="Popup Targets Flicks" roomName="PopupTargetsRoom" imageUrl="pupoo"/>
-						<GameModeButton title="Simple Circle" roomName="SimpleCircleRoom" imageUrl="simple"/>
-						<GameModeButton title="Reflex" roomName="ReflexRoom" imageUrl="reflex"/>
-						<GameModeButton title="Left/Right Flicks" roomName="LeftRightRoom" imageUrl="left"/>
-						<GameModeButton title="Sphere Targets" roomName="SphereTargetsRoom" imageUrl="sphere"/>
-						<GameModeButton title="Skeet Shooting: Corridor" roomName="SkeetShootingCorridor" imageUrl="skeet"/>
+					<div><h1>El goblino</h1>
+						<div class="gamemode-column">
+							<GameModeButton title="Bigger Then Smaller" roomName="BiggerThenSmallerRoom" imageUrl="bigger"/>
+							<GameModeButton title="Popup Targets Flicks" roomName="PopupTargetsRoom" imageUrl="pupoo"/>
+							<GameModeButton title="Simple Circle" roomName="SimpleCircleRoom" imageUrl="simple"/>
+							<GameModeButton title="Reflex" roomName="ReflexRoom" imageUrl="reflex"/>
+							<GameModeButton title="Left/Right Flicks" roomName="LeftRightRoom" imageUrl="left"/>
+							<GameModeButton title="Sphere Targets" roomName="SphereTargetsRoom" imageUrl="sphere"/>
+							<GameModeButton title="Skeet Shooting: Corridor" roomName="SkeetShootingCorridor" imageUrl="skeet"/>
 						</div>
                     </div>  
-                    <div><h1>El goblino 2</h1>
-                    	<div class="gamemode-column">
+					<div><h1>El goblino 2</h1>
+						<div class="gamemode-column">
 						<GameModeButton title="Flat Wall Tracking" roomName="TrackingRoom" imageUrl="traking"/>
 						<GameModeButton title="360 Tracking" roomName="360TrackingRoom" imageUrl="360"/>
 						<GameModeButton title="(DLC) Snaking" roomName="SnakeRoom" imageUrl="360"/>
@@ -26,8 +26,8 @@
 						<GameModeButton title="(DLC) Render Test" roomName="RenderTest" imageUrl="360"/>
 						</div>
                     </div>
-                    <div><h1>El goblino 3</h1>
-                    	<div class="gamemode-column">
+					<div><h1>El goblino 3</h1>
+						<div class="gamemode-column">
 							<GameModeButton title="Assault Course Uno" roomName="Assult Course Uno" imageUrl="360"/>
 							<GameModeButton title="Assault Course Duo" roomName="Assult Course Duo" imageUrl="360"/>
 							<GameModeButton title="Reaction Time" roomName="ReactionsRoom" imageUrl="reaction"/>
