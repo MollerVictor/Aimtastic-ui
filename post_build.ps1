@@ -1,1 +1,1 @@
-Copy-Item "./dist/*" -Destination "C:\Fr0sZ\Programming\Aimtastic\Aimtastic Game\FPS Practice\BrowserAssets" -Recurse -force
+Copy-Item "./dist/*" -Destination "H:\Dice\Projects\Aimtastic\FPS Practice\BrowserAssets" -Recurse -force
