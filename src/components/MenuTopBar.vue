@@ -1,5 +1,6 @@
 <template>
 	<div class="top_bar">
+		<div class="logo"></div>
 		<div id="main_menu_buttons">
 			<div style="float:left; margin-left:4vh">
 				<div id="mm_play" class="button get-closer menu-medium-button menu_button" v-on:click="$emit('menu-button-pressed', 'Play')">PLAY</div>
@@ -25,4 +26,14 @@ export default {
 	name: "MenuTopBar"
 };
 </script>
-
+<style scoped>
+.logo {
+	position:relative;
+	top: 50%;
+	transform: translate(0,-50%);
+	background-color: red;
+	height: 64px;
+	width: 64px;
+	float: left;
+}
+</style>

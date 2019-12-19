@@ -196,8 +196,9 @@ body, html {
     display: inline-block;
     background-color: rgba(0,0,0,0.0);
     color: #fcffff;
+    vertical-align: center;
     font-size: 2.6vh;
-    padding: 0.4vh;
+    padding: 5px;
     border: 0px;
     margin-right: 2vh;
     box-shadow: 0 0 10px rgba(44, 79, 104, 0.8);
