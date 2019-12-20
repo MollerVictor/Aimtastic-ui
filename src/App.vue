@@ -573,7 +573,7 @@ input[type='range']::-webkit-slider-thumb {
 .half_select_setting{
     position: relative;
     width: 90%;
-    height: 40px;
+    height: 20px;
     left: 50%;
     transform: translate(-50%,0);
     align-items: center;

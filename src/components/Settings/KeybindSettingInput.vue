@@ -55,6 +55,7 @@ export default {
 	padding-left: 0.6vh;
 	padding-left: 1.25vh;
 	display: flex;
+	height: 6vh;
 	width: 90%;
 }
 </style>
