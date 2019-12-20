@@ -71,6 +71,10 @@
 
 					<IntSettingInput title="Max FPS" v-model="settings.value.GraphicsSettings.MaxFPS" :min="15" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxFPS" info="Changing this will set a cap for your frame rate"/>
 
+					<FloatSettingInput title="Render Scale" v-model="settings.value.GraphicsSettings.RenderScale" :min="25" :max="100" :step="1" bindedSetting="GraphicsSettings.RenderScale" info=""/>
+
+					<BoolSettingInput title="Use SSR" v-model="settings.value.GraphicsSettings.UseSSR" bindedSetting="GraphicsSettings.UseSSR" info="Turns on/off Screen Space Reflections. It gives nice reflections but is semi performance heavy."/>
+
 					<BoolSettingInput title="Render Gun" v-model="settings.value.GraphicsSettings.RenderGunModel" bindedSetting="GraphicsSettings.RenderGunModel" info="This checkbox will determine whether you have a gun rendered onscreen for the aim practices."/>
 
 					<IntSettingInput title="Max Bullet Decals" v-model="settings.value.GraphicsSettings.MaxBulletDecals" :min="0" :max="500" :step="1" bindedSetting="GraphicsSettings.MaxBulletDecals" info="Max amount of bullet decals in the world."/>
