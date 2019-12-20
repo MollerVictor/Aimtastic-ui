@@ -1,5 +1,4 @@
 <template>
-
 	<diV  class="center_area fullscreen_window">
 		<div class="gamemode_container">         	
 			<div><h1>Tracking</h1>
