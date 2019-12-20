@@ -22,8 +22,7 @@
 					<GameModeButton title="Popup Targets Flicks" roomName="PopupTargetsRoom" imageUrl="pupoo"/>		
 					<GameModeButton title="(DLC) Flicks Flicks Flicks" roomName="FlicksFlicksFlicksRoom" imageUrl="360"/>
 					<GameModeButton title="(DLC) 180 Flicks" roomName="180FlicksRoom" imageUrl="360"/>
-					<GameModeButton title="(DLC) Sphere Tracking" roomName="SphereTrackingRoom" imageUrl="360"/>
-					<GameModeButton title="(DLC) Render Test" roomName="RenderTest" imageUrl="360"/>
+					<GameModeButton title="(DLC) Tile Frenzy" roomName="TileFrenzy" imageUrl="360"/>
 				</div>
 			</div>
 			<div><h1>Assault Maps</h1>
