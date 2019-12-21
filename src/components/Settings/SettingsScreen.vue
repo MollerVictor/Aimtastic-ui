@@ -146,7 +146,7 @@
 				<div class="settings_group">
 					<h1>UI</h1>
 
-					<BoolSettingInput title="Show Popup Score" v-model="settings.value.UISettings.ShowPopupScore" bindedSetting="UISettings.ShowPopupScore" info="This checkbox determines whether a popup scoreboard will appear after a round."/>
+					<BoolSettingInput title="Show Popup Score" v-model="settings.value.UISettings.ShowPopupScore" bindedSetting="UISettings.ShowPopupScore" info="Should it show how many points you got, everytime you destory a target."/>
 
 					<IndexListSettingInput title="Show FPS" :options="['Off','Simple', 'Advanced', 'Full']" v-model="settings.value.UISettings.ShowFPS"   bindedSetting="UISettings.ShowFPS"/>
 
