@@ -73,6 +73,8 @@
 
 					<FloatSettingInput title="Render Scale" v-model="settings.value.GraphicsSettings.RenderScale" :min="25" :max="100" :step="1" bindedSetting="GraphicsSettings.RenderScale" info=""/>
 
+					<BoolSettingInput title="Use Shadows" v-model="settings.value.GraphicsSettings.UseShadows" bindedSetting="GraphicsSettings.UseShadows" info=""/>
+					<BoolSettingInput title="Use Bloom" v-model="settings.value.GraphicsSettings.UseBloom" bindedSetting="GraphicsSettings.UseBloom" info=""/>
 					<BoolSettingInput title="Use SSR" v-model="settings.value.GraphicsSettings.UseSSR" bindedSetting="GraphicsSettings.UseSSR" info="Turns on/off Screen Space Reflections. It gives nice reflections but is semi performance heavy."/>
 
 					<BoolSettingInput title="Render Gun" v-model="settings.value.GraphicsSettings.RenderGunModel" bindedSetting="GraphicsSettings.RenderGunModel" info="This checkbox will determine whether you have a gun rendered onscreen for the aim practices."/>
