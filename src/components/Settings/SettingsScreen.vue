@@ -32,7 +32,7 @@
 
 				<FloatSettingInput title="Vertical FOV" v-model="settings.value.PlayerSettings.FOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.FOV" info="Changes your vertical field of view"/>
 				<FloatSettingInput title="Zoom Vertical FOV" v-model="settings.value.PlayerSettings.ZoomFOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.ZoomFOV" info="Changes your vertical field of view when scoped into a weapon"/>
-				<FloatSettingInput title="Countdown Duration" v-model="settings.value.PlayerSettings.CountdownDuration" :min="0" :max="5" :step="0.1" bindedSetting="PlayerSettings.CountdownDuration" info="Controls length of countdown after you start a round."/>
+				<FloatSettingInput title="Countdown Duration" v-model="settings.value.PlayerSettings.CountdownDuration" :min="0" :max="5" :step="0.25" bindedSetting="PlayerSettings.CountdownDuration" info="Controls length of countdown after you start a round."/>
 
 				<div class="half_select_setting">
 					<span class="select_label">Horizontal FOV</span>
@@ -146,7 +146,9 @@
 				<div class="settings_group">
 					<h1>UI</h1>
 
-					<BoolSettingInput title="Show Popup Score" v-model="settings.value.UiSettings.ShowPopupScore" bindedSetting="UiSettings.ShowPopupScore" info="This checkbox determines whether a popup scoreboard will appear after a round."/>
+					<BoolSettingInput title="Show Popup Score" v-model="settings.value.UISettings.ShowPopupScore" bindedSetting="UISettings.ShowPopupScore" info="This checkbox determines whether a popup scoreboard will appear after a round."/>
+
+					<IndexListSettingInput title="Show FPS" :options="['Off','Simple', 'Advanced', 'Full']" v-model="settings.value.UISettings.ShowFPS"   bindedSetting="UISettings.ShowFPS"/>
 
 					<div>
 						<img id="crosshairPreview" />
@@ -251,6 +253,7 @@ import IntSettingInput from "./IntSettingInput.vue";
 import FloatSettingInput from "./FloatSettingInput.vue";
 import BoolSettingInput from "./BoolSettingInput.vue";
 import ListSettingInput from "./ListSettingInput.vue";
+import IndexListSettingInput from "./IndexListSettingInput.vue";
 import ColorSettingInput from "./ColorSettingInput.vue";
 import KeybindSettingInput from "./KeybindSettingInput.vue";
 import ResolutionSettings from "./ResolutionSettings.vue";
@@ -264,6 +267,7 @@ export default {
 		FloatSettingInput, 
 		BoolSettingInput,
 		ListSettingInput,
+		IndexListSettingInput,
 		ColorSettingInput,
 		KeybindSettingInput,
 		ResolutionSettings
