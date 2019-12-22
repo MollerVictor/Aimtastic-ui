@@ -3,7 +3,12 @@
 		<div v-if="leaderboardLoading.value">
 			Loading...
 		</div>
-		<table v-if="!leaderboardLoading.value" id="global_leaderboard_table" class="leaderboard_table">
+
+		<div v-if="!leaderboardLoading.value && leaderboard.value.length == 0">
+			This leaderboard is empty.
+		</div>
+
+		<table v-if="!leaderboardLoading.value && leaderboard.value.length > 0" id="global_leaderboard_table" class="leaderboard_table">
 			<thead>
 				<tr>
 					<td>Rank</td>
