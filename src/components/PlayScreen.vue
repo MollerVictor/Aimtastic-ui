@@ -26,7 +26,8 @@
 			</div>
 			<div><h1>Assault Maps</h1>
 				<div class="gamemode-column">
-					<GameModeButton title="Assault Course Uno" roomName="Assult Course Uno" imageUrl="360"/>
+					<GameModeButton title="Assault Course 1" roomName="Assult Course Uno" imageUrl="360"/>
+					<GameModeButton title="Assault Course 2" roomName="Assault Course 2" imageUrl="360"/>
 					<GameModeButton title="Reaction Time" roomName="ReactionsRoom" imageUrl="reaction"/>
 					<GameModeButton title="(DLC) Training Zone 1" roomName="Training Zone 1" imageUrl="360"/>
 					<GameModeButton title="(DLC) Forever Attacking Droids" roomName="WarmupRoom" imageUrl="360"/>

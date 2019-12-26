@@ -37,7 +37,7 @@
       "node": true,
       "es6": true
     },
-    "extends": [
+	"extends": [
       "eslint:recommended"
     ],
     "rules": {
