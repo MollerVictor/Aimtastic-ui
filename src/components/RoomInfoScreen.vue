@@ -67,6 +67,7 @@ import RoomInfoSettingsPopup from "./RoomInfoSettingsPopup.vue";
 
 window.onRequestRoomSettings = function (jsonString) {
 	window.leaderboardLoading.value = true;
+	window.myEntry.value = null;
 
 	var parsedData = JSON.parse(jsonString);
 
@@ -87,7 +88,7 @@ window.onRequestRoomSettings = function (jsonString) {
 		});
 	}
 
-	console.log("RoomInfo", parsedData);
+	//console.log("RoomInfo", parsedData);
 
 	window.presets.value = parsedData.Presets;
 	window.roomSettings.value = [];	//We clear it incase we have a room with no settings	

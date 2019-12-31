@@ -594,53 +594,7 @@ input[type='range']::-webkit-slider-thumb {
     background-color: #4AA088;
 }
 
-  .leaderboard_table{
-      width: 100%;
-  }
 
-  .leaderboard_table thead{
-      font-size: 2em;
-  }
-
-  .leaderboard_table tbody {
-    font-size: 1.5em;
-  }
-
-  .leaderboard_table p{
-    width: 100%;
-}
-
-  .leaderboard_table td, .leaderboard_table th {
-    border: 1px solid #FFFFFF;
-    padding: 3px 2px;
-  }
-
- 
-
-  .leaderboard_table tbody  tr:nth-child(even) {
-    background-color: #4e4e4e;  
-  }
-
-  .leaderboard_table tbody  tr:nth-child(uneven) {
-    background-color: #858585;      
-}
-
-  .leaderboard_table tbody tr:last-child {
-      background-color: #818300;    
-}
-
-  .leaderboard_table thead {
-    
-    border-bottom: 5px solid #FFFFFF;
-  }
-  .leaderboard_table thead th {
-    font-weight: bold;
-    text-align: center;
-    border-left: 2px solid #FFFFFF;
-  }
-  .leaderboard_table thead th:first-child {
-    border-left: none;
-  }
 
   .rename_preset_window{
       width: 350px;
