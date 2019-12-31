@@ -1,8 +1,10 @@
 <template>
 	<div class="preset_cover_screen">
 		<div class="edit_presets_window"  >
-			<input v-model="presetName" @input="presetNameChange($event.target.value)"/>
-			<div id="roomSettings">
+			<div class="preset_name">
+				Name: <input v-model="presetName" @input="presetNameChange($event.target.value)"/>
+			</diV>
+			<div>
 				<div v-for="item of settings" v-bind:key="item.id">
 					<div>
 						{{ item.displayName }}
@@ -12,7 +14,7 @@
 				</div>
 			</div>
 			<div>
-				<button onmouseover="ENGINE_playHoverSound()" onclick="ENGINE_playClickSound()"  class="ui button secondary" v-on:click="$emit('closePopupSettings')">Close</button>
+				<button onmouseover="ENGINE_playHoverSound()" onclick="ENGINE_playClickSound()"  class="ui button secondary" v-on:click="$emit('closePopupSettings')">Apply</button>
 			</div>
 		</div>
 	</div>
@@ -54,17 +56,26 @@ export default {
 	width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgba(7, 8, 8, 0.45);
+    background-color: rgba(144, 219, 219, 0.45);
     top: 0;
     left: 0;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .edit_presets_window{
 	display: flex;
+	flex-direction: column;
 	position: absolute;
-	left: 50%;
-    top: 50%;
-    background: blue;
+    background: #463e42;
+	padding: 1.5vh;
+
+	border-radius: 25px;
+}
+
+.preset_name{
+	margin-bottom: 1.5vh;
 }
 
 </style>
