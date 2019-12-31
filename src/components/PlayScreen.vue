@@ -38,7 +38,7 @@
 		</div>
 		<br style="clear: both;">
 		<div>
-			<button class="ui button secondary" onclick="switch_screens(null)">Close</button>
+			<button onmouseover="ENGINE_playHoverSound()" onclick="ENGINE_playClickSound()" class="ui button secondary">Close</button>
 		</div>
 	</div>
 </template>

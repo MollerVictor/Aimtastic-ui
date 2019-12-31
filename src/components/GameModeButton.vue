@@ -1,5 +1,5 @@
 <template>
-	<div class="play_gamemode button-sound get-closer" :data-room="roomName" onclick="showRoomSettings(this);">
+	<div onmouseover="ENGINE_playHoverSound()" onclick="ENGINE_playClickSound(); showRoomSettings(this);" class="play_gamemode button-sound get-closer" :data-room="roomName">
 		<img class="background-image"  :src="require(`../assets/images/rooms/${imageUrl}.png`)" rel="preload"/>
 		<div class="box-title">{{ title }}</div>
 	</div>
@@ -22,4 +22,3 @@ export default {
 	props: ["title", "roomName", "imageUrl"],
 };
 </script>
-

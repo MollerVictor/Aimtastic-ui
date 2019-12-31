@@ -10,10 +10,10 @@
 					<!--<img src="resources/images/rooms/360.png" style="width: 30vh; height: auto; display:none"/> -->
 				</div>
 				<div id="presetInfo" v-if="this.presets.value.length > 0">
-					<button class="button room-button" @click="addPreset">Add New Preset</button>
-					<button class="button room-button" :disabled="!isLocked.value" @click="deletePreset" >Delete Preset</button>
+					<button onmouseover="ENGINE_playHoverSound()" class="button room-button" @click="addPreset">Add New Preset</button>
+					<button onmouseover="ENGINE_playHoverSound()" class="button room-button" :disabled="!isLocked.value" @click="deletePreset" >Delete Preset</button>
 	
-					<button class="button room-button" :disabled="!isLocked.value" @click="showEditWindow = true">Edit Preset</button>
+					<button onmouseover="ENGINE_playHoverSound()" class="button room-button" :disabled="!isLocked.value" @click="showEditWindow = true">Edit Preset</button>
 
 					<span class="preset_dropdown">
 						<select class="column" v-model="selectedPreset"  @input="onPresetChange($event, $event.target.selectedIndex)">
@@ -41,7 +41,7 @@
 
 		<br style="clear: both;" />
 		<div>
-			<button class="button room-button
+			<button onmouseover="ENGINE_playHoverSound()" class="button room-button
 			" onclick="switch_screens('#play_screen')">Back</button>
 		</div>
 

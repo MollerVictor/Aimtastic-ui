@@ -12,7 +12,7 @@
 				</div>
 			</div>
 			<div>
-				<button class="ui button secondary" v-on:click="$emit('closePopupSettings')">Close</button>
+				<button onmouseover="ENGINE_playHoverSound()" onclick="ENGINE_playClickSound()"  class="ui button secondary" v-on:click="$emit('closePopupSettings')">Close</button>
 			</div>
 		</div>
 	</div>
