@@ -23,16 +23,17 @@
 						</select>
 					</span>
 					<div id="roomSettings">
-						<div v-for="item of roomSettings.value" v-bind:key="item.id">
-							<div>
+						<div v-for="item of roomSettings.value" v-bind:key="item.id" class="room_settings_data">
+							<div class="room_settings_data_name">
 								{{ item.displayName }}
 							</div>
-							<vue-slider  :disabled="true" :silent="true" :adsorb="true" :min="item.minValue" :max="item.maxValue" :interval="item.stepSize" v-model="item.value"></vue-slider>
-							<!--We make slider silent because of this https://github.com/NightCatSama/vue-slider-component/issues/343 -->
+							<div>
+								{{ item.value }}
+							</div>
 						</div>
 					</div>
 				</div>
-				<button class="button room-button" v-on:click="EnterRoom" >Play</button>
+				<button onmouseover="ENGINE_playHoverSound()" onclick="ENGINE_playClickSound()" class="button room-button" v-on:click="EnterRoom" >Play</button>
 			</div>
 			<div>
 				<RoomInfoLeaderboard/>
@@ -245,3 +246,16 @@ export default {
 };
 </script>
 
+
+<style scoped>
+.room_settings_data{
+	display: flex;
+	font-size: 2.5vh;;
+}
+
+.room_settings_data_name{
+	width: 45%;
+    margin-bottom: 2vh;    
+}
+
+</style>
