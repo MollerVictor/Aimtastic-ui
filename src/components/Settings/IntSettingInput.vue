@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="inputSpinnerHolder">
-			<VueNumberInput :step="step" :min="min" :max="max"  v-model="value" controls></VueNumberInput>
+			<VueNumberInput :step="step" :min="min" :max="max"  v-model="value" controls center></VueNumberInput>
 		</div>
 	</div>
 </template>
@@ -31,10 +31,7 @@ export default {
 	},
 	methods: {
 		setInfo: function() {
-			if(this.info)
-				document.getElementById("infoBox").innerHTML = this.info+""
-			else
-				document.getElementById("infoBox").innerHTML = "No info available"
+			this.$parent.setInfo(this.info);
 		},
 	},
 
@@ -58,7 +55,7 @@ export default {
 }
 
 .inputSpinnerHolder {
-	width: 20%;
+	width: 25vh;
 	margin-left: 2%;
 }
 </style>

@@ -61,11 +61,7 @@ export default {
 	},
 	methods: {
 		setInfo: function() {
-			if (this.info)
-				document.getElementById("infoBox").innerHTML = this.info + "";
-			else
-				document.getElementById("infoBox").innerHTML =
-					"No info available";
+			this.$parent.setInfo(this.info);
 		},
 		setColor(color) {
 			this.updateColors(color);

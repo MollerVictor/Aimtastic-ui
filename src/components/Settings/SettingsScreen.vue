@@ -14,7 +14,7 @@
 			<div>				
 				<h1>Sensitivity</h1>
 
-				<FloatSettingInput title="CSGO/Quake/Source Sensitivity" v-model="settings.value.PlayerSettings.Sensitivity" :min="0" :max="30" :step="0.001" bindedSetting="PlayerSettings.Sensitivity" info="Input the mouse sensitivity you used in any Source engine game."/>
+				<FloatSettingInput title="CSGO/Quake/Source Sensitivity" v-model="settings.value.PlayerSettings.Sensitivity" :min="0.001" :max="30" :step="0.001" bindedSetting="PlayerSettings.Sensitivity" info="SensitivitySettingInput"/>
 				<FloatSettingInput title="X Multiplier" v-model="settings.value.PlayerSettings.XMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.XMultiplier" info="Adjusting this slider will change the speed your camera moves horizontally on your screen."/>
 				<FloatSettingInput title="Y Multiplier" v-model="settings.value.PlayerSettings.YMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.YMultiplier" info="Adjusting this slider will change the speed your camera moves vertically on your screen."/>
 						
@@ -30,7 +30,7 @@
 			<div>
 				<h1>FOV</h1>
 
-				<FloatSettingInput title="Vertical FOV" v-model="settings.value.PlayerSettings.FOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.FOV" info="Changes your vertical field of view"/>
+				<FloatSettingInput title="Vertical FOV" v-model="settings.value.PlayerSettings.FOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.FOV" info="FOV"/>
 				<FloatSettingInput title="Zoom Vertical FOV" v-model="settings.value.PlayerSettings.ZoomFOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.ZoomFOV" info="Changes your vertical field of view when scoped into a weapon"/>
 				<FloatSettingInput title="Countdown Duration" v-model="settings.value.PlayerSettings.CountdownDuration" :min="0" :max="5" :step="0.25" bindedSetting="PlayerSettings.CountdownDuration" info="Controls length of countdown after you start a round."/>
 
@@ -229,7 +229,8 @@
 			</div>
 		</div>
 		<div id="movement_settings" class="settings_tab" style="display: none;"></div>
-		<div id="infoBox" class="info_box">This is the info box, hover over an option to see info.</div>
+		<InfoBox :data=infoBoxData />
+		<!--<div id="infoBox" class="info_box">This is the info box, hover over an option to see info.</div>-->
 	</div>
 
 	</div>
@@ -258,6 +259,8 @@ import ColorSettingInput from "./ColorSettingInput.vue";
 import KeybindSettingInput from "./KeybindSettingInput.vue";
 import ResolutionSettings from "./ResolutionSettings.vue";
 
+import InfoBox from "./InfoBox.vue";
+
 
 
 export default {
@@ -270,7 +273,8 @@ export default {
 		IndexListSettingInput,
 		ColorSettingInput,
 		KeybindSettingInput,
-		ResolutionSettings
+		ResolutionSettings,
+		InfoBox
 		},
 		
 
@@ -278,6 +282,7 @@ export default {
 		return {
 			settings: window.settings,
 			screenState: "game",
+			infoBoxData: "Hej"
 		};
 	},
 
@@ -288,6 +293,16 @@ export default {
 			else
 				ENGINE_showCrosshairPreview(false);
 		}
+	},
+	methods:{
+		setInfo: function(newData) {
+			if(newData)
+			{
+				this.infoBoxData = newData;
+			}
+			else
+				this.infoBoxData = "No info available";
+		},
 	}
 };
 </script>

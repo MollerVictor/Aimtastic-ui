@@ -37,9 +37,9 @@ export default {
 		
 		setInfo: function(who) {
 			if(who === "res")
-				document.getElementById("infoBox").innerHTML = "No info available"
+				this.$parent.setInfo("No info available");
 			else if(who === "displayMode")
-				document.getElementById("infoBox").innerHTML = "No info available"
+				this.$parent.setInfo("No info available");
 		},
 		
 	}

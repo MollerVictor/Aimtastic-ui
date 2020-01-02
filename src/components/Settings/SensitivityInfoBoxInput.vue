@@ -1,13 +1,13 @@
 <template>
-	<div class="half_select_setting" @mouseover="setInfo">
+	<div class="half_select_setting">
 		<span class="select_label">{{ title }}</span>
 
 		<div class="rangeSliderHolder">
-			<vue-slider class="vue-slider-turq" :drag-on-click="true" :silent="true" :adsorb="true" v-model="value" :min="min" :max="max" :interval="step"></vue-slider>
+			<vue-slider class="vue-slider-turq" @change="valueChanged" :drag-on-click="true" :silent="true" :adsorb="true" :value="realValue" :min="min" :max="Math.round(25*multiplier * 100) / 100 " :interval="step"></vue-slider>
 		</div>
 
 		<div class="inputSpinnerHolder">
-			<VueNumberInput :step="step" :min="min" :max="max"  v-model="value" controls center></VueNumberInput>
+			<VueNumberInput @change="valueChanged"  :step="step" :min="min" :max="Math.round(25*multiplier * 100) / 100 " :value="realValue"  center controls></VueNumberInput>
 		</div>
 	</div>
 </template>
@@ -20,20 +20,24 @@ import "vue-slider-component/theme/default.css";
 import VueNumberInput from '@chenfengyuan/vue-number-input';
 
 export default {
-	name: "FloatSettingInput",
-	props: ["title", "min", "max", "step", "bindedSetting", "value", "info"],
+	name: "SensitivityInfoBoxInput",
+	props: ["title", "min", "step", "bindedSetting", "value", "value2", "multiplier"],
 
-	watch: {
-		value: function (val) {			
-			ENGINE_settingsChanged(this.bindedSetting, val, "float");
-			this.$emit('input', val);
-		},
+
+	computed: {
+		realValue: {
+			// getter
+			get: function () {
+				return Math.round(this.value * this.multiplier * 10000) / 10000;
+			},
+		}
 	},
+
 	methods: {
-		setInfo: function() {
-			if(this.info)
-				this.$parent.setInfo(this.info);
-		},
+		valueChanged: function(newValue) {
+			//ENGINE_settingsChanged(this.bindedSetting, (newValue / this.multiplier), "float");
+			this.$emit('input', (newValue / this.multiplier));
+		}
 	},
 
 	components: {
@@ -56,7 +60,7 @@ export default {
 }
 
 .inputSpinnerHolder {
-	width: 25vh;
+	width: 30vh;
 	margin-left: 2%;
 	font-family: 'veneer', sans-serif, sans;
 }
