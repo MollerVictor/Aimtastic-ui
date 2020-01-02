@@ -136,6 +136,18 @@ body, html {
                                   supported by Chrome and Opera */
 }
 
+.number-input__input{
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+.numeric-input{
+	font-size: 2.2vh;
+	padding-top: 0.5vh;
+	padding-bottom: 0.5vh;
+}
+
+
+
 .hidden{
     display: none;
 }

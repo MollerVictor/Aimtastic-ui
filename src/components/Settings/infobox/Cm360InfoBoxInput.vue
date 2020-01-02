@@ -3,25 +3,25 @@
 		<span class="select_label">{{ title }}</span>
 
 		<div class="rangeSliderHolder">
-			<vue-slider class="vue-slider-turq" @dragging="valueChanged" :drag-on-click="true" :silent="true" :adsorb="true" v-model="realValue" :min="0" :max="300" :interval="0.001"></vue-slider>
+			<vue-range-slider ref="slider"  @slide-end="valueChanged" v-model="realValue" :tooltip="false" :step="0.001" :min="0" :max="100" ></vue-range-slider>
 		</div>
 
-		<div class="inputSpinnerHolder">
-			<VueNumberInput @change="valueChanged"  :step="0.001" :min="0" :max="300"  v-model="realValue" controls center></VueNumberInput>
+		<div class="inputSpinnerHolder">			
+			<vue-numeric-input @input="valueChanged" v-model="realValue" :min="0.001" :max="100" :step="0.001"></vue-numeric-input>
 		</div>
 	</div>
 </template>
 
 <script>
-/* global ENGINE_settingsChanged */
 
-import VueSlider from "vue-slider-component";
-import "vue-slider-component/theme/default.css";
-import VueNumberInput from '@chenfengyuan/vue-number-input';
+import VueNumericInput from 'vue-numeric-input'
+
+import 'vue-range-component/dist/vue-range-slider.css'
+import VueRangeSlider from 'vue-range-component'
 
 export default {
 	name: "Cm360InfoBoxInput",
-	props: ["title", "bindedSetting", "value", "dpi"],
+	props: ["title", "value", "dpi"],
 
 	data() {
 		return {
@@ -41,14 +41,13 @@ export default {
 	methods: {
 		valueChanged: function(newValue) {
 			var sourceSens = 914.4 /(0.022 * this.dpi * newValue) //Converting cm360 to source sens. #math
-			//ENGINE_settingsChanged(this.bindedSetting, sourceSens, "float");
 			this.$emit('input', sourceSens);
 		}
 	},
 
 	components: {
-		VueSlider,
-		VueNumberInput
+		VueRangeSlider,
+		VueNumericInput
 	}
 };
 </script>

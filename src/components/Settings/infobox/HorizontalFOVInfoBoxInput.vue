@@ -2,30 +2,34 @@
 	<div class="half_select_setting" >
 		<span class="select_label">{{ title }}</span>
 
+
 		<div class="rangeSliderHolder">
-			<vue-slider class="vue-slider-turq" @change="valueChanged"  :drag-on-click="true" :silent="true" :adsorb="true" v-model="realValue" :min="min" :max="max" :interval="step"></vue-slider>
+			<vue-range-slider ref="slider" @slide-end="valueChanged" v-model="realValue" :tooltip="false" :step="step" :min="min" :max="max" ></vue-range-slider>
 		</div>
 
-		<div class="inputSpinnerHolder">
-			<VueNumberInput :step="step" :min="min" :max="max"  v-model="realValue" controls center></VueNumberInput>
-		</div>
+		<div class="inputSpinnerHolder">            
+			<vue-numeric-input @input="valueChanged" v-model="realValue" :min="min" :max="max" :step="step"></vue-numeric-input>
+        </div>
+
+
 	</div>
 </template>
 
 <script>
 /* global ENGINE_settingsChanged */
 
-import VueSlider from "vue-slider-component";
-import "vue-slider-component/theme/default.css";
-import VueNumberInput from '@chenfengyuan/vue-number-input';
+import VueNumericInput from 'vue-numeric-input'
+
+import 'vue-range-component/dist/vue-range-slider.css'
+import VueRangeSlider from 'vue-range-component'
 
 export default {
 	name: "HorizontalFOVInfoBoxInput",
 	props: ["title", "min", "max", "step", "bindedSetting", "value", "info"],
 
 	components: {
-		VueSlider,
-		VueNumberInput
+		VueNumericInput,
+		VueRangeSlider
 	},
 
 	computed: {
@@ -44,12 +48,17 @@ export default {
 	
 	methods: {
 		valueChanged: function(hFOV) {
-
+			console.log("Emitting: hfov " + hFOV);
 			var hfovRad = hFOV * Math.PI / 180;
 			var vfovRad = 2 * Math.atan(Math.tan(hfovRad / 2) * window.settings.value["CameraRes"].PixelHeight / window.settings.value["CameraRes"].PixelWidth);
-			var vFOV = vfovRad * 180 / Math.PI;
+			var vFOV = vfovRad * 180 / Math.PI;		
 			//ENGINE_settingsChanged(this.bindedSetting, (newValue / this.multiplier), "float");
-			this.$emit('input', vFOV);
+
+			var rounded = Math.round(vFOV * 100) / 100;
+
+			this.$emit('input', rounded);
+
+			
 		}
 	},
 

@@ -3,11 +3,12 @@
 		<span class="select_label">{{ title }}</span>
 
 		<div class="rangeSliderHolder">
-			<vue-slider class="vue-slider-turq" :drag-on-click="true" :silent="true" :adsorb="true" v-model="value" :min="min" :max="max" :interval="step"></vue-slider>
+		
+			 <vue-range-slider ref="slider" v-model="value" :tooltip="false" :step="step" :min="min" :max="max" ></vue-range-slider>
 		</div>
 
 		<div class="inputSpinnerHolder">
-			<VueNumberInput :step="step" :min="min" :max="max"  v-model="value" controls center></VueNumberInput>
+			<vue-numeric-input  v-model="value" :precision="4" :min="min" :max="max" :step="step"></vue-numeric-input>
 		</div>
 	</div>
 </template>
@@ -15,18 +16,22 @@
 <script>
 /* global ENGINE_settingsChanged */
 
-import VueSlider from "vue-slider-component";
-import "vue-slider-component/theme/default.css";
-import VueNumberInput from '@chenfengyuan/vue-number-input';
+
+import VueNumericInput from 'vue-numeric-input'
+
+import 'vue-range-component/dist/vue-range-slider.css'
+import VueRangeSlider from 'vue-range-component'
 
 export default {
 	name: "FloatSettingInput",
-	props: ["title", "min", "max", "step", "bindedSetting", "value", "info"],
+	props: ["title", "min", "max", "step", "bindedSetting", "value", "info", "dontSaveToConfig"],
 
 	watch: {
 		value: function (val) {			
-			ENGINE_settingsChanged(this.bindedSetting, val, "float");
-			this.$emit('input', val);
+			if(!this.dontSaveToConfig){				
+				ENGINE_settingsChanged(this.bindedSetting, val, "float");				
+			}
+				this.$emit('input', val);
 		},
 	},
 	methods: {
@@ -37,8 +42,8 @@ export default {
 	},
 
 	components: {
-		VueSlider,
-		VueNumberInput
+		VueNumericInput,
+		VueRangeSlider
 	}
 };
 </script>

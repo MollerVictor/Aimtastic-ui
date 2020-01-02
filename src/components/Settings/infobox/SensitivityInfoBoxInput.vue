@@ -3,25 +3,24 @@
 		<span class="select_label">{{ title }}</span>
 
 		<div class="rangeSliderHolder">
-			<vue-slider class="vue-slider-turq" @change="valueChanged" :drag-on-click="true" :silent="true" :adsorb="true" :value="realValue" :min="min" :max="Math.round(25*multiplier * 100) / 100 " :interval="step"></vue-slider>
+			 <vue-range-slider ref="slider"  @slide-end="valueChanged" v-model="realValue" :tooltip="false"  :step="step" :min="min" :max="Math.round(25*multiplier * 100) / 100 " ></vue-range-slider>
 		</div>
 
 		<div class="inputSpinnerHolder">
-			<VueNumberInput @change="valueChanged"  :step="step" :min="min" :max="Math.round(25*multiplier * 100) / 100 " :value="realValue"  center controls></VueNumberInput>
+			<vue-numeric-input @input="valueChanged" v-model="realValue" :min="min" :max="Math.round(25*multiplier * 100) / 100 " :step="step"></vue-numeric-input>
 		</div>
 	</div>
 </template>
 
 <script>
-/* global ENGINE_settingsChanged */
 
-import VueSlider from "vue-slider-component";
-import "vue-slider-component/theme/default.css";
-import VueNumberInput from '@chenfengyuan/vue-number-input';
+import 'vue-range-component/dist/vue-range-slider.css'
+import VueRangeSlider from 'vue-range-component'
+import VueNumericInput from 'vue-numeric-input'
 
 export default {
 	name: "SensitivityInfoBoxInput",
-	props: ["title", "min", "step", "bindedSetting", "value", "value2", "multiplier"],
+	props: ["title", "min", "step", "value", "multiplier"],
 
 
 	computed: {
@@ -35,14 +34,14 @@ export default {
 
 	methods: {
 		valueChanged: function(newValue) {
-			//ENGINE_settingsChanged(this.bindedSetting, (newValue / this.multiplier), "float");
+			console.log("Emitting sens");
 			this.$emit('input', (newValue / this.multiplier));
 		}
 	},
 
 	components: {
-		VueSlider,
-		VueNumberInput
+		VueRangeSlider,
+		VueNumericInput
 	}
 };
 </script>

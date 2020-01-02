@@ -14,7 +14,7 @@
 			<div>				
 				<h1>Sensitivity</h1>
 
-				<FloatSettingInput title="CSGO/Quake/Source Sensitivity" v-model="settings.value.PlayerSettings.Sensitivity" :min="0.001" :max="30" :step="0.001" bindedSetting="PlayerSettings.Sensitivity" info="SensitivitySettingInput"/>
+				<FloatSettingInput title="CSGO/Quake/Source Sensitivity" v-model="settings.value.PlayerSettings.Sensitivity" :min="0.001" :max="25" :step="0.001" bindedSetting="PlayerSettings.Sensitivity" info="SensitivitySettingInput"/>
 				<FloatSettingInput title="X Multiplier" v-model="settings.value.PlayerSettings.XMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.XMultiplier" info="Adjusting this slider will change the speed your camera moves horizontally on your screen."/>
 				<FloatSettingInput title="Y Multiplier" v-model="settings.value.PlayerSettings.YMultiplier" :min="0" :max="5" :step="0.01" bindedSetting="PlayerSettings.YMultiplier" info="Adjusting this slider will change the speed your camera moves vertically on your screen."/>
 						
