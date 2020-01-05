@@ -282,7 +282,7 @@ export default {
 		return {
 			settings: window.settings,
 			screenState: "game",
-			infoBoxData: "Hej"
+			infoBoxData: ""
 		};
 	},
 
