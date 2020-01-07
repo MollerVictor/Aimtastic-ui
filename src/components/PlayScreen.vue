@@ -15,8 +15,8 @@
 			</div>  
 			<div><h1>Flicks</h1>
 				<div class="gamemode-column">
-					<GameModeButton title="(DLC) Sphere Flicks (Moving)" roomName="TrackingOnMovingTargets" :isDLC="true" imageUrl="360"/>
-					<GameModeButton title="(DLC) Sphere Flicks (Static)" roomName="TrackingOnStaticTargets" :isDLC="true" imageUrl="360"/>
+					<GameModeButton title="(DLC) Sphere Tracking (Moving)" roomName="TrackingOnMovingTargets" :isDLC="true" imageUrl="360"/>
+					<GameModeButton title="(DLC) Sphere Tracking (Static)" roomName="TrackingOnStaticTargets" :isDLC="true" imageUrl="360"/>
 					<GameModeButton title="Bigger Then Smaller" roomName="BiggerThenSmallerRoom" imageUrl="bigger"/>
 					<GameModeButton title="Popup Targets Flicks" roomName="PopupTargetsRoom" imageUrl="pupoo"/>		
 					<GameModeButton title="(DLC) Flicks Flicks Flicks" roomName="FlicksFlicksFlicksRoom" 	:isDLC="true" imageUrl="360"/>
@@ -31,9 +31,9 @@
 					<GameModeButton title="Reaction Time" roomName="ReactionsRoom" imageUrl="reaction"/>
 					<GameModeButton title="Training Zone 1" roomName="Training Zone 1" 					:isDLC="true" imageUrl="360"/>
 					<GameModeButton title="Forever Attacking Droids" roomName="WarmupRoom" 				:isDLC="true" imageUrl="360"/>
-					<GameModeButton title="Forever Attacking Droids (University)" roomName="RA_Coast" 				:isDLC="true" imageUrl="360"/>
-					<GameModeButton title="Clicking Moving Targets" roomName="FlicksOnMovingTargets" 	:isDLC="true" imageUrl="360"/>
-					<GameModeButton title="Clicking Static Targets" roomName="FlicksOnStaticTargets" 	:isDLC="true" imageUrl="360"/>
+					<GameModeButton title="Forever Attacking Droids (University)" roomName="RA_Coast" 	:isDLC="true" imageUrl="360"/>
+					<GameModeButton title="Adaptive Sphere Flicking (Moving)" roomName="FlicksOnMovingTargets" 	:isDLC="true" imageUrl="360"/>
+					<GameModeButton title="Adaptive Sphere Flicking (Static)" roomName="FlicksOnStaticTargets" 	:isDLC="true" imageUrl="360"/>
 				</div>
 			</div>
 		</div>
