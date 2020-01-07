@@ -24,7 +24,7 @@
 	
 			<SensitivityInfoBoxInput title="CSGO/Quake/Source" 	v-model="settings.value.PlayerSettings.Sensitivity" :multiplier="1" 		:min="0.01" 	:step="0.01" />
 			<SensitivityInfoBoxInput title="Rainbow 6: Siege" 	v-model="settings.value.PlayerSettings.Sensitivity" :multiplier="3.8402" 	:min="0.01" 	:step="0.01" />
-			<SensitivityInfoBoxInput title="Fortnite" 			v-model="settings.value.PlayerSettings.Sensitivity" :multiplier="1/25" 		:min="0.001" 	:step="0.001"/>
+			<SensitivityInfoBoxInput title="Fortnite" 			v-model="settings.value.PlayerSettings.Sensitivity" :multiplier="100/25" 	:min="0.1" 	:step="0.1"/>
 			<SensitivityInfoBoxInput title="Overwatch" 			v-model="settings.value.PlayerSettings.Sensitivity" :multiplier="10/3" 		:min="0.01" 	:step="0.01" />
 			
 		</div>
@@ -73,3 +73,15 @@ export default {
 	}
 };
 </script>
+
+<style scoped>
+.info_box {
+  height: 100%;
+  width: calc(40%-5px);
+  margin-left: 5px;
+}
+
+.info_box h3{
+  font-size: 28px;
+}
+</style>

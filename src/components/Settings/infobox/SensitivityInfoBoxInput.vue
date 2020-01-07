@@ -3,11 +3,11 @@
 		<span class="select_label">{{ title }}</span>
 
 		<div class="rangeSliderHolder">
-			 <vue-range-slider ref="slider"  @slide-end="valueChanged" v-model="realValue" :tooltip="false"  :step="step" :min="min" :max="Math.round(25*multiplier * 100) / 100 " ></vue-range-slider>
+			 <vue-range-slider ref="slider"  @slide-end="valueChanged" :value="realValue" :tooltip="false"  :step="step" :min="min" :max="Math.round(25*multiplier * 100) / 100 " ></vue-range-slider>
 		</div>
 
 		<div class="inputSpinnerHolder">
-			<vue-numeric-input @input="valueChanged" v-model="realValue" :min="min" :max="Math.round(25*multiplier * 100) / 100 " :step="step"></vue-numeric-input>
+			<vue-numeric-input @input="valueChanged" :value="realValue"  :min="min" :step="step"></vue-numeric-input>
 		</div>
 	</div>
 </template>

@@ -4,11 +4,11 @@
 
 		<div class="rangeSliderHolder">
 		
-			 <vue-range-slider ref="slider" v-model="value" :tooltip="false" :step="step" :min="min" :max="max" ></vue-range-slider>
+			 <vue-range-slider ref="slider" @slide-end="valueChanged" :value="value" :tooltip="false" :step="step" :min="min" :max="max" ></vue-range-slider>
 		</div>
 
 		<div class="inputSpinnerHolder">
-			<vue-numeric-input  v-model="value" :precision="4" :min="min" :max="max" :step="step"></vue-numeric-input>
+			<vue-numeric-input @input="valueChanged"  :value="value" :precision="4" :min="min" :step="step"></vue-numeric-input>
 		</div>
 	</div>
 </template>
@@ -26,19 +26,16 @@ export default {
 	name: "FloatSettingInput",
 	props: ["title", "min", "max", "step", "bindedSetting", "value", "info", "dontSaveToConfig"],
 
-	watch: {
-		value: function (val) {			
-			if(!this.dontSaveToConfig){				
-				ENGINE_settingsChanged(this.bindedSetting, val, "float");				
-			}
-				this.$emit('input', val);
-		},
-	},
 	methods: {
 		setInfo: function() {
 			if(this.info)
 				this.$parent.setInfo(this.info);
 		},
+		valueChanged: function(newValue) {
+			console.log("Emitting float " + this.title);
+			this.$emit('input', newValue);
+			ENGINE_settingsChanged(this.bindedSetting, newValue, "float");	
+		}
 	},
 
 	components: {

@@ -3,11 +3,11 @@
 		<span class="select_label">{{ title }}</span>
 
 		<div class="rangeSliderHolder">
-			<vue-range-slider ref="slider"  @slide-end="valueChanged" v-model="realValue" :tooltip="false" :step="0.001" :min="0" :max="100" ></vue-range-slider>
+			<vue-range-slider ref="slider"  @slide-end="valueChanged" v-model="realValue" :tooltip="false" :step="0.001" :min="0" :max="120" ></vue-range-slider>
 		</div>
 
 		<div class="inputSpinnerHolder">			
-			<vue-numeric-input @input="valueChanged" v-model="realValue" :min="0.001" :max="100" :step="0.001"></vue-numeric-input>
+			<vue-numeric-input @input="valueChanged" v-model="realValue" :min="0.001" :max="120" :step="0.001"></vue-numeric-input>
 		</div>
 	</div>
 </template>
@@ -33,13 +33,19 @@ export default {
 		realValue: {
 			// getter
 			get: function () {
-				return Math.round( 360 / (this.dpi * 0.022 * this.value) * 2.54 * 1000) / 1000//  360 / (this.dpi * 0.022 * this.value * 2.54);//(settings.value.PlayerSettings.DPI * 0.022 * this.value) * 2.54
+				var newValue = Math.round( 360 / (this.dpi * 0.022 * this.value) * 2.54 * 1000) / 1000;
+
+				if(newValue > 110)
+					return 110;
+
+				return newValue;//  360 / (this.dpi * 0.022 * this.value * 2.54);//(settings.value.PlayerSettings.DPI * 0.022 * this.value) * 2.54
 			},
 		}
 	},
 
 	methods: {
 		valueChanged: function(newValue) {
+			console.log("Emitting 360");
 			var sourceSens = 914.4 /(0.022 * this.dpi * newValue) //Converting cm360 to source sens. #math
 			this.$emit('input', sourceSens);
 		}
