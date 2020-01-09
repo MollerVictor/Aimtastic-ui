@@ -1,6 +1,11 @@
 <template>
 	<diV  class="center_area fullscreen_window">
-		<div class="gamemode_container">         	
+		<div class="gamemode_container">
+
+			<div v-for="item of allGameModes" v-bind:key="item.title">
+				<GameModeButton :title="item.title" :roomName="item.roomName" :imageUrl="item.imgSrc" :isDLC="item.isDLC"/>
+			</div>
+
 			<div><h1>Tracking</h1>
 				<div class="gamemode-column">		
 					<GameModeButton title="Flat Wall Tracking" roomName="TrackingRoom" imageUrl="traking"/>
@@ -73,6 +78,11 @@
 	window.hasDLC = { value: false};
 	window.showDLCPopup = { value: false};
 
+	//Simple struct generator
+	const Struct = (...keys) => ((...v) => keys.reduce((o, k, i) => {o[k] = v[i]; return o} , {}))
+	const GameModeItem = Struct('title', 'roomName', 'imgSrc', 'isDLC')
+
+	
 
 	import GameModeButton from "./GameModeButton.vue";
 
@@ -88,6 +98,34 @@
 				hasDLC: window.hasDLC,
 				showDLCPopup: window.showDLCPopup,
 				isOpeningSteamOverlay: false,
+				allGameModes: [
+					GameModeItem("Flat Wall Tracking" 						,"TrackingRoom" 			,"traking"	,false),
+					GameModeItem("360 Tracking" 							,"360TrackingRoom" 			,"360"		,false),
+					GameModeItem("(DLC) Snaking" 							,"SnakeRoom" 				,"360"		,true),
+					GameModeItem("Simple Circle" 							,"SimpleCircleRoom" 		,"simple"	,false),
+					GameModeItem("Reflex" 									,"ReflexRoom" 				,"reflex"	,false),
+					GameModeItem("Left/Right Flicks" 						,"LeftRightRoom" 			,"left"		,false),
+					GameModeItem("Sphere Targets" 							,"SphereTargetsRoom" 		,"sphere"	,false),
+					GameModeItem("Skeet Shooting: Corridor" 				,"SkeetShootingCorridor" 	,"skeet"	,false),
+
+					GameModeItem("(DLC) Sphere Tracking (Moving)" 			,"TrackingOnMovingTargets" 	,"360"		,true),
+					GameModeItem("(DLC) Sphere Tracking (Static)" 			,"TrackingOnStaticTargets" 	,"360"		,true),
+					GameModeItem("Bigger Then Smaller" 						,"BiggerThenSmallerRoom" 	,"bigger"	,false),
+					GameModeItem("Popup Targets Flicks" 					,"PopupTargetsRoom" 		,"pupoo"	,false),		
+					GameModeItem("(DLC) Flicks Flicks Flicks" 				,"FlicksFlicksFlicksRoom" 	,"360"		,true),
+					GameModeItem("(DLC) 180 Flicks" 						,"180FlicksRoom" 			,"360"		,true),
+					GameModeItem("(DLC) Tile Frenzy" 						,"TileFrenzy" 				,"360"		,true),
+
+					GameModeItem("Assault Course 1" 						,"Assult Course Uno" 		,"360"		,false),
+					GameModeItem("Assault Course 2" 						,"Assault Course 2" 		,"360"		,true),
+					GameModeItem("Reaction Time" 							,"ReactionsRoom" 			,"reaction"	,false),
+					GameModeItem("Training Zone 1" 							,"Training Zone 1" 			,"360"		,true),
+					GameModeItem("Forever Attacking Droids" 				,"WarmupRoom" 				,"360"		,true),
+					GameModeItem("Forever Attacking Droids (University)" 	,"RA_Coast" 	 			,"360"		,true),
+					GameModeItem("Adaptive Sphere Flicking (Moving)" 		,"FlicksOnMovingTargets"	,"360"		,true),
+					GameModeItem("Adaptive Sphere Flicking (Static)" 		,"FlicksOnStaticTargets"	,"360"		,false)
+					
+					]
 			};
 		},
 		methods:{
@@ -121,8 +159,17 @@ h1 {
 .gamemode_container{
 	display: flex;
 	justify-content: space-between;
-	height: 100%;    
+	height: 100%;
+	flex-wrap: wrap;
 }
+
+
+.gamemode_container > div{
+	margin-left: 4vh;
+	margin-right: 4vh;
+	margin-bottom: 3vh;
+}
+
 
 .dlc_popup{
 	position: absolute;
