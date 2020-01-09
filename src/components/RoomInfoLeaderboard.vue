@@ -22,7 +22,7 @@
 			<tbody>
 				<tr v-for="item of leaderboard.value" v-bind:key="item.Rank">
 					<td>{{ item.Rank }}</td>
-					<td>{{ item.DisplayName }}</td>
+					<td @click="copyText(item.DisplayName, item.SteamId)">{{ item.DisplayName }}</td>
 					<td>{{ item.Score }}</td>
 					<td>{{ item.TargetHits }}</td>
 					<td>{{ item.TargetMisses }}</td>
@@ -43,6 +43,9 @@
 </template>
 
 <script>
+
+/* global ENGINE_copyToClipboard */
+
 window.onLeaderboardLoaded = function(jsonString) {
 	var parsedData = JSON.parse(jsonString);
 
@@ -62,6 +65,19 @@ window.leaderboard = { value: [] };
 window.leaderboardLoading = { value: true };
 window.myEntry = { value: {} };
 
+
+function copyTextToClipboard(text) {
+  if (!navigator.clipboard) {
+    console.log('nononon');
+    return;
+  }
+  navigator.clipboard.writeText(text).then(function() {
+    console.log('Async: Copying to clipboard was successful!');
+  }, function(err) {
+    console.error('Async: Could not copy text: ', err);
+  });
+}
+
 export default {
 	name: "RoomInfoLeaderboard",
 	data() {
@@ -70,7 +86,13 @@ export default {
 			leaderboardLoading: window.leaderboardLoading,
 			myEntry: window.myEntry
 		};
-	}
+	},
+
+	methods: {
+		copyText: function(name, steamId) {
+			ENGINE_copyToClipboard(name + ": " + steamId);
+		}
+	},
 };
 </script>
 
