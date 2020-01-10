@@ -33,12 +33,6 @@
 				<FloatSettingInput title="Vertical FOV" v-model="settings.value.PlayerSettings.FOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.FOV" info="FOV"/>
 				<FloatSettingInput title="Zoom Vertical FOV" v-model="settings.value.PlayerSettings.ZoomFOV" :min="10" :max="150" :step="0.1" bindedSetting="PlayerSettings.ZoomFOV" info="Changes your vertical field of view when scoped into a weapon"/>
 				<FloatSettingInput title="Countdown Duration" v-model="settings.value.PlayerSettings.CountdownDuration" :min="0" :max="5" :step="0.25" bindedSetting="PlayerSettings.CountdownDuration" info="Controls length of countdown after you start a round."/>
-
-				<div class="half_select_setting">
-					<span class="select_label">Horizontal FOV</span>
-					<span></span>
-					<input class="hor" id="horizontal_fov" min="10" max="200" step="0.01" fov_type="horizontal" />
-				</div>
 			</div>
 		</div>
 
