@@ -36,14 +36,13 @@
 				<button onmouseover="ENGINE_playHoverSound()" onclick="ENGINE_playClickSound()" class="button room-button" v-on:click="EnterRoom" >Play</button>
 			</div>
 			<div>
-				<RoomInfoLeaderboard/>
+				<RoomInfoLeaderboard v-if="UseHighScores.value"/>
 			</div>
 		</div>
 
 		<br style="clear: both;" />
 		<div>
-			<button onmouseover="ENGINE_playHoverSound()" class="button room-button
-			" onclick="switch_screens('#play_screen')">Back</button>
+			<button onmouseover="ENGINE_playHoverSound()" onclick="ENGINE_playClickSound()" class="button room-button" v-on:click="$emit('menu-button-pressed', 'Play')">Back</button>
 		</div>
 
 		<RoomInfoSettingsPopup v-if="showEditWindow" 
@@ -72,6 +71,10 @@ window.onRequestRoomSettings = function (jsonString) {
 
 	var parsedData = JSON.parse(jsonString);
 
+	console.log(parsedData);
+
+
+
 	var CurrentSettings = parsedData._settingsDefault;
 
 	if(parsedData.Presets.length > 0){
@@ -98,6 +101,7 @@ window.onRequestRoomSettings = function (jsonString) {
 	window.roomDescription.value = parsedData.DisplayInformation;	
 	window.SceneName.value = parsedData.SceneName;	
 	window.LevelIndex.value = parsedData.LevelIndex;
+	window.UseHighScores.value = parsedData.UseHighScores;
 	
 	if(parsedData.Presets.length > 0){
 		window.selectedPreset.value = parsedData.Presets[parsedData.DefaultSettingsIndex].Name;
@@ -119,6 +123,8 @@ window.roomName = { value: "" };
 window.roomDescription = { value: "" };
 window.SceneName = { value: ""};
 window.LevelIndex = { value: ""};
+window.UseHighScores = { value: ""};
+
 
 window.selectedPreset = { value: ""};
 window.selectedPresetIndex = { value: -1};
@@ -141,6 +147,8 @@ export default {
 			//selectedPreset: window.selectedPreset,
 			selectedPresetIndex: window.selectedPresetIndex,
 			isLocked: window.isLocked,
+			UseHighScores: window.UseHighScores,
+
 			showEditWindow: false
 		};
 	},

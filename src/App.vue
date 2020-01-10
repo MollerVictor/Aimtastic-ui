@@ -1,8 +1,8 @@
 <template>
 	<div class="MainMenu"  v-if="showUI.value">
-		<MenuTopBar v-on:menu-button-pressed="screenState.value = $event" />
+		<MenuTopBar :screenState="screenState" v-on:menu-button-pressed="screenState.value = $event" />
 		<img
-			src="/images/DiscordLogo.png"
+		 	:src="require(`./assets/images/DiscordLogo.png`)" 
 			class="discord_icon get-closer"
 			onclick="ENGINE_openLink('https://discord.gg/j6qhUUH')"
 		/>
@@ -11,8 +11,9 @@
 			<keep-alive>
 			<PlayScreen v-show="screenState.value === 'Play'" />
 			</keep-alive>
-			<RoomInfoScreen v-if="screenState.value === 'RoomInfo'" />
+			<RoomInfoScreen v-if="screenState.value === 'RoomInfo'" v-on:menu-button-pressed="screenState.value = $event" />
 			<SettingsScreen v-if="screenState.value === 'Settings'" />
+			<WorkshopScreen v-if="screenState.value === 'Workshop'" />			
 		</div>
 	</div>
 </template>
@@ -33,6 +34,7 @@ window.setMenuState = function (menuState) {
 import PlayScreen from "./components/PlayScreen.vue";
 import RoomInfoScreen from "./components/RoomInfoScreen.vue";
 import SettingsScreen from "./components/settings/SettingsScreen.vue";
+import WorkshopScreen from "./components/WorkshopScreen.vue";
 import MenuTopBar from "./components/MenuTopBar.vue";
 
 export default {
@@ -41,6 +43,7 @@ export default {
 		PlayScreen,
 		RoomInfoScreen,
 		SettingsScreen,
+		WorkshopScreen,
 		MenuTopBar
 	},
 
@@ -360,30 +363,6 @@ body, html {
     margin: 2vh;
 }
 
-.play_gamemode{
-    width: 21vh;
-    height: 10vh;
-    background: center center no-repeat;
-    background-size: auto 100%;
-    vertical-align: middle;
-}
-
-.play_gamemode .box-title{
-    text-align: center;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2.2vh;
-    text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000; 
-}
-
-.play_gamemode img{
-    background-size: contain;
-}
 
 .room-selected{
     background-color:#C2191F;
