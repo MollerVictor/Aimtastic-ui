@@ -1,52 +1,54 @@
 <template>
 	<diV  class="center_area fullscreen_window">
+
+
+
+		<div class="gamemode_filter">
+
+	
+			<div>
+				<h3>Aiming Type</h3>
+				<input type="radio" value="All" v-model="mouseMovementTypeRadio">
+				<label>All</label>
+				<br>
+				<input type="radio" value="Flicking" v-model="mouseMovementTypeRadio">
+				<label>Flicking</label>
+				<br>
+				<input type="radio" value="Tracking" v-model="mouseMovementTypeRadio">
+				<label >Tracking</label>
+			</div>
+			<div>
+				<h3>Game Type</h3>
+				<input type="radio" value="All" v-model="gameModeTypeRadio">
+				<label>All</label>
+				<br>
+				<input type="radio"  value="Practice" v-model="gameModeTypeRadio">
+				<label>Practice</label>
+				<br>
+				<input type="radio" value="Warmup" v-model="gameModeTypeRadio">
+				<label>Warmup</label>
+				<br>
+				<input type="radio"  value="Assault Course" v-model="gameModeTypeRadio">
+				<label>Assault Course</label>
+				<br>
+				<input type="radio" value="Other" v-model="gameModeTypeRadio">
+				<label>Other</label>
+			</div>
+
+			<div>
+				<h3>Search</h3>
+				<input v-model="gameModeSearch" placeholder="Search...">
+			</div>
+		</div>
+
+
 		<div class="gamemode_container">
 
-			<div v-for="item of allGameModes" v-bind:key="item.title">
+			<div v-for="item of filteredGameModes" v-bind:key="item.title">
 				<GameModeButton :title="item.title" :roomName="item.roomName" :imageUrl="item.imgSrc" :isDLC="item.isDLC"/>
 			</div>
-
-			<div><h1>Tracking</h1>
-				<div class="gamemode-column">		
-					<GameModeButton title="Flat Wall Tracking" roomName="TrackingRoom" imageUrl="traking"/>
-					<GameModeButton title="360 Tracking" roomName="360TrackingRoom" imageUrl="360"/>
-					<GameModeButton title="(DLC) Snaking" roomName="SnakeRoom" imageUrl="360" :isDLC="true"/>
-					<GameModeButton title="Simple Circle" roomName="SimpleCircleRoom" imageUrl="simple"/>
-					<GameModeButton title="Reflex" roomName="ReflexRoom" imageUrl="reflex"/>
-					<GameModeButton title="Left/Right Flicks" roomName="LeftRightRoom" imageUrl="left"/>
-					<GameModeButton title="Sphere Targets" roomName="SphereTargetsRoom" imageUrl="sphere"/>
-					<GameModeButton title="Skeet Shooting: Corridor" roomName="SkeetShootingCorridor" imageUrl="skeet"/>
-				</div>
-			</div>  
-			<div><h1>Flicks</h1>
-				<div class="gamemode-column">
-					<GameModeButton title="(DLC) Sphere Tracking (Moving)" roomName="TrackingOnMovingTargets" :isDLC="true" imageUrl="360"/>
-					<GameModeButton title="(DLC) Sphere Tracking (Static)" roomName="TrackingOnStaticTargets" :isDLC="true" imageUrl="360"/>
-					<GameModeButton title="Bigger Then Smaller" roomName="BiggerThenSmallerRoom" imageUrl="bigger"/>
-					<GameModeButton title="Popup Targets Flicks" roomName="PopupTargetsRoom" imageUrl="pupoo"/>		
-					<GameModeButton title="(DLC) Flicks Flicks Flicks" roomName="FlicksFlicksFlicksRoom" 	:isDLC="true" imageUrl="360"/>
-					<GameModeButton title="(DLC) 180 Flicks" roomName="180FlicksRoom" 						:isDLC="true" imageUrl="360"/>
-					<GameModeButton title="(DLC) Tile Frenzy" roomName="TileFrenzy" 						:isDLC="true" imageUrl="360"/>
-				</div>
-			</div>
-			<div><h1>Assault Maps</h1>
-				<div class="gamemode-column">
-					<GameModeButton title="Assault Course 1" roomName="Assult Course Uno" imageUrl="360"/>
-					<GameModeButton title="Assault Course 2" roomName="Assault Course 2" 				:isDLC="true" imageUrl="360"/>
-					<GameModeButton title="Reaction Time" roomName="ReactionsRoom" imageUrl="reaction"/>
-					<GameModeButton title="Training Zone 1" roomName="Training Zone 1" 					:isDLC="true" imageUrl="360"/>
-					<GameModeButton title="Forever Attacking Droids" roomName="WarmupRoom" 				:isDLC="true" imageUrl="360"/>
-					<GameModeButton title="Forever Attacking Droids (University)" roomName="RA_Coast" 	:isDLC="true" imageUrl="360"/>
-					<GameModeButton title="Adaptive Sphere Flicking (Moving)" roomName="FlicksOnMovingTargets" 	:isDLC="true" imageUrl="360"/>
-					<GameModeButton title="Adaptive Sphere Flicking (Static)" roomName="FlicksOnStaticTargets" 	:isDLC="true" imageUrl="360"/>
-				</div>
-			</div>
 		</div>
-		<br style="clear: both;">
-		<div>
-			<button onmouseover="ENGINE_playHoverSound()" onclick="ENGINE_playClickSound()" class="ui button secondary">Close</button>
-		</div>
-
+		
 		<diV class="dlc_popup" v-if="showDLCPopup.value">
 			<div class="dlc_popup_window">
 				This requires the DLC to play. Do you want to buy it now?
@@ -69,6 +71,10 @@
 
 	/* global ENGINE_openDLCBuyPage ENGINE_openLink */
 
+
+
+
+
 	window.onHasFullGameDLC = function (jsonString) {
 		var parsedData = JSON.parse(jsonString);	
 
@@ -80,11 +86,12 @@
 
 	//Simple struct generator
 	const Struct = (...keys) => ((...v) => keys.reduce((o, k, i) => {o[k] = v[i]; return o} , {}))
-	const GameModeItem = Struct('title', 'roomName', 'imgSrc', 'isDLC')
+	const GameModeItem = Struct('title', 'roomName', 'imgSrc', 'isDLC', 'isFlick', "gameModeType")
 
 	
 
 	import GameModeButton from "./GameModeButton.vue";
+import { filter } from 'minimatch';
 
 	export default {
 		name: "PlayScreen",
@@ -98,32 +105,35 @@
 				hasDLC: window.hasDLC,
 				showDLCPopup: window.showDLCPopup,
 				isOpeningSteamOverlay: false,
+				mouseMovementTypeRadio: "All",
+				gameModeTypeRadio: "All",
+				gameModeSearch: "",
 				allGameModes: [
-					GameModeItem("Flat Wall Tracking" 						,"TrackingRoom" 			,"traking"	,false),
-					GameModeItem("360 Tracking" 							,"360TrackingRoom" 			,"360"		,false),
-					GameModeItem("(DLC) Snaking" 							,"SnakeRoom" 				,"360"		,true),
-					GameModeItem("Simple Circle" 							,"SimpleCircleRoom" 		,"simple"	,false),
-					GameModeItem("Reflex" 									,"ReflexRoom" 				,"reflex"	,false),
-					GameModeItem("Left/Right Flicks" 						,"LeftRightRoom" 			,"left"		,false),
-					GameModeItem("Sphere Targets" 							,"SphereTargetsRoom" 		,"sphere"	,false),
-					GameModeItem("Skeet Shooting: Corridor" 				,"SkeetShootingCorridor" 	,"skeet"	,false),
+					GameModeItem("Bigger Then Smaller" 						,"BiggerThenSmallerRoom" 	,"biggernsmaller"	,false, true, 	"Practice"	),
+					GameModeItem("Popup Targets Flicks" 					,"PopupTargetsRoom" 		,"popup"	,false, true, 	"Practice"	),
+					GameModeItem("Simple Circle" 							,"SimpleCircleRoom" 		,"simplecircle"	,false, true, 	"Practice"	),
+					GameModeItem("Reflex" 									,"ReflexRoom" 				,"reflex"	,false, true, 	"Practice"	),
+					GameModeItem("Left/Right Flicks" 						,"LeftRightRoom" 			,"leftrightflicks"		,false, true, 	"Practice"	),
+					GameModeItem("Sphere Targets" 							,"SphereTargetsRoom" 		,"spheretargets"	,false, true, 	"Practice"	),
+					GameModeItem("Skeet Shooting: Corridor" 				,"SkeetShootingCorridor" 	,"skeetshootingcorrdior"	,false, true, 	"Practice"	),
+					GameModeItem("Flat Wall Tracking" 						,"TrackingRoom" 			,"flatwalltracking"	,false, false, 	"Practice"	),
+					GameModeItem("360 Tracking" 							,"360TrackingRoom" 			,"360tracking"		,false, false, 	"Practice"	),
+					GameModeItem("Snaking" 									,"SnakeRoom" 				,"snaking"		,true, 	true, 	"Practice"	),
+					GameModeItem("Assault Course 1" 						,"Assult Course Uno" 		,"assault1"		,false, true, 	"Assault Course"	),
+					GameModeItem("Assault Course 2" 						,"Assault Course 2" 		,"assault2"		,true, 	true, 	"Assault Course"	),
 
-					GameModeItem("(DLC) Sphere Tracking (Moving)" 			,"TrackingOnMovingTargets" 	,"360"		,true),
-					GameModeItem("(DLC) Sphere Tracking (Static)" 			,"TrackingOnStaticTargets" 	,"360"		,true),
-					GameModeItem("Bigger Then Smaller" 						,"BiggerThenSmallerRoom" 	,"bigger"	,false),
-					GameModeItem("Popup Targets Flicks" 					,"PopupTargetsRoom" 		,"pupoo"	,false),		
-					GameModeItem("(DLC) Flicks Flicks Flicks" 				,"FlicksFlicksFlicksRoom" 	,"360"		,true),
-					GameModeItem("(DLC) 180 Flicks" 						,"180FlicksRoom" 			,"360"		,true),
-					GameModeItem("(DLC) Tile Frenzy" 						,"TileFrenzy" 				,"360"		,true),
+					GameModeItem("Sphere Tracking (Moving)" 				,"TrackingOnMovingTargets" 	,"spheretrackingmoving"		,true, 	false, 	"Practice"	),
+					GameModeItem("Sphere Tracking (Static)" 				,"TrackingOnStaticTargets" 	,"spheretrackingstatic"		,true, 	false, 	"Practice"	),
+		
+					GameModeItem("Flicks Flicks Flicks" 					,"FlicksFlicksFlicksRoom" 	,"flicksflicksflicks"		,true, 	true, 	"Practice"	),
+					GameModeItem("180 Flicks" 								,"180FlicksRoom" 			,"180flicks"		,true, 	true, 	"Practice"	),
+					GameModeItem("Tile Frenzy" 								,"TileFrenzy" 				,"tilefrenzy"		,true, 	true, 	"Practice"	),
 
-					GameModeItem("Assault Course 1" 						,"Assult Course Uno" 		,"360"		,false),
-					GameModeItem("Assault Course 2" 						,"Assault Course 2" 		,"360"		,true),
-					GameModeItem("Reaction Time" 							,"ReactionsRoom" 			,"reaction"	,false),
-					GameModeItem("Training Zone 1" 							,"Training Zone 1" 			,"360"		,true),
-					GameModeItem("Forever Attacking Droids" 				,"WarmupRoom" 				,"360"		,true),
-					GameModeItem("Forever Attacking Droids (University)" 	,"RA_Coast" 	 			,"360"		,true),
-					GameModeItem("Adaptive Sphere Flicking (Moving)" 		,"FlicksOnMovingTargets"	,"360"		,true),
-					GameModeItem("Adaptive Sphere Flicking (Static)" 		,"FlicksOnStaticTargets"	,"360"		,false)
+					GameModeItem("Reaction Time" 							,"ReactionsRoom" 			,"reaction"	,false, false, 	"Other"	),
+					GameModeItem("Forever Attacking Droids" 				,"WarmupRoom" 				,"foreverattaackingdriods"		,true, 	true, 	"Warmup"	),
+					GameModeItem("Forever Attacking Droids (University)" 	,"RA_Coast" 	 			,"foreverattckingdroidsuniversty"		,true, 	true, 	"Warmup"	),
+					GameModeItem("Adaptive Sphere Flicking (Moving)" 		,"FlicksOnMovingTargets"	,"adaptive sphere flicking moving"		,true, 	true, 	"Practice"	),
+					GameModeItem("Adaptive Sphere Flicking (Static)" 		,"FlicksOnStaticTargets"	,"adatpive sphere flicking static"		,false, true, 	"Practice"	)
 					
 					]
 			};
@@ -138,6 +148,27 @@
 			},
 			openDLCInBrowser: function(){
 				ENGINE_openLink("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+			},
+			
+		},
+		computed: {		
+			filteredGameModes: function () {
+				var filterdList = this.allGameModes; 
+
+				if(this.gameModeTypeRadio !== "All"){
+					filterdList = filterdList.filter(x => x.gameModeType == this.gameModeTypeRadio);
+				}	
+
+				if(this.mouseMovementTypeRadio == "Flicking"){
+					filterdList = filterdList.filter(x => x.isFlick == true);
+				}
+				else if(this.mouseMovementTypeRadio == "Tracking"){
+					filterdList = filterdList.filter(x => x.isFlick == false);
+				}
+				
+				filterdList = filterdList.filter(x => x.title.toLowerCase().includes(this.gameModeSearch.toLowerCase()));
+
+				return filterdList;
 			}
 		}
 	};
@@ -156,17 +187,28 @@ h1 {
 	padding: 6px;
 	border: 5px solid #fcffff;
 }
-.gamemode_container{
+
+
+.gamemode_filter{
 	display: flex;
-	justify-content: space-between;
-	height: 100%;
+	width: 100%;
+	height: 17vh;
+	background-color:rgba(82, 79, 79, 0.301);
+	justify-content: space-evenly;
+	margin-bottom: 3vh;
+}
+
+.gamemode_container{
+	display: flex;	
 	flex-wrap: wrap;
+	padding-left: 8vh;
+	overflow-y: scroll;
+    max-height: 95%;
 }
 
 
 .gamemode_container > div{
 	margin-left: 4vh;
-	margin-right: 4vh;
 	margin-bottom: 3vh;
 }
 

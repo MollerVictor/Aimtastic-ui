@@ -1,12 +1,18 @@
 <template>
-	<div onmouseover="ENGINE_playHoverSound()" onclick="ENGINE_playClickSound(); showRoomSettings(this);" class="play_gamemode button-sound get-closer" :data-isDLC="isDLC" :data-room="roomName">
-		<img class="background-image"  :src="require(`../assets/images/rooms/${imageUrl}.png`)" rel="preload"/>
+	<div onmouseover="ENGINE_playHoverSound()" onmouseenter="this.firstChild.play();" onmouseleave="this.firstChild.pause();" onclick="ENGINE_playClickSound(); showRoomSettings(this);" class="play_gamemode button-sound get-closer" :data-isDLC="isDLC" :data-room="roomName">
+		
+
+		 <video class="gamemodeVideo"  loop>
+			<source :src="require(`../assets/images/rooms/${imageUrl}.webm`)" type="video/mp4">
+		</video> 
+
 		<div class="box-title">{{ title }}</div>
 		<div v-if="isDLC == true && hasDLC.value == false" class="dlc_overlay">
 			<div class="dlc_bottom_text">DLC</div> 
 		</div>
 	</div>
 </template>
+
 
 <script>
 
@@ -40,6 +46,37 @@ export default {
 </script>
 
 <style scoped>
+
+.play_gamemode{
+    width: 21vh;
+    height: 10vh;
+    background: center center no-repeat;
+    background-size: auto 100%;
+    vertical-align: middle;
+}
+
+.play_gamemode .box-title{
+    text-align: center;
+    position: absolute;
+   	width: 100%;
+    top: 2vh;
+
+    transform: translateY(-50%);
+    font-size: 2.2vh;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+}
+
+
+.play_gamemode img{
+    background-size: contain;
+}
+
+
+
 .dlc_overlay{
 	width: 100%;
 	height: 100%;
@@ -55,6 +92,12 @@ export default {
 	bottom: 0;
 	right: 0;
 	font-size: 3vh;
+}
+
+.gamemodeVideo{
+	object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 </style>
